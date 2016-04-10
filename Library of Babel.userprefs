@@ -1,0 +1,23 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PageInterfaceScript.cs">
+    <Files>
+      <File FileName="Assets/Mirza Beig/Mirza Beig/VFX/_Common/scripts/ParticleSystems.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PageInterfaceScript.cs" Line="45" Column="38" />
+      <File FileName="Assets/Scripts/SearchInterfaceScript.cs" Line="68" Column="54" />
+      <File FileName="Assets/Scripts/LibrarianScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FireScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GhoulScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HexagonSript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WallScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HexagonGeneratorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ShelfScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SettingsScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BookScript.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
