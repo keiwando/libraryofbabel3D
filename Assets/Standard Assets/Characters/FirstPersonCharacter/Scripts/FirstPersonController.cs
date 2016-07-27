@@ -59,30 +59,38 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 
-			locked = false;
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
+
+			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
+				locked = false;
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;	
+			}
+
         }
 
 		//CUSTOM
 		public void setLocked(bool l){
-			locked = l;
-			if(l){
-				Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-			}else{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
+			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
+				locked = l;
+				if(l){
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
+				}else{
+					Cursor.lockState = CursorLockMode.Locked;
+					Cursor.visible = false;
+				}
 			}
 		}
 
 		private void updateLock(){
-			if(locked){
-				Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-			}else{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
+			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
+				if(locked){
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
+				}else{
+					Cursor.lockState = CursorLockMode.Locked;
+					Cursor.visible = false;
+				}
 			}
 		}
 
