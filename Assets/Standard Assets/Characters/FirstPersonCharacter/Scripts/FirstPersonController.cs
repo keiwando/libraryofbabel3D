@@ -60,11 +60,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
 
 
-			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
+			if(Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer){
 				locked = false;
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;	
+			}else{
+				Input.gyro.enabled = true;
 			}
+
 
         }
 
@@ -122,7 +125,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 				
 				m_PreviouslyGrounded = m_CharacterController.isGrounded;
-			}	
+			}
+
+			//updateGyroRotation();
         }
 
 
@@ -173,6 +178,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				ProgressStepCycle(speed);
 				UpdateCameraPosition(speed);
 			}
+
+			//updateGyroRotation();
         }
 
 
@@ -242,6 +249,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
             }
             m_Camera.transform.localPosition = newCameraPosition;
+			//updateGyroRotation();
         }
 
 
@@ -280,7 +288,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+			if(!Input.gyro.enabled)
+				m_MouseLook.LookRotation (transform, m_Camera.transform);
+			else
+				updateGyroRotation();
         }
 
 
@@ -299,5 +310,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
+
+		private void updateGyroRotation(){
+			if(Input.gyro.enabled){
+				transform.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0); 
+			}
+		}
     }
 }
