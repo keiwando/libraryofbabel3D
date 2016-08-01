@@ -45,6 +45,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		//CUSTOMIZIATION
 		private bool locked;	//refers to the CAMERA, NOT the mouse
 
+		//Rotation
+		private Quaternion initialRotation;
+		private Quaternion gyroInitialRotation;
+
         // Use this for initialization
         private void Start()
         {
@@ -66,6 +70,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				Cursor.visible = false;	
 			}else{
 				Input.gyro.enabled = true;
+				initialRotation = Input.gyro.attitude;
+				//Input.gyro.updateInterval = 0.0167f;    // set the update interval to it's highest value (60 Hz)
+
 			}
 
 
@@ -313,7 +320,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		private void updateGyroRotation(){
 			if(Input.gyro.enabled){
-				transform.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0); 
+
+				transform.rotation = Input.gyro.attitude;
+				transform.Rotate( 0f, 0f, 180f, Space.Self ); // Swap "handedness" of quaternion from gyro.
+				transform.Rotate( 90f, 180f, 0f, Space.World ); // Rotate to make sense as a camera pointing out the back of your device.
+
 			}
 		}
     }

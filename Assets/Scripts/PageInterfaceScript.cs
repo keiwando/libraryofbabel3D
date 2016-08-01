@@ -115,7 +115,11 @@ public class PageInterfaceScript : MonoBehaviour {
 			string url = generateUrl();
 
 			StartCoroutine(waitForRequest(url,(www) => {
-				pagetextField.text = Parse(www.text);
+				if(www.text == ""){
+					pagetextField.text = "Offline";
+				} else {
+					pagetextField.text = Parse(www.text);
+				}
 				setVisible(true);
 			}));
 
@@ -137,7 +141,11 @@ public class PageInterfaceScript : MonoBehaviour {
 			position.gameObject.SetActive(true);
 
 			StartCoroutine(waitForRequest(url1,(www) => {
-				pagetextField.text = Parse(www.text);
+				if(www.text == ""){
+					pagetextField.text = "Offline";
+				} else {
+					pagetextField.text = Parse(www.text);
+				}
 				setVisible(true);
 			}));
 
@@ -148,7 +156,11 @@ public class PageInterfaceScript : MonoBehaviour {
 			position.gameObject.SetActive(false);
 
 			StartCoroutine(waitForRequest(url1,(www) => {
-				pageText1.text = Parse(www.text);
+				if(www.text == ""){
+					pageText1.text = "Offline";
+				} else {
+					pageText1.text = Parse(www.text);
+				}
 				pagetextField.text = "";
 				setVisible(true);
 			}));
@@ -157,14 +169,22 @@ public class PageInterfaceScript : MonoBehaviour {
 			position.gameObject.SetActive(false);
 
 			StartCoroutine(waitForRequest(url1,(www) => {
-				pageText1.text = Parse(www.text);
+				if(www.text == ""){
+					pageText1.text = "Offline";
+				} else {
+					pageText1.text = Parse(www.text);
+				}
 				//setVisible(true);
 			}));
 
 			string url2 = generateNextPageUrl();
 
 			StartCoroutine(waitForRequest(url2,(www) => {
-				pagetextField.text = Parse(www.text);
+				if(www.text == ""){
+					pagetextField.text = "Offline";
+				} else {
+					pagetextField.text = Parse(www.text);
+				}
 				setVisible(true);
 			}));
 		}

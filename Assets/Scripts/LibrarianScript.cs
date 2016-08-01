@@ -80,13 +80,24 @@ public class LibrarianScript : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.M)){
 			if(selectedStage != 4){
+				/*
 				choiceIndicator.setVisible(false);
 				search.setVisible(true);
 				pageInterface.setVisible(false);
 				lockCameraUnlockMouse();
 				selectedStage = 4;
+				*/
+				showSearchInterface();
 			}
 		}
+	}
+
+	public void showSearchInterface(){
+		choiceIndicator.setVisible(false);
+		search.setVisible(true);
+		pageInterface.setVisible(false);
+		lockCameraUnlockMouse();
+		selectedStage = 4;
 	}
 
 	private void choosePageInterface(){
