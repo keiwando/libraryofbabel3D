@@ -16,6 +16,8 @@ public class PageInterfaceScript : MonoBehaviour {
 	public Canvas canvas;
 	public GameObject loadingIndicator;
 
+	public TouchScreenKeyboard keyboard;
+
 	private bool shouldRequestPage;
 
 	//Double Interface Extras
@@ -31,7 +33,6 @@ public class PageInterfaceScript : MonoBehaviour {
 	void Start () {
 		canvas.enabled = false;
 		shouldRequestPage = false;
-
 	}
 	
 	// Update is called once per frame
@@ -43,15 +44,7 @@ public class PageInterfaceScript : MonoBehaviour {
 		*/
 		if(Input.GetKeyDown(KeyCode.Return)){
 			if(inputField.text != string.Empty){
-				goToSelectedPage();
-				/*
-				if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-				   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-					updatePage();
-				}else{
-				*/
-					updatePageFromSite();
-				//}
+				goToSelectedPageAndUpdate();
 			}
 		}
 
@@ -62,6 +55,9 @@ public class PageInterfaceScript : MonoBehaviour {
 				this.setVisible(false);
 				librarian.lockMouseUnlockCamera();
 			}
+			#if MOBILE_INPUT
+			this.setVisible(false);
+			#endif
 		}
 	}
 
@@ -264,6 +260,8 @@ public class PageInterfaceScript : MonoBehaviour {
 	public void setVisible(bool v){
 		if(v){
 			canvas.enabled = true;
+			//Update Canvas
+			Canvas.ForceUpdateCanvases();
 		}else{
 			canvas.enabled = false;
 		}
@@ -334,6 +332,11 @@ public class PageInterfaceScript : MonoBehaviour {
 			//input was not correct
 			updateInputField();
 		}
+	}
+
+	public void goToSelectedPageAndUpdate(){
+		goToSelectedPage();
+		updatePageFromSite();
 	}
 
 	public void setPositionIndication(string t){

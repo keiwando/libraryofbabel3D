@@ -71,11 +71,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			}else{
 				Input.gyro.enabled = true;
 				initialRotation = Input.gyro.attitude;
-				//Input.gyro.updateInterval = 0.0167f;    // set the update interval to it's highest value (60 Hz)
-
 			}
-
-
         }
 
 		//CUSTOM
@@ -295,10 +291,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-			if(!Input.gyro.enabled)
-				m_MouseLook.LookRotation (transform, m_Camera.transform);
-			else
+			if(!Input.gyro.enabled){
+				if(!Application.isMobilePlatform){
+					m_MouseLook.LookRotation (transform, m_Camera.transform);
+				}
+			} else {
 				updateGyroRotation();
+			}
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 //using Parse;
 
 public class LibrarianScript : MonoBehaviour {
@@ -77,6 +78,7 @@ public class LibrarianScript : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			escPressed = true;
 			choiceIndicator.setVisible(true);
+			//pageInterface.setVisible(false);
 		}
 		if(Input.GetKeyDown(KeyCode.M)){
 			if(selectedStage != 4){
@@ -120,7 +122,11 @@ public class LibrarianScript : MonoBehaviour {
 	public void increaseFallCount(){
 		fallCount++;
 		if(fallCount > maxFallNum){
-			Application.Quit();
+			if(!Application.isMobilePlatform){
+				Application.Quit();		// Quit the Application on Standalone builds
+			} else {
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);				// Respawn on mobile
+			}
 		}
 	}
 

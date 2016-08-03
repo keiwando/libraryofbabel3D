@@ -298,6 +298,8 @@ public class SearchInterfaceScript : MonoBehaviour {
 		if(v){
 			canvas.enabled = true;
 			resetNumbers();
+			//Update Canvas
+			Canvas.ForceUpdateCanvases();
 		}else{
 			canvas.enabled = false;
 		}

@@ -19,6 +19,12 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public string horizontalAxisName = "Horizontal"; // The name given to the horizontal axis for the cross platform input
 		public string verticalAxisName = "Vertical"; // The name given to the vertical axis for the cross platform input
 
+		public bool controlsCamera;
+		public Camera camera;
+		public GameObject player;
+		private bool shouldRotateCamera;
+		private Vector2 rotateVector;
+
 		Vector3 m_StartPos;
 		bool m_UseX; // Toggle for using the x axis
 		bool m_UseY; // Toggle for using the Y axis
@@ -33,7 +39,14 @@ namespace UnityStandardAssets.CrossPlatformInput
         void Start()
         {
             m_StartPos = transform.position;
+			shouldRotateCamera = false;
         }
+
+		void Update(){
+			if(shouldRotateCamera){
+				rotateCamera();
+			}
+		}
 
 		void UpdateVirtualAxes(Vector3 value)
 		{
@@ -88,8 +101,22 @@ namespace UnityStandardAssets.CrossPlatformInput
 				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
 				newPos.y = delta;
 			}
-			transform.position = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + m_StartPos;
-			UpdateVirtualAxes(transform.position);
+
+			transform.position = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + m_StartPos;		// move Joystick
+
+			//if(!controlsCamera){
+				UpdateVirtualAxes(transform.position);
+			/*} else {
+				shouldRotateCamera = true;
+				rotateVector = new Vector2(newPos.x, newPos.y);
+				rotateVector.Normalize();
+			}*/
+
+		}
+
+		private void rotateCamera(){
+			camera.transform.Rotate(player.transform.right, rotateVector.x * -3);	// rotate camera along x axis
+			camera.transform.Rotate(player.transform.up, rotateVector.y * -3);	// rotate camera along y axis
 		}
 
 
@@ -97,6 +124,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		{
 			transform.position = m_StartPos;
 			UpdateVirtualAxes(m_StartPos);
+			shouldRotateCamera = false;
 		}
 
 

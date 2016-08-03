@@ -92,6 +92,9 @@ public class BookScript : MonoBehaviour {
 
 
 			//show Page
+			if(page == null){
+				page = librarian.getPageInterface();
+			}
 			page.startPageRequestWithLoading();
 			//page.setVisible(true);
 			//page.requestPage();
