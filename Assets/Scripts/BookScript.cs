@@ -73,7 +73,7 @@ public class BookScript : MonoBehaviour {
 		if(librarian.selectedStage == 2){
 			librarian.setWallIndicator(librarian.getSelectedWall() + 1);
 			librarian.setShelfIndicator(librarian.getSelectedShelf() + 1);
-			librarian.setBookIndicator(0);
+			librarian.setBookIndicator(0);											
 			librarian.updateIndicator();
 		}
 	}
@@ -95,6 +95,10 @@ public class BookScript : MonoBehaviour {
 			if(page == null){
 				page = librarian.getPageInterface();
 			}
+
+			//#if MOBILE_INPUT // Workaround for book number bug in PageInterface
+			//page.setPositionIndication(page.position.text + " B:" + (bookNumber + 1));
+			//#endif
 			page.startPageRequestWithLoading();
 			//page.setVisible(true);
 			//page.requestPage();
@@ -111,7 +115,7 @@ public class BookScript : MonoBehaviour {
 				activated = false;
 
 				librarian.lockMouseUnlockCamera();
-				librarian.setBookIndicator(0);
+				librarian.setBookIndicator(0);			
 				librarian.resetIndicator();
 
 				//remove PageInterface

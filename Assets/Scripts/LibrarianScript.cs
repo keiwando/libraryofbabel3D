@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
 //using Parse;
@@ -30,6 +31,9 @@ public class LibrarianScript : MonoBehaviour {
 	private int fallCount;
 	private const int maxFallNum = 3;
 
+	private string deathText;
+	public DeathText deathTextObject;
+
 	// Use this for initialization
 	void Start () {
 		cmdPressed = false;
@@ -51,6 +55,8 @@ public class LibrarianScript : MonoBehaviour {
 		universe.setRandomHexagonNameInBase36();
 
 		choosePageInterface();
+
+		chooseDeathText();
 		//universe.testStringToHexNumberMethods();
 
 		//ParseAnalytics.TrackAppOpenedAsync ();
@@ -125,9 +131,48 @@ public class LibrarianScript : MonoBehaviour {
 			if(!Application.isMobilePlatform){
 				Application.Quit();		// Quit the Application on Standalone builds
 			} else {
+				deathTextObject.activate();
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);				// Respawn on mobile
 			}
 		}
+	}
+
+	private void chooseDeathText(){
+
+		string[] sentences = readTextFile("FILEPATH MISSING");
+		int pickedSentenceCount = 1;
+
+		int startIndex = Random.Range(0,sentences.Length - pickedSentenceCount -1);
+
+		deathText = "";
+
+		for(int i = startIndex; i < startIndex + pickedSentenceCount; i++){
+			deathText += sentences[i] + ". ";
+		}
+
+		deathTextObject.setText(deathText);
+	}
+
+	private string[] readTextFile(string file_path)
+	{
+		/*
+		string text = "";
+
+		StreamReader inp_stm = new StreamReader(file_path);
+
+		while(!inp_stm.EndOfStream)
+		{
+			string inp_ln = inp_stm.ReadLine();
+			text += inp_ln;
+		}
+
+		inp_stm.Close( ); 
+		*/
+		TextAsset txt = (TextAsset)Resources.Load("LibraryofBabel", typeof(TextAsset));
+		string content = txt.text;
+
+		//divide string into sentences and return array
+		return content.Split(new char[] {'.',';'});
 	}
 
 	public string requestPage(){
