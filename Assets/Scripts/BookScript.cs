@@ -95,10 +95,7 @@ public class BookScript : MonoBehaviour {
 			if(page == null){
 				page = librarian.getPageInterface();
 			}
-
-			//#if MOBILE_INPUT // Workaround for book number bug in PageInterface
-			//page.setPositionIndication(page.position.text + " B:" + (bookNumber + 1));
-			//#endif
+				
 			page.startPageRequestWithLoading();
 			//page.setVisible(true);
 			//page.requestPage();
