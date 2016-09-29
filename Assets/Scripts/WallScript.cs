@@ -76,6 +76,11 @@ public class WallScript : MonoBehaviour {
 		activated = false;
 	}
 
+	public void reset(){
+		librarian.resetIndicator();
+		activated = false;
+	}
+
 	public void removeLightBug(){
 		Vector3 newPos = wallLight.transform.position;
 		wallLight.enabled = true;

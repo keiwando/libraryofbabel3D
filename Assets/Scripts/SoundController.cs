@@ -41,7 +41,10 @@ public class SoundController : MonoBehaviour {
 	}
 
 	public void startMusic(){
-		currentMusic = (currentMusic + 1) % musicNumber;
+		if(Application.platform == RuntimePlatform.IPhonePlayer)
+			currentMusic = 3;
+		else
+			currentMusic = (currentMusic + 1) % musicNumber;
 		audio.PlayOneShot(music[currentMusic]);
 		lastTimeStop = Time.realtimeSinceStartup;
 	}

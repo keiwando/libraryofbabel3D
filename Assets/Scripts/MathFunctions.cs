@@ -17,7 +17,7 @@ public class MathFunctions : MonoBehaviour {
 	private const long LASTLONG = 420707229868791;
 
 	private string hexNumberInBase36;
-	private const long MAXLONGFORBASE36 = 101559956668415;
+	private const long MAXLONGFORBASE36 = 101559956668415; // 101559956668415
 
 	//long.maxValue = 9223372036854775807
 	//maxlong = 		  420707233300200
@@ -43,11 +43,30 @@ public class MathFunctions : MonoBehaviour {
 		roomposition = new int[4];
 		pageData = new long[LongNumber];
 
+
+		//testConversionPrints();
+		testTrailingZeroRemove();
+		test36ConversionMethods();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	private void testConversionPrints() {
+
+		string numAsString = "000000000";
+
+		long number = ArbitraryToDecimalSystem(numAsString,36,HEXCHARACTERSET);
+		print("String: " + numAsString + " as number: " + number);
+		print("Number: " + number + " -> String: " + DecimalToArbitrarySystem(number,36,HEXCHARACTERSET) + "\n");
+
+		number = 904;
+		numAsString = DecimalToArbitrarySystem(number,36,HEXCHARACTERSET);
+		print("Number: " + number + " -> String: " + numAsString);
+		print("String: " + numAsString + " -> Number: " + ArbitraryToDecimalSystem(numAsString,36,HEXCHARACTERSET) + "\n");
+
 	}
 
 	private string addMissingCharacters(string s,int wantedLength,char fill){
@@ -70,6 +89,7 @@ public class MathFunctions : MonoBehaviour {
 			current = current % MAXLONG;
 			hexagonNumber[i] = current;
 		}
+
 	}
 
 	public string generateRandomHexagonNameInBase36(){
@@ -104,6 +124,8 @@ public class MathFunctions : MonoBehaviour {
 		if(rest == 0){
 			length = hexNumberInBase36.Length / 9;
 			length ++;
+			// test
+			length++;
 		}else{
 			length = hexNumberInBase36.Length / 9;
 			length += 2;
@@ -113,39 +135,94 @@ public class MathFunctions : MonoBehaviour {
 
 		if(rest > 0){
 			number[0] = ArbitraryToDecimalSystem(hexNumberInBase36.Substring(startIndex,rest),36,HEXCHARACTERSET);
+			print("Rest: " + number[0]);
 			increment = 1;
 			number[length-1] = 1;	//last long in the array indicates if there was a rest or not
 		}else{
 			number[length-1] = 0;
 		}
 
+		print("increment: " + increment);
 
-		for(int i = 0; i < number.Length-2; i++){
+		for(int i = 0; i < number.Length - 2; i++){
 			startIndex = rest + (i * 9);			//because each long takes 9 characters		=> 	substring begin at: 0,9,18,27...
 
 			number[i+increment] = ArbitraryToDecimalSystem(hexNumberInBase36.Substring(startIndex,9),36,HEXCHARACTERSET);
 
-			number[i] = number[i] % MAXLONGFORBASE36;
+			number[i] = number[i] % (MAXLONGFORBASE36 + 1);
 		}
 
-		return number;
+		// Test always return long[] of size 363
+		long[] result = new long[363];
+		print("Number length: " + number.Length );
+		print("String length: " + hexNumberInBase36.Length);
+		int difference = result.Length - number.Length - 1 < 0 ? 0: result.Length - number.Length;
+		print("difference: " + difference);
+		if (difference < 0) print("NEGATIVE DIFFERENCE!!");
+
+		for (int i = 0; i < number.Length - 1; i++) {
+			
+			result[i + difference] = number[i];
+		}
+
+		return result;
+		//return number;
 	}
 
 	public string turnHexNumber10To36(long[] number){
 		string text = "";
 
-		if(number[number.Length - 1] == 1){
+		/*if(number[number.Length - 1] == 1){
 			//there was a rest
-			text += DecimalToArbitrarySystem(number[0],36,HEXCHARACTERSET);
-		}else{
-			text += addMissingCharacters(DecimalToArbitrarySystem(number[0],36,HEXCHARACTERSET),9,'0');
+			string restAsString = DecimalToArbitrarySystem(number[0],36,HEXCHARACTERSET);
+			print("rest as string: " + restAsString);
+			text += restAsString;
+		}else{*/
+		text += DecimalToArbitrarySystem(number[0],36,HEXCHARACTERSET);//,9,'0'); //addMissingCharacters(
+		//}
+
+		// find first index where entry is not 0
+		int start = 1;
+		while(number[start] == 0 && start < number.Length - 1) {
+			start++;
 		}
 
-		for(int i = 1; i < number.Length - 1; i++){
+
+		for(int i = start; i < number.Length - 1; i++){
+			//if (i != number.Length - 1 && number[i] == 0) continue;
 			text += addMissingCharacters(DecimalToArbitrarySystem(number[i],36,HEXCHARACTERSET),9,'0');
 		}
 
+		// remove trailing 0s
+		text = removeTrailingZerosFromString(text);
+
+		// set text to "0" if text is empty;
+		if (text == "") text = "0";
+
 		return text;
+	}
+
+	private string removeTrailingZerosFromString(string number) {
+
+		int start = 0;
+
+		while(start < number.Length && number[start] == '0') {
+
+			start++;
+		}
+
+		if (start == number.Length) return "";
+
+		return number.Substring(start);
+	}
+
+	private void testTrailingZeroRemove() {
+
+		string testString = "0000000asdlkgh0000dfghj";
+		print("Trailing Zero Removal: input: " + testString + " result:  |" + removeTrailingZerosFromString(testString) + " |");
+
+		testString = "000";
+		print("Trailing Zero Removal: input: " + testString + " result:  |" + removeTrailingZerosFromString(testString) + " |");
 	}
 
 
@@ -154,9 +231,11 @@ public class MathFunctions : MonoBehaviour {
 	}
 
 	private void test36ConversionMethods(){
-		hexNumberInBase36 = generateRandomHexagonNameInBase36();
+		string oldNumber = hexNumberInBase36 = generateRandomHexagonNameInBase36();
 		print ("random hex: " + hexNumberInBase36);
-		print ("after conv: " + turnHexNumber10To36(turnHexNumber36To10()));
+		string result = turnHexNumber10To36(turnHexNumber36To10());
+		print ("after conv: " + result);
+		print( "Conversion works: " + oldNumber == result);
 	}
 
 	/*
@@ -406,26 +485,35 @@ public class MathFunctions : MonoBehaviour {
 		}
 	}
 
+	/** Currently only works for n = 1. */
 	public void addToHexNumber36(int n){
 		long[] hexagonNumber = turnHexNumber36To10();
 
-		int currentIndex = hexagonNumber.Length - 2;	//lastIndex
+		printNumberArray(hexagonNumber);
+
+		int currentIndex = hexagonNumber.Length - 2 < 0 ? 0 : hexagonNumber.Length - 2;	//lastIndex
+		print("Index: " + currentIndex + " with number: " + hexagonNumber[currentIndex]);
 		hexagonNumber[currentIndex] += n;
+
 		if(n > 0){
-			while(hexagonNumber[currentIndex] > MAXLONGFORBASE36){
-				hexagonNumber[currentIndex] = hexagonNumber[currentIndex] % MAXLONGFORBASE36;
+			while(currentIndex >= 0 && hexagonNumber[currentIndex] > MAXLONGFORBASE36){
+				hexagonNumber[currentIndex] = (hexagonNumber[currentIndex] % MAXLONGFORBASE36) - 1;
 				currentIndex --;
-				hexagonNumber[currentIndex] += n;
+				if (currentIndex < 0) break;
+				hexagonNumber[currentIndex] += 1;
 			}
 		}
 		if(n < 0){
-			while(hexagonNumber[currentIndex] < 0){
-				hexagonNumber[currentIndex] = hexagonNumber[currentIndex] + MAXLONGFORBASE36;
+			while(currentIndex >= 0 && hexagonNumber[currentIndex] < 0){
+				hexagonNumber[currentIndex] = MAXLONGFORBASE36;  //hexagonNumber[currentIndex] + MAXLONGFORBASE36;
 				currentIndex --;
-				hexagonNumber[currentIndex] += n;
+				if (currentIndex < 0) break;
+				hexagonNumber[currentIndex] -= 1;
 			}
 		}
 
+		print("n:" + n);
+		print("Last Number:" + hexagonNumber[361]);
 		hexNumberInBase36 = turnHexNumber10To36(hexagonNumber);
 	}
 
@@ -481,6 +569,15 @@ public class MathFunctions : MonoBehaviour {
 		return BOOKCHARACTERSET;
 	}
 
+	private void printNumberArray(long[] number) {
+		string result = "";
+		foreach (long num in number) {
+			result += " " + num;
+		}
+		print("long number array: " + result);
+
+	}
+
 	/// <summary>
 	/// Converts the given decimal number to the numeral system with the
 	/// specified radix (in the range [2, 36]).
@@ -497,7 +594,7 @@ public class MathFunctions : MonoBehaviour {
 			throw new System.ArgumentException("The radix must be >= 2 and <= " + Digits.Length.ToString());
 		
 		if (decimalNumber == 0)
-			return "a";
+			return "0";
 		
 		int index = BitsInLong - 1;
 		long currentNumber = System.Math.Abs(decimalNumber);

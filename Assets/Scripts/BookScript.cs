@@ -145,6 +145,15 @@ public class BookScript : MonoBehaviour {
 		return title;
 	}
 
+	public void reset(){
+		activated = false;
+		bookLight.enabled = false;
+
+		librarian.lockMouseUnlockCamera();
+		librarian.setBookIndicator(0);			
+		librarian.resetIndicator();
+	}
+
 	private void setupTextMesh(){
 		booktitle.fontSize = 13;
 		booktitle.alignment = TextAlignment.Center;

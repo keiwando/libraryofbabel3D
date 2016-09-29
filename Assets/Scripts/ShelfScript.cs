@@ -168,6 +168,16 @@ public class ShelfScript : MonoBehaviour {
 		activated = false;
 	}
 
+	public void reset(){
+		librarian.selectedStage = 0;
+		gameObject.GetComponentInParent<WallScript>().deactivate();
+		activated = false;
+
+		librarian.resetIndicator();
+
+		deactivateAllBooks();
+	}
+
 	private void activateAllBooks(){
 		requestBookTitles();
 

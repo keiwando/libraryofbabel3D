@@ -28,6 +28,9 @@ public class LibrarianScript : MonoBehaviour {
 	private bool escPressed;
 	public bool backPressed;
 
+	private Vector3 swipeStartPosition;
+	private Vector3 swipeEndPosition;
+
 	private int fallCount;
 	private const int maxFallNum = 3;
 
@@ -51,6 +54,8 @@ public class LibrarianScript : MonoBehaviour {
 
 		fallCount = 0;
 
+		swipeStartPosition = swipeEndPosition = Vector3.zero;
+
 		universe.generateRandomHexagonNumber();
 		universe.setRandomHexagonNameInBase36();
 
@@ -65,6 +70,9 @@ public class LibrarianScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		keyPressHandling();
+
+		if(Application.isMobilePlatform)
+			swipeHandling();
 	}
 
 	private void keyPressHandling(){
@@ -96,6 +104,53 @@ public class LibrarianScript : MonoBehaviour {
 				selectedStage = 4;
 				*/
 				showSearchInterface();
+			}
+		}
+	}
+
+	private void swipeHandling(){
+		if (Input.GetMouseButtonDown(0))    // swipe begins
+		{
+			swipeStartPosition = swipeEndPosition = Input.mousePosition;
+			print("Swipe began");
+		}
+		if (Input.GetMouseButtonUp(0))    // swipe ends
+		{
+			swipeEndPosition = Input.mousePosition; //Camera.main.ScreenToWorldPoint(
+			print("Swipe ended");
+		}
+
+		if (swipeStartPosition != swipeEndPosition && swipeStartPosition != Vector3.zero && swipeEndPosition != Vector3.zero)
+		{
+			float swipeDistance = Vector3.Distance(swipeStartPosition,swipeEndPosition);
+			print("Screen.width: " + Screen.width + ", Distance: " + swipeDistance);
+
+			if(swipeDistance >= Screen.width * 0.5){
+				backSwipe();
+			}
+
+			swipeStartPosition = swipeEndPosition = Vector3.zero;
+		}
+	}
+
+	private void backSwipe(){
+		choiceIndicator.setVisible(true);
+		pageInterface.setVisible(false);
+		search.setVisible(false);
+		selectedStage = 0;
+
+		float colliderRadius = 40;
+		GameObject currentObject;
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, colliderRadius);
+		for(int i = 0; i < hitColliders.Length; i++) {
+			currentObject = hitColliders[i].gameObject;
+
+			if (currentObject.GetComponent<WallScript>() != null){
+				currentObject.GetComponent<WallScript>().reset();
+			}else if (currentObject.GetComponent<ShelfScript>() != null){
+				currentObject.GetComponent<ShelfScript>().reset();
+			}else if (currentObject.GetComponent<BookScript>() != null){
+				currentObject.GetComponent<BookScript>().reset();
 			}
 		}
 	}
