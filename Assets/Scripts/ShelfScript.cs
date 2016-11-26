@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Text.RegularExpressions;
 
-public class ShelfScript : MonoBehaviour {
+public class ShelfScript : Escapable {
 
 	public LibrarianScript librarian;
 	public Light shelfLight1;
@@ -145,17 +145,23 @@ public class ShelfScript : MonoBehaviour {
 				}
 				librarian.backPressed = true;
 			}else if(Input.GetKeyDown(KeyCode.Escape)){
-				//go back to wall choice
-				if(librarian.selectedStage == 2){
-					librarian.selectedStage = 0;
-					gameObject.GetComponentInParent<WallScript>().deactivate();
-					activated = false;
+				EscapeClicked();
+			}
+		}
+	}
 
-					librarian.resetIndicator();
-					
-					deactivateAllBooks();
-					
-				}
+	public override void EscapeClicked (){
+		
+		if(activated){
+			//go back to wall choice
+			if(librarian.selectedStage == 2){
+				librarian.selectedStage = 0;
+				gameObject.GetComponentInParent<WallScript>().deactivate();
+				activated = false;
+
+				librarian.resetIndicator();
+
+				deactivateAllBooks();
 			}
 		}
 	}

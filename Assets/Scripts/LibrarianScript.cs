@@ -5,7 +5,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
 //using Parse;
 
-public class LibrarianScript : MonoBehaviour {
+public class LibrarianScript : Escapable {
 
 	public MathFunctions universe;
 	public FirstPersonController fpc;
@@ -70,9 +70,6 @@ public class LibrarianScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		keyPressHandling();
-
-		if(Application.isMobilePlatform)
-			swipeHandling();
 	}
 
 	private void keyPressHandling(){
@@ -90,8 +87,7 @@ public class LibrarianScript : MonoBehaviour {
 			escPressed = false;
 		}
 		if(Input.GetKeyDown(KeyCode.Escape)){
-			escPressed = true;
-			choiceIndicator.setVisible(true);
+			EscapeClicked();
 			//pageInterface.setVisible(false);
 		}
 		if(Input.GetKeyDown(KeyCode.M)){
@@ -106,6 +102,11 @@ public class LibrarianScript : MonoBehaviour {
 				showSearchInterface();
 			}
 		}
+	}
+
+	override public void EscapeClicked(){
+		escPressed = true;
+		choiceIndicator.setVisible(true);
 	}
 
 	private void swipeHandling(){
@@ -165,7 +166,7 @@ public class LibrarianScript : MonoBehaviour {
 
 	private void choosePageInterface(){
 		if(true){
-			print("WebGL");
+			//print("WebGL");
 			pageInterface = doublePageInterface;
 		}else{
 			pageInterface = singlePageInterface;

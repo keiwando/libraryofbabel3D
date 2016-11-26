@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BookScript : MonoBehaviour {
+public class BookScript : Escapable {
 
 	public Light bookLight;
 
@@ -106,24 +106,31 @@ public class BookScript : MonoBehaviour {
 	public void backClick(){
 		if(Input.anyKeyDown){
 			if(Input.GetKeyDown(KeyCode.Escape)){
-				gameObject.GetComponentInParent<ShelfScript>().deactivate();
-				gameObject.GetComponentInParent<ShelfScript>().GetComponentInParent<WallScript>().deactivate();
-				print ("back");
-				activated = false;
-
-				librarian.lockMouseUnlockCamera();
-				librarian.setBookIndicator(0);			
-				librarian.resetIndicator();
-
-				//remove PageInterface
-				page.setVisible(false);
-
-				GameObject.Find("SoundController").GetComponent<SoundController>().bookClose();
-
-				//deactivate book
-				//this.gameObject.SetActive(false);
+				EscapeClicked();
 			}
 		}
+	}
+
+	public override void EscapeClicked() {
+
+		if(!activated) return;
+
+		gameObject.GetComponentInParent<ShelfScript>().deactivate();
+		gameObject.GetComponentInParent<ShelfScript>().GetComponentInParent<WallScript>().deactivate();
+		print ("back");
+		activated = false;
+
+		librarian.lockMouseUnlockCamera();
+		librarian.setBookIndicator(0);			
+		librarian.resetIndicator();
+
+		//remove PageInterface
+		page.setVisible(false);
+
+		GameObject.Find("SoundController").GetComponent<SoundController>().bookClose();
+
+		//deactivate book
+		//this.gameObject.SetActive(false);
 	}
 
 	public void removeLightBug(){

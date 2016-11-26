@@ -93,14 +93,14 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 0
-  bundleIdentifier: com.Keiwan.LibraryOfBabel
-  bundleVersion: 1.0.1
+  bundleIdentifier: com.keiwando.LibraryOfBabel
+  bundleVersion: 1.0.2
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   xboxOneDisableKinectGpuReservation: 0
   singlePassStereoRendering: 0
   protectGraphicsMemory: 0
-  AndroidBundleVersionCode: 2
+  AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 16
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -108,7 +108,7 @@ PlayerSettings:
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
-  iPhoneBuildNumber: 0
+  iPhoneBuildNumber: 1
   ForceInternetPermission: 1
   ForceSDCardPermission: 0
   CreateWallpaper: 0
@@ -241,7 +241,7 @@ PlayerSettings:
   - m_BuildTarget: iPhone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 4d70743f5b85e4a18ac1e6df81657317, type: 3}
+      m_Icon: {fileID: 2800000, guid: 7656810c62ba44e26bc7c9060bf8eca6, type: 3}
       m_Width: 180
       m_Height: 180
     - serializedVersion: 2
@@ -249,7 +249,7 @@ PlayerSettings:
       m_Width: 167
       m_Height: 167
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 7656810c62ba44e26bc7c9060bf8eca6, type: 3}
       m_Width: 152
       m_Height: 152
     - serializedVersion: 2
@@ -444,8 +444,8 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: CROSS_PLATFORM_INPUT
     2: CROSS_PLATFORM_INPUT
-    4: CROSS_PLATFORM_INPUT
-    7: CROSS_PLATFORM_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     14: 
     15: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     16: CROSS_PLATFORM_INPUT;MOBILE_INPUT

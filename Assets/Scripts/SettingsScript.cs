@@ -50,6 +50,8 @@ public class SettingsScript : MonoBehaviour {
 		saveSettings();
 	}
 
+
+
 	public void setVisible(bool v){
 		if(v){
 			canvas.enabled = true;

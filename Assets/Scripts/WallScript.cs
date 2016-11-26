@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WallScript : MonoBehaviour {
+public class WallScript : Escapable {
 
 	public LibrarianScript librarian;
 	public Light wallLight;
@@ -59,14 +59,22 @@ public class WallScript : MonoBehaviour {
 		if(Input.anyKeyDown){
 			if(Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape)
 			   ){
-				if(!librarian.backPressed){
-					if(librarian.selectedStage == 1) librarian.selectedStage = 0;
-					librarian.resetIndicator();
-					activated = false;
-				}
+				EscapeClicked();
 			}
 		}
 		librarian.backPressed = false;
+	}
+
+	public override void EscapeClicked (){
+		if(activated){
+
+			if(!librarian.backPressed){
+				if(librarian.selectedStage == 1) librarian.selectedStage = 0;
+				librarian.resetIndicator();
+				activated = false;
+			}
+			librarian.backPressed = false;
+		}
 	}
 
 	public void activate(){

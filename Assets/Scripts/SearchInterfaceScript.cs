@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-public class SearchInterfaceScript : MonoBehaviour {
+public class SearchInterfaceScript : Escapable {
 
 	public MathFunctions universe;
 	public LibrarianScript librarian;
@@ -14,6 +14,8 @@ public class SearchInterfaceScript : MonoBehaviour {
 	public Toggle searchToggle;
 	public Toggle searchWithEnglishWordsToggle;
 	public SettingsScript settings;
+
+	public IOSControl iosControl;
 
 	[SerializeField] private Button bugButton;
 
@@ -46,6 +48,11 @@ public class SearchInterfaceScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		backClick();
+	}
+
+	void OnEnable(){
+		
+
 	}
 
 	public void search(){
@@ -300,6 +307,12 @@ public class SearchInterfaceScript : MonoBehaviour {
 			resetNumbers();
 			//Update Canvas
 			Canvas.ForceUpdateCanvases();
+
+			// tell the IOSControl
+			if (iosControl != null) {
+
+				iosControl.displayCorrectButton(IOSControl.Location.Menu);
+			}
 		}else{
 			canvas.enabled = false;
 		}
@@ -308,13 +321,18 @@ public class SearchInterfaceScript : MonoBehaviour {
 	private void backClick(){
 		if(canvas.enabled){
 			if(Input.GetKeyDown(KeyCode.Escape)){
-				canvas.enabled = false;
-				librarian.lockMouseUnlockCamera();
-				librarian.selectedStage = 0;
-				librarian.setIndicatorVisible(true);
-				settings.setVisible(false);
+				EscapeClicked();
 			}
 		}
+	}
+
+	public override void EscapeClicked (){
+		
+		canvas.enabled = false;
+		librarian.lockMouseUnlockCamera();
+		librarian.selectedStage = 0;
+		librarian.setIndicatorVisible(true);
+		settings.setVisible(false);
 	}
 
 	private string positionToString(){

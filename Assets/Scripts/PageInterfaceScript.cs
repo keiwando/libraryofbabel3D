@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-public class PageInterfaceScript : MonoBehaviour {
+public class PageInterfaceScript : Escapable {
 
 	public LibrarianScript librarian;
 	[SerializeField] private Camera camera;
@@ -15,6 +15,8 @@ public class PageInterfaceScript : MonoBehaviour {
 	public InputField inputField;
 	public Canvas canvas;
 	public GameObject loadingIndicator;
+
+	public IOSControl iosControl;
 
 	public TouchScreenKeyboard keyboard;
 
@@ -49,15 +51,7 @@ public class PageInterfaceScript : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){
-			if(librarian.selectedStage == 3){
-				librarian.selectedStage = 0;
-				librarian.setSelectedPage(0);
-				this.setVisible(false);
-				librarian.lockMouseUnlockCamera();
-			}
-			#if MOBILE_INPUT
-			this.setVisible(false);
-			#endif
+			EscapeClicked();	
 		}
 	}
 
@@ -70,6 +64,19 @@ public class PageInterfaceScript : MonoBehaviour {
 				requestPage();
 			}
 		}
+	}
+
+	public override void EscapeClicked () {
+		
+		if(librarian.selectedStage == 3){
+			librarian.selectedStage = 0;
+			librarian.setSelectedPage(0);
+			this.setVisible(false);
+			librarian.lockMouseUnlockCamera();
+		}
+		#if MOBILE_INPUT
+		this.setVisible(false);
+		#endif
 	}
 
 
@@ -262,6 +269,12 @@ public class PageInterfaceScript : MonoBehaviour {
 			canvas.enabled = true;
 			//Update Canvas
 			Canvas.ForceUpdateCanvases();
+
+			// Tell IOSControl
+			if (iosControl != null) {
+
+				iosControl.displayCorrectButton(IOSControl.Location.Book);
+			}
 		}else{
 			canvas.enabled = false;
 		}
