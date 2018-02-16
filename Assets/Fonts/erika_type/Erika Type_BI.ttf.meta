@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5acdee633002a44a383cca00a1bf87d1
+timeCreated: 1518806200
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Erica Type
+  fontNames:
+  - Erica Type
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5985fea5500c84ce09f37ddaaa61dac6, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
