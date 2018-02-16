@@ -22,8 +22,8 @@ public class IOSControl : MonoBehaviour {
 		if(Application.platform != RuntimePlatform.IPhonePlayer && Application.platform != RuntimePlatform.OSXEditor) {
 			
 			defaultButton.gameObject.SetActive(false);
-			menuButton.gameObject.SetActive(false);
-			bookButton.gameObject.SetActive(false);
+			//menuButton.gameObject.SetActive(false);
+			//bookButton.gameObject.SetActive(false);
 
 			this.gameObject.SetActive(false);
 		}
@@ -56,18 +56,18 @@ public class IOSControl : MonoBehaviour {
 		switch (location) {
 		case Location.Default:
 			defaultButton.gameObject.SetActive(true);
-			menuButton.gameObject.SetActive(false);
-			bookButton.gameObject.SetActive(false);
+			//menuButton.gameObject.SetActive(false);
+			//bookButton.gameObject.SetActive(false);
 			break;
 		case Location.Book:
 			defaultButton.gameObject.SetActive(false);
-			menuButton.gameObject.SetActive(false);
-			bookButton.gameObject.SetActive(true);
+			//menuButton.gameObject.SetActive(false);
+			//bookButton.gameObject.SetActive(true);
 			break;
 		case Location.Menu:
 			defaultButton.gameObject.SetActive(false);
-			menuButton.gameObject.SetActive(true);
-			bookButton.gameObject.SetActive(false);
+			//menuButton.gameObject.SetActive(true);
+			//bookButton.gameObject.SetActive(false);
 			break;
 		}
 	}

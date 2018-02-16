@@ -283,6 +283,11 @@ public class PageInterfaceScript : Escapable {
 		}
 	}
 
+	public bool isVisible() {
+
+		return canvas.enabled;
+	}
+
 	public void nextPage(){
 		if(librarian.getSelectedPage() <= 408){
 			librarian.setSelectedPage(librarian.getSelectedPage() +1);

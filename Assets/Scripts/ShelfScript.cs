@@ -95,21 +95,24 @@ public class ShelfScript : Escapable {
 	}
 
 	void OnMouseDown(){
-		if(librarian.selectedStage == 1){
+		//if(librarian.selectedStage == 1){
+		if (librarian.isReadingBook()) return;
+			
 			print (shelfNumber + 1);
 			activated = true;
 			librarian.selectedStage = 2;
-			librarian.selectShelf(shelfNumber);
+			librarian.selectShelf(shelfNumber, this);
 
 			activateAllBooks();
 
 			librarian.setShelfIndicator(shelfNumber + 1);
 			librarian.updateIndicator();
-		}
+		//}
 	}
 
 	void OnMouseOver(){
-		if(librarian.selectedStage == 1){
+		//if(librarian.selectedStage == 1){
+		if (librarian.SelectedShelf != this) {
 			for(int i = 0; i < lights.Length; i++){
 				lights[i].enabled = true;
 			}

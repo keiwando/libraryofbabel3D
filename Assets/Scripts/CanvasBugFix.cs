@@ -11,9 +11,4 @@ public class CanvasBugFix : MonoBehaviour {
 		rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
 		rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

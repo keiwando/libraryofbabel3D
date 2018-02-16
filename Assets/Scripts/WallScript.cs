@@ -9,8 +9,11 @@ public class WallScript : Escapable {
 
 	private bool activated;
 
+	private BoxCollider boxCollider;
+
 	// Use this for initialization
 	void Start () {
+		this.boxCollider = GetComponent<BoxCollider>();
 		removeLightBug();
 
 		activated = false;
@@ -22,25 +25,28 @@ public class WallScript : Escapable {
 	// Update is called once per frame
 	void Update () {
 		if(activated){
-			GetComponent<BoxCollider>().enabled = false;
+			boxCollider.enabled = false;
 			//librarian.selectedStage = 1;
 			backClick();
-		}else{
-			GetComponent<BoxCollider>().enabled = true;
+		} else if (!boxCollider.enabled) {
+			boxCollider.enabled = true;
 		}
 	}
 
 	void OnMouseDown(){
-		if(librarian.selectedStage == 0){
-			print(wallNumber + 1);
-			activated = true;
-			librarian.selectedStage = 1;
-			librarian.selectWall(wallNumber);
-		}
+		if (librarian.isReadingBook()) return;
+		//EscapeClicked();
+		//if(librarian.selectedStage == 0){
+		print(wallNumber + 1);
+		activated = true;
+		librarian.selectedStage = 1;
+		librarian.selectWall(wallNumber, this);
+		//}
 	}
 
 	void OnMouseOver(){
-		if(librarian.selectedStage == 0){
+		//if(librarian.selectedStage == 0){
+		if (librarian.SelectedWall != this) {
 			wallLight.enabled = true;
 			librarian.setWallIndicator(wallNumber + 1);
 			librarian.updateIndicator();

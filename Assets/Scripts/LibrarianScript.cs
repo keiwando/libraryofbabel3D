@@ -16,6 +16,9 @@ public class LibrarianScript : Escapable {
 	[SerializeField] private PageInterfaceScript doublePageInterface;
 	public ChoiceIndicatorScript choiceIndicator;
 
+	public WallScript SelectedWall { get; set; }
+	public ShelfScript SelectedShelf { get; set; }
+
 	public int selectedStage;	//0 = nothing selected | 1 = wall selected | 2 = shelf selected | 3 = book selected | 4 = searchInterface
 	private int selectedWall;
 	private int selectedShelf;
@@ -62,9 +65,6 @@ public class LibrarianScript : Escapable {
 		choosePageInterface();
 
 		chooseDeathText();
-		//universe.testStringToHexNumberMethods();
-
-		//ParseAnalytics.TrackAppOpenedAsync ();
 	}
 	
 	// Update is called once per frame
@@ -92,13 +92,7 @@ public class LibrarianScript : Escapable {
 		}
 		if(Input.GetKeyDown(KeyCode.M)){
 			if(selectedStage != 4){
-				/*
-				choiceIndicator.setVisible(false);
-				search.setVisible(true);
-				pageInterface.setVisible(false);
-				lockCameraUnlockMouse();
-				selectedStage = 4;
-				*/
+				
 				showSearchInterface();
 			}
 		}
@@ -211,19 +205,7 @@ public class LibrarianScript : Escapable {
 
 	private string[] readTextFile(string file_path)
 	{
-		/*
-		string text = "";
-
-		StreamReader inp_stm = new StreamReader(file_path);
-
-		while(!inp_stm.EndOfStream)
-		{
-			string inp_ln = inp_stm.ReadLine();
-			text += inp_ln;
-		}
-
-		inp_stm.Close( ); 
-		*/
+		
 		TextAsset txt = (TextAsset)Resources.Load("LibraryofBabel", typeof(TextAsset));
 		string content = txt.text;
 
@@ -238,62 +220,51 @@ public class LibrarianScript : Escapable {
 		//run the algorithm
 		universe.algorithm(roomPosition);
 
-		//ParseAnalytics.TrackEventAsync("PAGE REQUESTED");
-
 		return universe.getPageFromData();
 	}
 
 	public void movedToNextRoom(){
 		//increase hex number by 1
-		/*
-		if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-		   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-			universe.addToHexNumber(1);
-		}else{
-		*/
-			universe.addToHexNumber36(1);
-		//}
-
+		universe.addToHexNumber36(1);
 	}
 
 	public void movedToPreviousRoom(){
 		//decrease hex number by 0
-		/*
-		if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-		   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-			universe.addToHexNumber(-1);
-		}else{
-		*/
-			universe.addToHexNumber36(-1);
-		//}
+		universe.addToHexNumber36(-1);
 	}
 
 	public void movedToRoomAbove(){
 		//increase each part of hex number by 66666
-		/*
-		if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-		   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-			universe.addToAllHexNumbers(66666);
-		}else{
-		*/
-			universe.addToAllHexNumbers36(66666);
-		//}
+		universe.addToAllHexNumbers36(66666);
 	}
 
 	public void movedToRoomBelow(){
 		//subtract each part of hex number by 66666
-		/*
-		if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-		   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-			universe.addToAllHexNumbers(-66666);
-		}else{
-		*/
-			universe.addToAllHexNumbers36(-66666);
-		//}
+		universe.addToAllHexNumbers36(-66666);
+	}
+
+	public void selectWall(int w, WallScript wall) {
+
+		if (SelectedWall != null) {
+			SelectedWall.deactivate();	
+		}
+
+		selectedWall = w;
+		SelectedWall = wall;
 	}
 
 	public void selectWall(int w){
 		selectedWall = w;
+	}
+
+	public void selectShelf(int s, ShelfScript shelf) {
+
+		if (SelectedShelf != null) {
+			SelectedShelf.deactivate();
+		}
+
+		selectedShelf = s;
+		SelectedShelf = shelf;
 	}
 
 	public void selectShelf(int s){
@@ -322,6 +293,10 @@ public class LibrarianScript : Escapable {
 
 	public int getSelectedBook(){
 		return selectedBook;
+	}
+
+	public bool isReadingBook() {
+		return pageInterface.isVisible();
 	}
 
 	public void setRoomPosition(int[] roomposition){
