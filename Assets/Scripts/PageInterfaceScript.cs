@@ -82,12 +82,6 @@ public class PageInterfaceScript : Escapable {
 	}
 
 
-	/*
-	public void requestRandomPage(){
-		universeMath.generateRandomPage();
-		pagetextField.text = universeMath.getPageFromData();
-	}
-	*/
 	public void startPageRequestWithLoading(){
 		if(librarian.getSelectedWall() != 0){
 			loadingIndicator.GetComponent<SpriteRenderer>().enabled = true;
@@ -296,14 +290,8 @@ public class PageInterfaceScript : Escapable {
 			if(doubleInterface && librarian.getSelectedPage() <= 408 && librarian.getSelectedPage() != 1){
 				librarian.setSelectedPage(librarian.getSelectedPage() +1);
 			}
-			/*
-			if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-			   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-				updatePage();
-			}else{
-			*/
-				updatePageFromSite();
-			//}
+	
+			updatePageFromSite();
 			//GameObject.Find("SoundController").GetComponent<SoundController>().pageFlip();
 		}
 		updateInputField();
@@ -320,14 +308,8 @@ public class PageInterfaceScript : Escapable {
 			if(doubleInterface && librarian.getSelectedPage() > 0){
 				librarian.setSelectedPage(librarian.getSelectedPage() -1);
 			}
-			/*
-			if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-			   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-				updatePage();
-			}else{
-			*/
-				updatePageFromSite();
-			//}
+
+			updatePageFromSite();
 		}
 		updateInputField();
 	}
@@ -366,6 +348,7 @@ public class PageInterfaceScript : Escapable {
 		// Make sure the string only contains valid characters
 		pattern = pattern.ToLower();
 		pattern = Regex.Replace(pattern, string.Format("[^{0}]", alphabet), "");
+		if (pattern == "") return;
 
 		pageText1.text = HighlightPatternInText(pattern, pageText1.text);
 		pagetextField.text = HighlightPatternInText(pattern, pagetextField.text);
