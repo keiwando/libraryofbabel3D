@@ -30,6 +30,7 @@ public class SearchInterfaceScript : Escapable {
 
 	private string url = "https://libraryofbabel.info/search.cgi";
 	private string foundHexagon = "";
+	//private string searchedString = "";
 
 	// Use this for initialization
 	void Start () {
@@ -208,53 +209,15 @@ public class SearchInterfaceScript : Escapable {
 
 	public bool goToHexagon(){
 		print("went to hex");
-		//if(hexNumberField.text.Length == 4800){
-		/*
-		if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-		                                           && Application.platform != RuntimePlatform.WindowsWebPlayer){
-			universe.setHexNumber(universe.turnStringIntoHexagonNumber(hexNumberField.text.Substring(0,4800)));
-			print("went to desired hexagon");
-			setVisible(false);
-			return true;
-		}else{
-		*/
-			universe.setHexNumberInBase36(hexNumberField.text);
-			setVisible(false);
-			return true;
-		//}
-//	//	}else{
-//			if(hexNumberField.text.Length > 4800){
-//				searchInput.text = "too much";
-//			}else{
-//				searchInput.text = "not enough";
-//			}
-//			return true;
-//		}
+
+		universe.setHexNumberInBase36(hexNumberField.text);
+		setVisible(false);
+		return true;
 	}
 
 	public void goToPage(){
 		if(goToHexagon() == true){
-			/*
-			if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-			   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-				if((int.Parse(wallnumber.text) != 0) && (int.Parse(shelfNumber.text) != 0) && (int.Parse(bookNumber.text) != 0) && (int.Parse(pageNumber.text) != 0)){
-					setVisible(false);
-					librarian.selectWall(roomposition[0]);				//CHANGES
-					librarian.setSelectedPage(roomposition[1]);			//CHANGES
-					librarian.selectBook(roomposition[2]);				//CHANGES
-					librarian.selectShelf(roomposition[3]);				//CHANGES
-					librarian.selectedStage = 3;
-					
-					pageInterface.setVisible(true);
-					pageInterface.setPositionIndication(positionToString());
-					pageInterface.setTitle(title);
-					pageInterface.requestPage();
-				}else{
-					librarian.lockMouseUnlockCamera();
-					librarian.selectedStage = 0;
-				}
-			}else{
-			*/
+			
 			pageInterface = librarian.getPageInterface();
 
 			if((int.Parse(wallnumber.text) != 0) && (int.Parse(shelfNumber.text) != 0) && (int.Parse(bookNumber.text) != 0) && (int.Parse(pageNumber.text) != 0)){
@@ -274,13 +237,16 @@ public class SearchInterfaceScript : Escapable {
 				pageInterface.setVisible(true);
 				pageInterface.setPositionIndication(positionToString());
 				pageInterface.setTitle(title);
-				pageInterface.requestPageFromSite();
+
+				pageInterface.requestPageFromSite(delegate {
+					pageInterface.HighlightPatternOnPages(searchInput.text);	
+				});
+
 			}else{
 				librarian.lockMouseUnlockCamera();
 				librarian.selectedStage = 0;
 				print (hexNumberField.text);
 			}
-			//}
 		}
 	}
 
@@ -290,14 +256,8 @@ public class SearchInterfaceScript : Escapable {
 		bookNumber.text = "0";
 		pageNumber.text = "0";
 
-		/*
-		if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-		   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-			hexNumberField.text = universe.getHexagonNumberAsString();
-		}else{
-		*/
-			hexNumberField.text = universe.getHexNumberBase36();
-		//}
+		hexNumberField.text = universe.getHexNumberBase36();
+
 		searchInput.text = "";
 	}
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
@@ -30,6 +31,7 @@ public class PageInterfaceScript : Escapable {
 	private string testUrl = "https://libraryofbabel.info/book.cgi?00000000000-w1-s5-v32:410";
 
 	private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
+	private const string alphabet = "abcdefghijklmnopqrstuvwxyz,. ";
 
 	// Use this for initialization
 	void Start () {
@@ -58,7 +60,7 @@ public class PageInterfaceScript : Escapable {
 	void FixedUpdate(){
 		if(shouldRequestPage){
 			if(true){
-				requestPageFromSite();
+				requestPageFromSite(null);
 			}else{
 				print ("offline page Request");
 				requestPage();
@@ -107,9 +109,9 @@ public class PageInterfaceScript : Escapable {
 		GameObject.Find("SoundController").GetComponent<SoundController>().pageFlip();
 	}
 
-	public void requestPageFromSite(){
+	public void requestPageFromSite(Action onCompletion){
 		if(doubleInterface){
-			requestDoublePage();
+			requestDoublePage(onCompletion);
 		}else{
 			shouldRequestPage = false;
 
@@ -134,12 +136,15 @@ public class PageInterfaceScript : Escapable {
 		}
 	}
 
-	private void requestDoublePage(){
+	private void requestDoublePage(Action onCompletion){
 		shouldRequestPage = false;
+		if (onCompletion == null) {
+			onCompletion = delegate {};
+		}
 
 		string url1 = generateUrl();
 
-		if(librarian.getSelectedPage() == 0){
+		if (librarian.getSelectedPage() == 0) {
 			title.gameObject.SetActive(true);
 			position.gameObject.SetActive(true);
 
@@ -150,11 +155,12 @@ public class PageInterfaceScript : Escapable {
 					pagetextField.text = Parse(www.text);
 				}
 				setVisible(true);
+				onCompletion();
 			}));
 
 			pageText1.text = "";
 
-		}else if(librarian.getSelectedPage() == 409){
+		} else if (librarian.getSelectedPage() == 409) {
 			title.gameObject.SetActive(false);
 			position.gameObject.SetActive(false);
 
@@ -166,8 +172,9 @@ public class PageInterfaceScript : Escapable {
 				}
 				pagetextField.text = "";
 				setVisible(true);
+				onCompletion();
 			}));
-		}else{	//firstPage
+		} else {	//firstPage
 			title.gameObject.SetActive(false);
 			position.gameObject.SetActive(false);
 
@@ -177,6 +184,7 @@ public class PageInterfaceScript : Escapable {
 				} else {
 					pageText1.text = Parse(www.text);
 				}
+				onCompletion();
 				//setVisible(true);
 			}));
 
@@ -188,11 +196,12 @@ public class PageInterfaceScript : Escapable {
 				} else {
 					pagetextField.text = Parse(www.text);
 				}
+				onCompletion();
 				setVisible(true);
 			}));
 		}
 
-		if(librarian.getSelectedWall() != 0){
+		if (librarian.getSelectedWall() != 0) {
 			loadingIndicator.GetComponent<SpriteRenderer>().enabled = false;
 		}
 
@@ -260,7 +269,7 @@ public class PageInterfaceScript : Escapable {
 			}));
 		}else{
 			GameObject.Find("SoundController").GetComponent<SoundController>().pageFlip();
-			requestDoublePage();
+			requestDoublePage(null);
 		}
 	}
 
@@ -350,6 +359,32 @@ public class PageInterfaceScript : Escapable {
 	public void goToSelectedPageAndUpdate(){
 		goToSelectedPage();
 		updatePageFromSite();
+	}
+
+	public void HighlightPatternOnPages(string pattern) {
+
+		// Make sure the string only contains valid characters
+		pattern = pattern.ToLower();
+		pattern = Regex.Replace(pattern, string.Format("[^{0}]", alphabet), "");
+
+		pageText1.text = HighlightPatternInText(pattern, pageText1.text);
+		pagetextField.text = HighlightPatternInText(pattern, pagetextField.text);
+	}
+
+	/// <summary>
+	/// Highlights the given pattern in the text and returns the resulting string.
+	/// Highlighting is done by using the Unity Rich Text <color> tag.
+	/// </summary>
+	/// <returns>The text with the pattern highlighted in red</returns>
+	/// <param name="pattern">The pattern to be highlighted</param>
+	/// <param name="text">The text that contains the pattern</param>
+	private string HighlightPatternInText(string pattern, string text) {
+
+		var highlight = "<color=#800000ff>";
+		var tagEnd = "</color>";
+		var replacement = string.Format("{0}{1}{2}", highlight, pattern, tagEnd);
+
+		return Regex.Replace(text, pattern, replacement);
 	}
 
 	public void setPositionIndication(string t){
