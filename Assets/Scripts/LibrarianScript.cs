@@ -19,7 +19,20 @@ public class LibrarianScript : Escapable {
 	public WallScript SelectedWall { get; set; }
 	public ShelfScript SelectedShelf { get; set; }
 
-	public int selectedStage;	//0 = nothing selected | 1 = wall selected | 2 = shelf selected | 3 = book selected | 4 = searchInterface
+	public int selectedStage {
+		get { return _selectedStage; }
+		set {
+			/*if (value < 2) {
+				SelectedShelf = null;
+				print("Deselected shelf");
+			}
+			if (value < 1) {
+				SelectedWall = null;
+			}*/
+			_selectedStage = value;
+		}
+	}	//0 = nothing selected | 1 = wall selected | 2 = shelf selected | 3 = book selected | 4 = searchInterface
+	private int _selectedStage = 0;
 	private int selectedWall;
 	private int selectedShelf;
 	private int selectedBook;
@@ -247,6 +260,10 @@ public class LibrarianScript : Escapable {
 
 		if (SelectedWall != null) {
 			SelectedWall.deactivate();	
+		}
+		if (SelectedShelf != null) {
+			SelectedShelf.deactivate();
+			SelectedShelf = null;
 		}
 
 		selectedWall = w;
