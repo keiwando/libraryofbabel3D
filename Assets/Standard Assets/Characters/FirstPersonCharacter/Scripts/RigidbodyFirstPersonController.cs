@@ -20,9 +20,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
             [HideInInspector] public float CurrentTargetSpeed = 8f;
 
-#if !MOBILE_INPUT
+//#if !MOBILE_INPUT
             private bool m_Running;
-#endif
+//#endif
 
             public void UpdateDesiredTargetSpeed(Vector2 input)
             {
@@ -43,25 +43,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
 					//handled last as if strafing and moving forward at the same time forwards speed should take precedence
 					CurrentTargetSpeed = ForwardSpeed;
 				}
-#if !MOBILE_INPUT
-	            if (Input.GetKey(RunKey))
-	            {
-		            CurrentTargetSpeed *= RunMultiplier;
-		            m_Running = true;
-	            }
-	            else
-	            {
-		            m_Running = false;
-	            }
-#endif
+//#if !MOBILE_INPUT
+				if (!Application.isMobilePlatform) {
+		            if (Input.GetKey(RunKey))
+		            {
+			            CurrentTargetSpeed *= RunMultiplier;
+			            m_Running = true;
+		            }
+		            else
+		            {
+			            m_Running = false;
+					}
+				}
+//#endif
             }
 
-#if !MOBILE_INPUT
+//#if !MOBILE_INPUT
             public bool Running
             {
                 get { return m_Running; }
             }
-#endif
+//#endif
         }
 
 
@@ -107,11 +109,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             get
             {
- #if !MOBILE_INPUT
-				return movementSettings.Running;
-#else
-	            return false;
-#endif
+ //#if !MOBILE_INPUT
+				if (!Application.isMobilePlatform) {
+					return movementSettings.Running;
+				} else {
+					return false;
+				}
+//#else
+//#endif
             }
         }
 

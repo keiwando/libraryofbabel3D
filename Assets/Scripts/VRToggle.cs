@@ -10,9 +10,10 @@ public class VRToggle : MonoBehaviour {
 	private const string VR_KEY = "VR_ENABLED";
 
 	void Start () {
+
 		joystick.SetActive(false);
 
-		Input.gyro.enabled = PlayerPrefs.GetInt(VR_KEY, 1) == 1;
+		Input.gyro.enabled = PlayerPrefs.GetInt(VR_KEY, 0) == 1;
 		toggle.isOn = Input.gyro.enabled;
 	}
 
@@ -20,9 +21,9 @@ public class VRToggle : MonoBehaviour {
 	
 	}
 
-	public void toggleVR(){
-
-		Input.gyro.enabled = !Input.gyro.enabled;
+	public void VRToggled(bool val){
+		
+		Input.gyro.enabled = val;
 		PlayerPrefs.SetInt(VR_KEY, Input.gyro.enabled ? 1 : 0);
 		PlayerPrefs.Save();
 	}

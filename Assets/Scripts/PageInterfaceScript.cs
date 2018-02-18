@@ -72,16 +72,18 @@ public class PageInterfaceScript : Escapable {
 
 	public override void EscapeClicked () {
 		
-		if(librarian.selectedStage == 3){
+		if (librarian.selectedStage == 3){
 			librarian.selectedStage = 0;
 			librarian.setSelectedPage(0);
-			this.setVisible(false);
-			librarian.lockMouseUnlockCamera();
-			librarian.DeselectAll();
+			//this.setVisible(false);
+			//librarian.lockMouseUnlockCamera();
+			//librarian.DeselectAll();
 		}
-		#if MOBILE_INPUT
+		//#if MOBILE_INPUT
 		this.setVisible(false);
-		#endif
+		librarian.lockMouseUnlockCamera();
+		librarian.DeselectAll();
+		//#endif
 	}
 
 

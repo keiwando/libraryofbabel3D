@@ -46,8 +46,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		private bool locked;	//refers to the CAMERA, NOT the mouse
 
 		//Rotation
-		private Quaternion initialRotation;
-		private Quaternion gyroInitialRotation;
+		public Quaternion VROffset { get; set; }
 
         // Use this for initialization
         private void Start()
@@ -69,9 +68,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;	
 			}else{
-				Input.gyro.enabled = true;
-				initialRotation = Input.gyro.attitude;
+				//Input.gyro.enabled = true;
+				//initialRotation = Input.gyro.attitude;
 			}
+
+			VROffset = Quaternion.identity;
         }
 
 		//CUSTOM
@@ -264,11 +265,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             bool waswalking = m_IsWalking;
 
-#if !MOBILE_INPUT
+//#if !MOBILE_INPUT
+			if (!Application.isMobilePlatform) {
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
-#endif
+				m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+			}
+//#endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
             m_Input = new Vector2(horizontal, vertical);
@@ -318,12 +321,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 		private void updateGyroRotation(){
+
 			if(Input.gyro.enabled){
 
-				transform.rotation = Input.gyro.attitude;
+				transform.rotation = Input.gyro.attitude;// * VROffset;
 				transform.Rotate( 0f, 0f, 180f, Space.Self ); // Swap "handedness" of quaternion from gyro.
 				transform.Rotate( 90f, 180f, 0f, Space.World ); // Rotate to make sense as a camera pointing out the back of your device.
-
 			}
 		}
     }

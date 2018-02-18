@@ -163,8 +163,12 @@ public class LibrarianScript : Escapable {
 
 				var invert = PlayerPrefs.GetInt(SettingsScript.INVERTCAM_KEY, 0) == 1 ? -1 : 1;
 				var rotateVector = new Vector2(invert * xAngle, invert * yAngle);
-	
+
+				var fromRotation = fpc.transform.rotation;
 				rotateCamera(rotateVector, 1f);
+				var toRotation = fpc.transform.rotation;
+
+				fpc.VROffset *= Quaternion.Inverse(fromRotation) * toRotation;
 
 				swipeStartPosition = swipeEndPosition;
 			}

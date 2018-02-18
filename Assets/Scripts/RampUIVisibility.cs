@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RampUIVisibility : MonoBehaviour {
 
 	[SerializeField] private float maxAlpha = 1.0f;
-	private float animDuration = 2f;
+	private float animDuration = 1f;
 
 	private Image image;
 	private float startOpacity;
