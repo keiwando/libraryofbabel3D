@@ -96,7 +96,7 @@ public class ShelfScript : Escapable {
 
 	void OnMouseDown(){
 		//if(librarian.selectedStage == 1){
-		if (librarian.isReadingBook() || librarian.IsSwipingCamera) return;
+		if (librarian.isReadingBook() || librarian.isInMenu() || librarian.IsSwipingCamera) return;
 			
 		print (shelfNumber + 1);
 		activated = true;

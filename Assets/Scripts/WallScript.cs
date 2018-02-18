@@ -34,7 +34,7 @@ public class WallScript : Escapable {
 	}
 
 	void OnMouseDown(){
-		if (librarian.isReadingBook() || librarian.IsSwipingCamera) return;
+		if (librarian.isReadingBook() || librarian.isInMenu() || librarian.IsSwipingCamera) return;
 		//EscapeClicked();
 		//if(librarian.selectedStage == 0){
 		print(wallNumber + 1);

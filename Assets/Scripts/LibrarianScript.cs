@@ -371,6 +371,10 @@ public class LibrarianScript : Escapable {
 		return pageInterface.isVisible();
 	}
 
+	public bool isInMenu() {
+		return search.isVisible();
+	}
+
 	public void setRoomPosition(int[] roomposition){
 		//roomposition[0] equals the page (between 0-409
 		selectedPage = roomposition[1];

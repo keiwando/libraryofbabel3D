@@ -80,7 +80,7 @@ public class BookScript : Escapable {
 
 	void OnMouseUp(){
 		print(bookNumber + 1);
-		if (librarian.selectedStage == 2) {// && librarian.IsSwipingCamera){
+		if (!librarian.isReadingBook() && !librarian.isInMenu() && librarian.selectedStage == 2) {// && librarian.IsSwipingCamera){
 			activated = true;
 			librarian.selectedStage = 3;
 			librarian.selectBook(bookNumber);

@@ -289,6 +289,10 @@ public class SearchInterfaceScript : Escapable {
 		settings.setVisible(false);
 	}
 
+	public bool isVisible() {
+		return canvas.enabled;
+	}
+
 	private string positionToString(){
 		return "W:"+wallnumber.text + " S:" + shelfNumber.text + " B:" + bookNumber.text;
 	}
