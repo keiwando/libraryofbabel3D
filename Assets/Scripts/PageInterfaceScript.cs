@@ -77,6 +77,7 @@ public class PageInterfaceScript : Escapable {
 			librarian.setSelectedPage(0);
 			this.setVisible(false);
 			librarian.lockMouseUnlockCamera();
+			librarian.DeselectAll();
 		}
 		#if MOBILE_INPUT
 		this.setVisible(false);

@@ -124,6 +124,7 @@ public class LibrarianScript : Escapable {
 	override public void EscapeClicked(){
 		escPressed = true;
 		choiceIndicator.setVisible(true);
+		DeselectAll();
 	}
 
 	private void SwipeHandling(){
@@ -301,7 +302,7 @@ public class LibrarianScript : Escapable {
 	/// <summary>
 	/// Deselects the currently selected wall, shelf and book
 	/// </summary>
-	private void DeselectAll() {
+	public void DeselectAll() {
 
 		selectWall(-1, null);
 		selectedShelf = -1;
@@ -426,6 +427,7 @@ public class LibrarianScript : Escapable {
 
 	public void setIndicatorVisible(bool b){
 		choiceIndicator.setVisible(b);
+		print("INdicator visible: " + b);
 	}
 
 	public PageInterfaceScript getPageInterface(){

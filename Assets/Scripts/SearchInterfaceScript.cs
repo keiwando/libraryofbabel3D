@@ -47,7 +47,12 @@ public class SearchInterfaceScript : Escapable {
 		}
 
 		searchInput.onValueChanged.AddListener(delegate(string arg0) {
-			FilterValidCharacters(arg0);
+
+			if (arg0 == "\n") {
+				Search();
+			} else {
+				FilterValidCharacters(arg0);	
+			}
 		});
 	}
 	
@@ -271,7 +276,7 @@ public class SearchInterfaceScript : Escapable {
 		
 		canvas.enabled = false;
 		librarian.lockMouseUnlockCamera();
-		librarian.selectedStage = 0;
+		librarian.DeselectAll();
 		librarian.setIndicatorVisible(true);
 		settings.setVisible(false);
 	}

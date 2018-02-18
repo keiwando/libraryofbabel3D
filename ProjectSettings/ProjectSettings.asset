@@ -17,19 +17,19 @@ PlayerSettings:
   m_SplashScreenBackgroundColor: {r: 0.09558821, g: 0.09355235, b: 0.09137108, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
-  m_SplashScreenOverlayOpacity: 1
+  m_SplashScreenOverlayOpacity: 0.878
   m_SplashScreenAnimation: 0
   m_SplashScreenLogoStyle: 1
   m_SplashScreenDrawMode: 0
   m_SplashScreenBackgroundAnimationZoom: 1
   m_SplashScreenLogoAnimationZoom: 1
-  m_SplashScreenBackgroundLandscapeAspect: 1
+  m_SplashScreenBackgroundLandscapeAspect: 1.7777778
   m_SplashScreenBackgroundPortraitAspect: 1
   m_SplashScreenBackgroundLandscapeUvs:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.99899995
     height: 1
   m_SplashScreenBackgroundPortraitUvs:
     serializedVersion: 2
@@ -38,7 +38,8 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos: []
-  m_SplashScreenBackgroundLandscape: {fileID: 0}
+  m_SplashScreenBackgroundLandscape: {fileID: 1, guid: 00000000000000000000000000000000,
+    type: 0}
   m_SplashScreenBackgroundPortrait: {fileID: 0}
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -142,11 +143,12 @@ PlayerSettings:
   resolutionScalingMode: 0
   applicationIdentifier:
     Android: com.keiwando.libraryofbabel
-    Standalone: unity.DefaultCompany.Library of Babel
+    Standalone: com.keiwando.libraryofbabel
     Tizen: com.keiwando.LibraryOfBabel
     iOS: com.keiwando.LibraryOfBabel
     tvOS: com.keiwando.LibraryOfBabel
   buildNumber:
+    Standalone: 1
     iOS: 1
   AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 16
@@ -647,7 +649,7 @@ PlayerSettings:
   psp2InfoBarColor: 0
   psp2ScriptOptimizationLevel: 0
   psmSplashimage: {fileID: 0}
-  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: d704aa3920dcc444f8090a8ec8cfcbfb,
+  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: 05cb60b27c57147578cad1d214944611,
     type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   spritePackerPolicy: 
