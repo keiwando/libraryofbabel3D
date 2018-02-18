@@ -80,14 +80,8 @@ public class SearchInterfaceScript : Escapable {
 	}
 
 	public void chooseSearch(){
-		/*
-		if(PlayerPrefs.GetInt("CONNECTED") == 0 && Application.platform != RuntimePlatform.OSXWebPlayer
-		   && Application.platform != RuntimePlatform.WindowsWebPlayer){
-			search ();
-		}else{
-		*/
-			requestSearchFromSite();
-		//}
+		
+		requestSearchFromSite();
 	}
 
 	private string fillPageRandomly(string text){

@@ -58,7 +58,7 @@ public class BookScript : Escapable {
 	}
 
 	void OnMouseOver(){
-		if(librarian.selectedStage == 2){
+		if (librarian.selectedStage == 2 && !librarian.IsSwipingCamera) {
 			bookLight.enabled = true;
 		
 			librarian.setWallIndicator(librarian.getSelectedWall() + 1);
@@ -78,9 +78,9 @@ public class BookScript : Escapable {
 		}
 	}
 
-	void OnMouseDown(){
+	void OnMouseUp(){
 		print(bookNumber + 1);
-		if(librarian.selectedStage == 2){
+		if (librarian.selectedStage == 2) {// && librarian.IsSwipingCamera){
 			activated = true;
 			librarian.selectedStage = 3;
 			librarian.selectBook(bookNumber);

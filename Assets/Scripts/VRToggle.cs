@@ -17,7 +17,7 @@ public class VRToggle : MonoBehaviour {
 
 		Input.gyro.enabled = !Input.gyro.enabled;
 
-		joystick.SetActive(!joystick.activeSelf);
+		//joystick.SetActive(!joystick.activeSelf);
 	}
 
 }

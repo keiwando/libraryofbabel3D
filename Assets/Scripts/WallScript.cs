@@ -34,7 +34,7 @@ public class WallScript : Escapable {
 	}
 
 	void OnMouseDown(){
-		if (librarian.isReadingBook()) return;
+		if (librarian.isReadingBook() || librarian.IsSwipingCamera) return;
 		//EscapeClicked();
 		//if(librarian.selectedStage == 0){
 		print(wallNumber + 1);
@@ -46,7 +46,7 @@ public class WallScript : Escapable {
 
 	void OnMouseOver(){
 		//if(librarian.selectedStage == 0){
-		if (librarian.SelectedWall != this) {
+		if (librarian.SelectedWall != this && !librarian.IsSwipingCamera) {
 			wallLight.enabled = true;
 			librarian.setWallIndicator(wallNumber + 1);
 			librarian.updateIndicator();

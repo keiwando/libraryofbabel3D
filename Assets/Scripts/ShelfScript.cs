@@ -96,17 +96,17 @@ public class ShelfScript : Escapable {
 
 	void OnMouseDown(){
 		//if(librarian.selectedStage == 1){
-		if (librarian.isReadingBook()) return;
+		if (librarian.isReadingBook() || librarian.IsSwipingCamera) return;
 			
-			print (shelfNumber + 1);
-			activated = true;
-			librarian.selectedStage = 2;
-			librarian.selectShelf(shelfNumber, this);
+		print (shelfNumber + 1);
+		activated = true;
+		librarian.selectedStage = 2;
+		librarian.selectShelf(shelfNumber, this);
 
-			activateAllBooks();
+		activateAllBooks();
 
-			librarian.setShelfIndicator(shelfNumber + 1);
-			librarian.updateIndicator();
+		librarian.setShelfIndicator(shelfNumber + 1);
+		librarian.updateIndicator();
 		//}
 	}
 

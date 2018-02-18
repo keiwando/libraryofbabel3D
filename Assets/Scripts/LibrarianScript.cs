@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
+using System.Linq;
 //using Parse;
 
 public class LibrarianScript : Escapable {
@@ -46,6 +47,11 @@ public class LibrarianScript : Escapable {
 
 	private Vector3 swipeStartPosition;
 	private Vector3 swipeEndPosition;
+	public bool IsSwipingCamera {
+		get { return isSwipingCamera; }
+	}
+	private bool isSwipingCamera = false;
+	private bool touchExistsInSwipeArea = false;
 
 	private int fallCount;
 	private const int maxFallNum = 3;
@@ -83,6 +89,10 @@ public class LibrarianScript : Escapable {
 	// Update is called once per frame
 	void Update () {
 		keyPressHandling();
+
+		if (PlatformHelper.IsPlatformMobile() || PlatformHelper.IsPlatformEditor()) {
+			SwipeHandling();
+		}
 	}
 
 	private void keyPressHandling(){
@@ -116,32 +126,64 @@ public class LibrarianScript : Escapable {
 		choiceIndicator.setVisible(true);
 	}
 
-	private void swipeHandling(){
-		if (Input.GetMouseButtonDown(0))    // swipe begins
-		{
-			swipeStartPosition = swipeEndPosition = Input.mousePosition;
-			print("Swipe began");
-		}
-		if (Input.GetMouseButtonUp(0))    // swipe ends
-		{
-			swipeEndPosition = Input.mousePosition; //Camera.main.ScreenToWorldPoint(
-			print("Swipe ended");
+	private void SwipeHandling(){
+
+		var touches = FilterSwipeValidTouches(Input.touches);
+
+		if (touches.Length != 1) {	// swipe ends
+			isSwipingCamera = false;
+			touchExistsInSwipeArea = false;
+			return;
 		}
 
-		if (swipeStartPosition != swipeEndPosition && swipeStartPosition != Vector3.zero && swipeEndPosition != Vector3.zero)
-		{
+		if (!touchExistsInSwipeArea) {	// swipe begins
+
+			swipeStartPosition = swipeEndPosition = touches[0].position;
+			touchExistsInSwipeArea = true;
+			return;
+		}
+
+		swipeEndPosition = touches[0].position;
+			
+		if (swipeStartPosition != swipeEndPosition) {
+
+			if (swipeStartPosition.magnitude < Screen.width / 2.5 || swipeStartPosition.y < Screen.height * 0.2) return;
+			
 			float swipeDistance = Vector3.Distance(swipeStartPosition,swipeEndPosition);
-			print("Screen.width: " + Screen.width + ", Distance: " + swipeDistance);
 
-			if(swipeDistance >= Screen.width * 0.5){
-				backSwipe();
+			if(swipeDistance >= 0.1){
+				
+				isSwipingCamera = true;
+				DeselectAll();
+
+				var newPos = swipeEndPosition - swipeStartPosition;
+				var xAngle = newPos.x * 180.0f / Screen.width;
+				var yAngle = newPos.y * 90.0f / Screen.height;
+
+				var invert = PlayerPrefs.GetInt(SettingsScript.INVERTCAM_KEY, 0) == 1 ? -1 : 1;
+				var rotateVector = new Vector2(invert * xAngle, invert * yAngle);
+	
+				rotateCamera(rotateVector, 1f);
+
+				swipeStartPosition = swipeEndPosition;
 			}
-
-			swipeStartPosition = swipeEndPosition = Vector3.zero;
 		}
 	}
 
-	private void backSwipe(){
+	private Touch[] FilterSwipeValidTouches(Touch[] touches) {
+
+		return touches.Where(t => t.position.magnitude > Screen.width / 2.5 && t.position.y > Screen.height * 0.2).ToArray();
+	}
+
+	private void rotateCamera(Vector2 rotateVector, float rotationSpeed){
+		
+		fpc.transform.Rotate(rotateVector.y * -rotationSpeed, rotateVector.x * rotationSpeed, 0, Space.Self);
+		float z = fpc.transform.eulerAngles.z;
+		fpc.transform.Rotate(0, 0, -z);
+	}
+
+	private void BackSwipe(){
+		
 		choiceIndicator.setVisible(true);
 		pageInterface.setVisible(false);
 		search.setVisible(false);
@@ -254,6 +296,19 @@ public class LibrarianScript : Escapable {
 	public void movedToRoomBelow(){
 		//subtract each part of hex number by 66666
 		universe.addToAllHexNumbers36(-66666);
+	}
+
+	/// <summary>
+	/// Deselects the currently selected wall, shelf and book
+	/// </summary>
+	private void DeselectAll() {
+
+		selectWall(-1, null);
+		selectedShelf = -1;
+		selectedBook = -1;
+		selectedPage = 0;
+		selectedStage = 0;
+		choiceIndicator.reset();
 	}
 
 	public void selectWall(int w, WallScript wall) {

@@ -19,7 +19,7 @@ public class IOSControl : MonoBehaviour {
 	void Start () {
 
 		// disable self when not on IOS
-		if(Application.platform != RuntimePlatform.IPhonePlayer && Application.platform != RuntimePlatform.OSXEditor) {
+		if(!PlatformHelper.IsPlatformIOS() && !PlatformHelper.IsPlatformEditor()) {
 			
 			defaultButton.gameObject.SetActive(false);
 			//menuButton.gameObject.SetActive(false);

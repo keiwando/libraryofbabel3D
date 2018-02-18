@@ -50,14 +50,21 @@ public class SoundController : MonoBehaviour {
 	}
 	
 	public void pageFlip(){
-		audio.PlayOneShot(pageTurn);
+		if (SoundEnabled())
+			audio.PlayOneShot(pageTurn);
 	}
 
 	public void bookClose(){
-		audio.PlayOneShot(closeBook);
+		if (SoundEnabled())
+			audio.PlayOneShot(closeBook);
 	}
 
 	public void stopMusic(){
-		audio.Stop();
+		if (SoundEnabled())
+			audio.Stop();
+	}
+
+	private bool SoundEnabled() {
+		return PlayerPrefs.GetInt("SOUND", 1) == 1;
 	}
 }
