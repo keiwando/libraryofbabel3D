@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using System.Text;
 using System.Text.RegularExpressions;
 
 public class PageInterfaceScript : Escapable {
@@ -360,7 +362,7 @@ public class PageInterfaceScript : Escapable {
 	}
 
 	/// <summary>
-	/// Highlights the given pattern in the text and returns the resulting string.
+	/// Highlights the given pattern in the page text and returns the resulting string.
 	/// Highlighting is done by using the Unity Rich Text <color> tag.
 	/// </summary>
 	/// <returns>The text with the pattern highlighted in red</returns>
@@ -372,7 +374,36 @@ public class PageInterfaceScript : Escapable {
 		var tagEnd = "</color>";
 		var replacement = string.Format("{0}{1}{2}", highlight, pattern, tagEnd);
 
-		return Regex.Replace(text, pattern, replacement);
+		pattern = Regex.Replace(pattern, @"\.", "\\.");
+
+		text = Regex.Replace(text, @"\t|\n|\r", "");
+
+		text = Regex.Replace(text, pattern, replacement, RegexOptions.Singleline);
+
+		var lines = new List<string>();
+
+		int startIndex = 0;
+		for (int i = 0; i < 40; i++) { // There are 40 lines per page
+			bool inTag = false;
+			int length = 0;
+			int c = 0;
+			while (c < 80) { // There are 80 characters per line
+				
+				switch (text[startIndex + length]) {
+
+				case '<': inTag = true; break;
+				case '>': inTag = false; break;
+				default: break;
+				}
+
+				c += inTag ? 0 : 1; 
+				length += 1;
+			}
+			lines.Add(text.Substring(startIndex, length));
+			startIndex += length;
+		}
+
+		return string.Join("\n", lines.ToArray());
 	}
 
 	public void setPositionIndication(string t){

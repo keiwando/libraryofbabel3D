@@ -52,10 +52,11 @@ public class ShelfScript : Escapable {
 		form.AddField("wall",(librarian.getSelectedWall() + 1));
 		form.AddField("shelf",(librarian.getSelectedShelf() + 1));
 
-		StartCoroutine(waitForRequest(url,form,(www) => {
-			if(www.error == null || Application.platform == RuntimePlatform.OSXPlayer){
+		StartCoroutine(WaitForRequest(url,form,(www) => {
+			if (www.error == null || (www.text != null && www.text.Contains(";"))) {
 				setBookTitles(www.text.Split(';'));	
-			}else{
+			} else {
+				
 				string[] emptyTitles = new string[32];
 				for(int i = 0; i < 32; i++){
 					emptyTitles[i] = "";
@@ -77,7 +78,7 @@ public class ShelfScript : Escapable {
 
 
 
-	private IEnumerator waitForRequest(string url, WWWForm form,System.Action<WWW> complete){
+	private IEnumerator WaitForRequest(string url, WWWForm form, System.Action<WWW> complete){
 		WWW www = new WWW(url,form);
 		yield return www;
 		complete(www);
@@ -87,6 +88,7 @@ public class ShelfScript : Escapable {
 			Debug.Log("WWW Ok!: " + www.text);
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
+			Debug.Log("WWW text:" + www.text);
 		}
 	}
 

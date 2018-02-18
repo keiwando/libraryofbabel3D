@@ -31,6 +31,7 @@ public class SearchInterfaceScript : Escapable {
 	private string url = "https://libraryofbabel.info/search.cgi";
 	private string foundHexagon = "";
 	//private string searchedString = "";
+	private const string alphabet = "abcdefghijklmnopqrstuvwxyw,. ";
 
 	// Use this for initialization
 	void Start () {
@@ -44,47 +45,24 @@ public class SearchInterfaceScript : Escapable {
 		if(Application.platform == RuntimePlatform.WindowsPlayer){
 			bugButton.enabled = false;
 		}
+
+		searchInput.onValueChanged.AddListener(delegate(string arg0) {
+			FilterValidCharacters(arg0);
+		});
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		backClick();
+		BackClick();
 	}
 
-	void OnEnable(){
+	public void Search(){
+
+		RequestSearchFromSite();
+	}
+
+	private string FillPageRandomly(string text){
 		
-
-	}
-
-	public void search(){
-		string text = searchInput.text;
-		if(searchToggle.isOn){
-			//exact search
-			text = fillPageBlank(text);
-		}else{
-			text = fillPageRandomly(text);
-		}
-
-		long[] pageData = universe.turnPageIntoData(text);
-		//hexNumber = pageData;
-		print ("before ALG");
-		hexNumber = universe.algorithmInverted(pageData);
-		print("After ALG");
-		string hexNumberString = universe.getHexagonNumberAsString(hexNumber);
-		hexNumberField.text = hexNumberString;
-		roomposition = universe.getRoomPosition();
-		wallnumber.text = (roomposition[0] + 1).ToString();//ChANGES
-		pageNumber.text = (roomposition[1] + 1).ToString();				//CHANGES
-		bookNumber.text = (roomposition[2] + 1).ToString();				//CHANGES
-		shelfNumber.text = (roomposition[3] + 1).ToString();			//CHANGES
-	}
-
-	public void chooseSearch(){
-		
-		requestSearchFromSite();
-	}
-
-	private string fillPageRandomly(string text){
 		string newText = " ";
 		if(text.Length < 3200){
 			int missingCharacters = 3200 - text.Length;
@@ -113,20 +91,23 @@ public class SearchInterfaceScript : Escapable {
 		return newText;
 	}
 
-	private void requestSearchFromSite(){
-		string text = searchInput.text;
+	private void RequestSearchFromSite(){
+
+		string text = Regex.Replace(searchInput.text, string.Format("[^{0}]", alphabet), "", RegexOptions.IgnoreCase);
+		if (text == "") return;
+
 		if(searchToggle.isOn){
 			//exact search
-			text = fillPageBlank(text);
+			text = FillPageBlank(text);
 		}else if(!searchToggle.isOn){
-			text = fillPageRandomly(text);
+			text = FillPageRandomly(text);
 		}
 
 		WWWForm form = new WWWForm();
 		form.AddField("find",text);
 		form.AddField("method","x");
 
-		StartCoroutine(waitForRequest(url,form,(www) => {
+		StartCoroutine(WaitForRequest(url,form,(www) => {
 			string[] info = Parse(www.text);
 			foundHexagon = info[1];
 			hexNumberField.text = foundHexagon;
@@ -166,7 +147,7 @@ public class SearchInterfaceScript : Escapable {
 		return information;
 	}
 
-	private IEnumerator waitForRequest(string url, WWWForm form,System.Action<WWW> complete){
+	private IEnumerator WaitForRequest(string url, WWWForm form,System.Action<WWW> complete){
 		WWW www = new WWW(url,form);
 		yield return www;
 		complete(www);
@@ -175,11 +156,11 @@ public class SearchInterfaceScript : Escapable {
 		{
 			Debug.Log("WWW Ok!: " + www.text);
 		} else {
-			Debug.Log("WWW Error: "+ www.error);
+			Debug.Log("WWW Error: " + www.error);
 		}
 	}
 
-	private string fillPageBlank(string text){
+	private string FillPageBlank(string text){
 		string newText = text;
 		if(text.Length < 3200){
 			int missingCharacters = 3200 - text.Length;
@@ -189,6 +170,12 @@ public class SearchInterfaceScript : Escapable {
 		}
 
 		return newText;
+	}
+
+	private void FilterValidCharacters(string text) {
+
+		var pattern = string.Format("[^{0}]", alphabet);
+		searchInput.text = Regex.Replace(text, pattern, "", RegexOptions.IgnoreCase);
 	}
 
 	public void removeBug(){
@@ -229,7 +216,7 @@ public class SearchInterfaceScript : Escapable {
 				}
 
 				pageInterface.setVisible(true);
-				pageInterface.setPositionIndication(positionToString());
+				pageInterface.setPositionIndication(PositionToString());
 				pageInterface.setTitle(title);
 
 				pageInterface.requestPageFromSite(delegate {
@@ -244,7 +231,7 @@ public class SearchInterfaceScript : Escapable {
 		}
 	}
 
-	private void resetNumbers(){
+	private void ResetNumbers(){
 		wallnumber.text = "0";
 		shelfNumber.text = "0";
 		bookNumber.text = "0";
@@ -258,7 +245,7 @@ public class SearchInterfaceScript : Escapable {
 	public void setVisible(bool v){
 		if(v){
 			canvas.enabled = true;
-			resetNumbers();
+			ResetNumbers();
 			//Update Canvas
 			Canvas.ForceUpdateCanvases();
 
@@ -272,7 +259,7 @@ public class SearchInterfaceScript : Escapable {
 		}
 	}
 
-	private void backClick(){
+	private void BackClick(){
 		if(canvas.enabled){
 			if(Input.GetKeyDown(KeyCode.Escape)){
 				EscapeClicked();
@@ -293,7 +280,7 @@ public class SearchInterfaceScript : Escapable {
 		return canvas.enabled;
 	}
 
-	private string positionToString(){
+	private string PositionToString(){
 		return "W:"+wallnumber.text + " S:" + shelfNumber.text + " B:" + bookNumber.text;
 	}
 
