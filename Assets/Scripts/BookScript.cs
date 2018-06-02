@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BookScript : Escapable {
 
@@ -8,6 +9,7 @@ public class BookScript : Escapable {
 	private LibrarianScript librarian;
 	private PageInterfaceScript page;
 	private TextMesh booktitle;
+	private Text titleLabel;
 	private string title;
 	private bool activated;
 	public int bookNumber;
@@ -19,7 +21,9 @@ public class BookScript : Escapable {
 		librarian = GameObject.Find("Librarian").GetComponent<LibrarianScript>();
 		page = librarian.getPageInterface();
 		booktitle = GetComponentInChildren<TextMesh>();
+		titleLabel = GetComponentInChildren<Text>();
 		booktitle.text = "";
+		titleLabel.text = "";
 		setupTextMesh();
 		bookLight.enabled = false;
 		//test
@@ -144,7 +148,8 @@ public class BookScript : Escapable {
 	}
 
 	public void setTitle(string t){
-		booktitle.text = t;
+		//booktitle.text = t;
+		titleLabel.text = t;
 		title = t;
 	}
 

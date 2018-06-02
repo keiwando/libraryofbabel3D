@@ -18,7 +18,7 @@ public class SettingsScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		print("\n FIRSTTIME: " + PlayerPrefs.GetInt(FIRSTTIME_KEY));
+		//print("\n FIRSTTIME: " + PlayerPrefs.GetInt(FIRSTTIME_KEY));
 
 		canvas.enabled = false;
 		if (PlayerPrefs.GetInt(FIRSTTIME_KEY, 0) == 0) {

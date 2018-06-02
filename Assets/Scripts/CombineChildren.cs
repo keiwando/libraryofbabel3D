@@ -5,11 +5,26 @@ using System.Collections;
 [AddComponentMenu("Mesh/Combine Children")]
 public class CombineChildren : MonoBehaviour {
 
-	private bool completed;
+	private bool completed = false;
 	[SerializeField] private bool DEBUG;
 
-	void Start()
-	{
+	[SerializeField] private bool runOnStart = true;
+	[SerializeField] private bool forceDuplicateCombine = false;
+
+	void Start() {
+
+		if (runOnStart) {
+			Combine();
+		}
+	}
+
+	public void Combine() {
+
+		if (!forceDuplicateCombine && transform.Find("Combined mesh") != null) {
+			completed = true;
+			return;
+		}
+
 		if(DEBUG){
 			//print("START called on: " + gameObject.name + "in hex: " + transform.parent.gameObject.name);
 			StartCoroutine(wait());
@@ -25,7 +40,7 @@ public class CombineChildren : MonoBehaviour {
 				if (material != null && !combines.ContainsKey(material))
 					combines.Add(material, new List<CombineInstance>());
 		}
-		
+
 		MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
 		//if(DEBUG) print("Number of filters: " + meshFilters.Length);
 		foreach(var filter in meshFilters)
@@ -47,19 +62,19 @@ public class CombineChildren : MonoBehaviour {
 		//if(DEBUG) print("Number of materials: " + combines.Keys.Count);
 		foreach(Material m in combines.Keys)
 		{
-			
+
 			if(counter < 3){
-				var go = new GameObject("Combined mesh" + counter);
+				var go = new GameObject("Combined mesh");// + counter);
 				go.transform.parent = transform;
 				go.transform.localPosition = Vector3.zero;
 				go.transform.localRotation = Quaternion.identity;
 				go.transform.localScale = Vector3.one;
-				
+
 				var filter = go.AddComponent<MeshFilter>();
 				filter.mesh.CombineMeshes(combines[m].ToArray(), true, true);
-				
+
 				var renderer = go.AddComponent<MeshRenderer>();
-					renderer.material = m;
+				renderer.material = m;
 			}
 			if(DEBUG) counter++;
 

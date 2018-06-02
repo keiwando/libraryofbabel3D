@@ -26,7 +26,7 @@ public class FireScript : MonoBehaviour {
 		int direction = Random.Range(0,5);
 		int factor = Random.Range(-radius,radius);
 		int height = Random.Range(-radius,radius);
-		print("HEIGHT: " + height);
+		//print("HEIGHT: " + height);
 		moveFire(direction,factor);
 		changeHeight(height);
 	}

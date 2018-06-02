@@ -47,6 +47,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		//Rotation
 		public Quaternion VROffset { get; set; }
+		public float yRotationOffset { get; set; }
+		public Quaternion rotationOffset { get; set; }
 
         // Use this for initialization
         private void Start()
@@ -73,6 +75,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			}
 
 			VROffset = Quaternion.identity;
+			rotationOffset = Quaternion.identity;
         }
 
 		//CUSTOM
@@ -297,6 +300,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			if(!Input.gyro.enabled){
 				if(!Application.isMobilePlatform){
 					m_MouseLook.LookRotation (transform, m_Camera.transform);
+					//transform.Rotate(Vector3.up, yRotationOffset);
+					transform.rotation *= rotationOffset;
 				}
 			} else {
 				updateGyroRotation();

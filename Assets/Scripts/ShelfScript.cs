@@ -11,6 +11,13 @@ public class ShelfScript : Escapable {
 
 	private Light[] lights;
 
+	[SerializeField]
+	private BookScript firstBook;
+	[SerializeField]
+	private float bookDistance;
+	[SerializeField]
+	private float bookDistanceVariance = 0f;
+
 	private bool activated;
 	private bool pointedAt;
 
@@ -40,6 +47,22 @@ public class ShelfScript : Escapable {
 			backClick();
 		}else{
 			GetComponent<BoxCollider>().enabled = true;
+		}
+	}
+
+	public void GenerateBooks() {
+
+		for (int i = 1; i < 32; i++) {
+
+			var offset = Random.Range(-bookDistanceVariance, bookDistanceVariance);
+			var distance = i * bookDistance + offset;
+
+			var newBookGO = Instantiate(firstBook.gameObject, transform, true) as GameObject;
+			newBookGO.transform.localPosition = firstBook.transform.localPosition + new Vector3(distance, 0, 0);
+			newBookGO.name = "Book " + (i + 1);
+
+			var book = newBookGO.GetComponent<BookScript>();
+			book.bookNumber = i + 1;
 		}
 	}
 

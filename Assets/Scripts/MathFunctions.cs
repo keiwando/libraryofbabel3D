@@ -45,8 +45,8 @@ public class MathFunctions : MonoBehaviour {
 
 
 		//testConversionPrints();
-		testTrailingZeroRemove();
-		test36ConversionMethods();
+		//testTrailingZeroRemove();
+		//test36ConversionMethods();
 	}
 	
 	// Update is called once per frame
@@ -135,14 +135,14 @@ public class MathFunctions : MonoBehaviour {
 
 		if(rest > 0){
 			number[0] = ArbitraryToDecimalSystem(hexNumberInBase36.Substring(startIndex,rest),36,HEXCHARACTERSET);
-			print("Rest: " + number[0]);
+			//print("Rest: " + number[0]);
 			increment = 1;
 			number[length-1] = 1;	//last long in the array indicates if there was a rest or not
 		}else{
 			number[length-1] = 0;
 		}
 
-		print("increment: " + increment);
+		//print("increment: " + increment);
 
 		for(int i = 0; i < number.Length - 2; i++){
 			startIndex = rest + (i * 9);			//because each long takes 9 characters		=> 	substring begin at: 0,9,18,27...
@@ -154,10 +154,10 @@ public class MathFunctions : MonoBehaviour {
 
 		// Test always return long[] of size 363
 		long[] result = new long[363];
-		print("Number length: " + number.Length );
-		print("String length: " + hexNumberInBase36.Length);
+		//print("Number length: " + number.Length );
+		//print("String length: " + hexNumberInBase36.Length);
 		int difference = result.Length - number.Length - 1 < 0 ? 0: result.Length - number.Length;
-		print("difference: " + difference);
+		//print("difference: " + difference);
 		if (difference < 0) print("NEGATIVE DIFFERENCE!!");
 
 		for (int i = 0; i < number.Length - 1; i++) {
@@ -489,10 +489,10 @@ public class MathFunctions : MonoBehaviour {
 	public void addToHexNumber36(int n){
 		long[] hexagonNumber = turnHexNumber36To10();
 
-		printNumberArray(hexagonNumber);
+		//printNumberArray(hexagonNumber);
 
 		int currentIndex = hexagonNumber.Length - 2 < 0 ? 0 : hexagonNumber.Length - 2;	//lastIndex
-		print("Index: " + currentIndex + " with number: " + hexagonNumber[currentIndex]);
+		//print("Index: " + currentIndex + " with number: " + hexagonNumber[currentIndex]);
 		hexagonNumber[currentIndex] += n;
 
 		if(n > 0){
@@ -512,8 +512,8 @@ public class MathFunctions : MonoBehaviour {
 			}
 		}
 
-		print("n:" + n);
-		print("Last Number:" + hexagonNumber[361]);
+		//print("n:" + n);
+		//print("Last Number:" + hexagonNumber[361]);
 		hexNumberInBase36 = turnHexNumber10To36(hexagonNumber);
 	}
 
