@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class GhoulScript : MonoBehaviour {
 
-	[SerializeField] private LibrarianScript librarian;
+	[SerializeField] private Librarian librarian;
 	[SerializeField] private MathFunctions universe;
 	[SerializeField] private LibraryTranslator translator;
 	[SerializeField] private Light pointLight;

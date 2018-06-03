@@ -3,7 +3,7 @@ guid: 828b41466df1d8a42a83d2a71cb6ef40
 timeCreated: 1433973270
 licenseType: Store
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     100002: door
@@ -181,21 +181,73 @@ ModelImporter:
     6400052: walldoor_1
     6400054: walldoor_2
     6400056: walldoor_3
+    11400000: //RootNode
+    11400002: //RootNode
+    11400004: door
+    11400006: door_2
+    11400008: door_3
+    11400010: door_4
+    11400012: floor1
+    11400014: floor1_1
+    11400016: floor1_2
+    11400018: floor1_3
+    11400020: floor1_4
+    11400022: floor1_5
+    11400024: floor1_6
+    11400026: floor1_7
+    11400028: floor1_8
+    11400030: floor1_9
+    11400032: light
+    11400034: light_1
+    11400036: light_2
+    11400038: wall1
+    11400040: wall1_1
+    11400042: wall1_2
+    11400044: wall1_3
+    11400046: wall1_4
+    11400048: wall1_5
+    11400050: wall1_6
+    11400052: wall1_7
+    11400054: walldoor
+    11400056: walldoor_1
+    11400058: walldoor_2
+    11400060: walldoor_3
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: atlas
+    second: {fileID: 2100000, guid: ef76a33e1b5acf94388cd6e378c7f362, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: extras
+    second: {fileID: 2100000, guid: 09da842a1b911a64f8d0220eba6be01f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -203,13 +255,18 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 1
+    importVisibility: 0
     importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -217,24 +274,30 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

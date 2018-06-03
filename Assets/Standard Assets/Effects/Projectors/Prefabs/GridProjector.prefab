@@ -5,10 +5,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 400002}
-  - 119: {fileID: 11900000}
+  - component: {fileID: 400002}
+  - component: {fileID: 11900000}
+  - component: {fileID: 114632291414812228}
+  - component: {fileID: 114115587688534016}
   m_Layer: 0
   m_Name: GridProjector
   m_TagString: Untagged
@@ -25,12 +27,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: -2.12590003, y: 1.97899997, z: -.925180018}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: -2.1259, y: 1.979, z: -0.92518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1002 &400003
 EditorExtensionImpl:
   serializedVersion: 6
@@ -42,12 +45,12 @@ Projector:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 2
-  m_NearClipPlane: .100000001
+  m_NearClipPlane: 0.1
   m_FarClipPlane: 50
   m_FieldOfView: 30
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: .25
+  m_OrthographicSize: 0.25
   m_Material: {fileID: 2100000, guid: c7d1a73cf0f423947bae4e238665d9c5, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
@@ -69,3 +72,31 @@ Prefab:
 --- !u!1002 &100100001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!114 &114115587688534016
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: ad565f8e-a7a3-4657-a26d-3a41a6e5dc46
+--- !u!114 &114632291414812228
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 100002}
+  _assetGuid: 46b12845355544642bf8f9d0cb373af7

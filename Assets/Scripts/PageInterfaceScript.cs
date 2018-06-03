@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 public class PageInterfaceScript : Escapable {
 
-	public LibrarianScript librarian;
+	public Librarian librarian;
 	[SerializeField] private Camera camera;
 
 	public MathFunctions universeMath;

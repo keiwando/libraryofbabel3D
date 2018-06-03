@@ -5,8 +5,11 @@ using System.Text.RegularExpressions;
 
 public class SearchInterfaceScript : Escapable {
 
+	[SerializeField]
+	private OnlineSearch onlineSearch;
+
 	public MathFunctions universe;
-	public LibrarianScript librarian;
+	public Librarian librarian;
 	public PageInterfaceScript pageInterface;
 	public Canvas canvas;
 	public InputField searchInput;
@@ -55,8 +58,7 @@ public class SearchInterfaceScript : Escapable {
 			}
 		});
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		BackClick();
 	}
@@ -113,6 +115,10 @@ public class SearchInterfaceScript : Escapable {
 		form.AddField("method","x");
 
 		StartCoroutine(WaitForRequest(url,form,(www) => {
+
+			print("WWW Response:");
+			print(www.text);
+
 			string[] info = Parse(www.text);
 			foundHexagon = info[1];
 			hexNumberField.text = foundHexagon;

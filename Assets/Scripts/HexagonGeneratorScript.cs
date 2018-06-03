@@ -6,15 +6,15 @@ public class HexagonGeneratorScript : MonoBehaviour {
 
 	public FirstPersonController fpsController;
 
-	public LibrarianScript librarian;
+	public Librarian librarian;
 
 	public CombineChildren parentCombine;
 
 	public GameObject hexagon;	//firstHexagon
 
-	public HexagonScript mainHex;
-	public HexagonScript hexBelow;
-	public HexagonScript hexBefore;
+	public Hexagon mainHex;
+	public Hexagon hexBelow;
+	public Hexagon hexBefore;
 
 	public float heightDifference;
 	public float xDiagDif;	
@@ -48,8 +48,8 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		//generateHexagonColumn();
 
 		//wallbugCurrentHex
-		hexagon.GetComponent<HexagonScript>().setBugFixed();
-		hexagon.GetComponent<HexagonScript>().activateGhoul();
+		hexagon.GetComponent<Hexagon>().setBugFixed();
+		hexagon.GetComponent<Hexagon>().activateGhoul();
 
 		//Invoke("firstHexBug",2f);
 
@@ -62,7 +62,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 	}
 
 	private void firstHexBug(){
-		hexagon.GetComponent<HexagonScript>().removeFirstHexMesh();
+		hexagon.GetComponent<Hexagon>().removeFirstHexMesh();
 	}
 
 	public void TriggerEntered(Collider collider){
@@ -77,14 +77,14 @@ public class HexagonGeneratorScript : MonoBehaviour {
 			return; // The player hasn't moved through the trigger
 
 		// deactivate ghoul
-		var currentHex = mainHex;// currentHexRow[currentHexnumberInRow].GetComponent<HexagonScript>();
+		var currentHex = mainHex;// currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>();
 
 		currentHex.deactivateGhoul();
 
 		var directionAngle = Vector3.Angle(inwardVector, dif);
 
 		var destHex = directionAngle < 90 ? currentHex : hexBefore; // currentHex.nextHex;
-		//HexagonScript destHex = destHexGO.GetComponent<HexagonScript>();
+		//Hexagon destHex = destHexGO.GetComponent<Hexagon>();
 
 		var outCollider = destHex.transform.Find("Hallway Trigger").GetComponent<Collider>();
 
@@ -115,17 +115,17 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		if (dif.magnitude <= 3)
 			return; // The player hasn't moved through the trigger
 
-		var currentHex = mainHex; //currentHexRow[currentHexnumberInRow].GetComponent<HexagonScript>();
+		var currentHex = mainHex; //currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>();
 
 		currentHex.deactivateGhoul();
 
-		HexagonScript nextHex = currentHex;
-		HexagonScript lastHex = currentHex;
+		Hexagon nextHex = currentHex;
+		Hexagon lastHex = currentHex;
 
 		if (dif.y > 0) {
 			librarian.movedToRoomAbove();
 
-			nextHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<HexagonScript>();
+			nextHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>();
 			lastHex = currentHex;
 			//fpsController.transform.Rotate(Vector3.up, -60.0f);
 			//fpsController.yRotationOffset -= 60.0f;
@@ -134,7 +134,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 			librarian.movedToRoomBelow();
 
 			nextHex = currentHex;
-			lastHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<HexagonScript>();
+			lastHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>();
 			//fpsController.yRotationOffset += 60.0f;
 			//fpsController.transform.Rotate(Vector3.up, 60.0f);
 		}
@@ -170,7 +170,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		if(dif.magnitude > 3){
 
 			//deactivate ghoul
-			currentHexRow[currentHexnumberInRow].GetComponent<HexagonScript>().deactivateGhoul();
+			currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>().deactivateGhoul();
 
 			//compare dif-Vector to inwardVector
 			if(Vector3.Angle(inwardVector,dif) < 90){
@@ -180,12 +180,12 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				shiftArrayObjectsBackward(currentHexRow);
 				currentHexRow[3] = lastHex;
 				//update next hex
-				currentHexRow[2].GetComponent<HexagonScript>().nextHex = lastHex;
-				lastHex.GetComponent<HexagonScript>().nextHex = null;
+				currentHexRow[2].GetComponent<Hexagon>().nextHex = lastHex;
+				lastHex.GetComponent<Hexagon>().nextHex = null;
 				//move actual position
-				moveHexagon(lastHex,lastHex.GetComponent<HexagonScript>().direction,4);
+				moveHexagon(lastHex,lastHex.GetComponent<Hexagon>().direction,4);
 				//moveHexagonColumn
-				moveHexagonColumn((lastHex.GetComponent<HexagonScript>().direction));
+				moveHexagonColumn((lastHex.GetComponent<Hexagon>().direction));
 
 				//tell librarian
 				librarian.movedToNextRoom();
@@ -196,18 +196,18 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				shiftArrayObjectsForward(currentHexRow);
 				currentHexRow[0] = firstHex;
 				//update Next Hex
-				currentHexRow[3].GetComponent<HexagonScript>().nextHex = null;
-				firstHex.GetComponent<HexagonScript>().nextHex = currentHexRow[1];
+				currentHexRow[3].GetComponent<Hexagon>().nextHex = null;
+				firstHex.GetComponent<Hexagon>().nextHex = currentHexRow[1];
 				//move actual position
-				moveHexagon(firstHex,firstHex.GetComponent<HexagonScript>().direction,-4);
+				moveHexagon(firstHex,firstHex.GetComponent<Hexagon>().direction,-4);
 				//moveHexagonColumn
-				moveHexagonColumn((firstHex.GetComponent<HexagonScript>().direction + 3) % 6);
+				moveHexagonColumn((firstHex.GetComponent<Hexagon>().direction + 3) % 6);
 
 				//tell librarian
 				librarian.movedToPreviousRoom();
 			}
 			//respawn ghouls in current room
-			HexagonScript currentHexagon = currentHexRow[currentHexnumberInRow].GetComponent<HexagonScript>();
+			Hexagon currentHexagon = currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>();
 			currentHexagon.respawnGhoul();
 			currentHexagon.activateGhoul();
 			currentHexagon.removeWallNumberBug();
@@ -227,7 +227,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		if(dif.magnitude > 3){
 			
 			//deactivate ghoul
-			currentHexRow[currentHexnumberInRow].GetComponent<HexagonScript>().deactivateGhoul();
+			currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>().deactivateGhoul();
 
 			if(heightDif < 0){
 				print ("going down");
@@ -235,7 +235,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				//top hexagon has to move to bottom
 
 				//save nextHexBelow
-				GameObject nextHexBelow = currentHexColumn[numHexBelow - 1].GetComponent<HexagonScript>().nextHex;
+				GameObject nextHexBelow = currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>().nextHex;
 
 				GameObject topHex = currentHexColumn[7];
 				shiftArrayObjectsForward(currentHexColumn);
@@ -249,7 +249,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				//turn by 120
 				topHex.transform.RotateAround(topHex.transform.position,Vector3.down,2*rotation);
 				updateHexDirection(topHex,-2);
-				GameObject nextHex = topHex.GetComponent<HexagonScript>().nextHex;
+				GameObject nextHex = topHex.GetComponent<Hexagon>().nextHex;
 				if(nextHex != null){ 
 					nextHex.transform.RotateAround(topHex.transform.position,Vector3.down,2*rotation);
 					updateHexDirection(nextHex,-2);
@@ -266,7 +266,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				//bottom hexagon has to move to top
 
 				//save nextHexAbove
-				GameObject nextHexAbove = currentHexColumn[numHexBelow + 1].GetComponent<HexagonScript>().nextHex;
+				GameObject nextHexAbove = currentHexColumn[numHexBelow + 1].GetComponent<Hexagon>().nextHex;
 
 				GameObject bottomHex = currentHexColumn[0];
 				shiftArrayObjectsBackward(currentHexColumn);
@@ -280,7 +280,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				//turn by -120
 				bottomHex.transform.RotateAround(bottomHex.transform.position,Vector3.down,-2*rotation);
 				updateHexDirection(bottomHex,2);
-				GameObject nextHex = bottomHex.GetComponent<HexagonScript>().nextHex;
+				GameObject nextHex = bottomHex.GetComponent<Hexagon>().nextHex;
 				if(nextHex != null){
 					nextHex.transform.RotateAround(bottomHex.transform.position,Vector3.down,-2*rotation);
 					updateHexDirection(nextHex,2);
@@ -292,7 +292,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				librarian.movedToRoomAbove();
 			}
 			//respawn ghouls in current room
-			HexagonScript currentHexagon = currentHexRow[currentHexnumberInRow].GetComponent<HexagonScript>();
+			Hexagon currentHexagon = currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>();
 			currentHexagon.respawnGhoul();
 			currentHexagon.activateGhoul();
 			currentHexagon.removeWallNumberBug();
@@ -316,7 +316,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 			newPosition.y += heightDifference;
 			nextHex.transform.position = newPosition;
 			//add as next Hex to the right Hexagon
-			currentHexColumn[numHexBelow + 1].GetComponent<HexagonScript>().nextHex = nextHex;
+			currentHexColumn[numHexBelow + 1].GetComponent<Hexagon>().nextHex = nextHex;
 		}else{
 			//has to go down
 			//rotate by 2 * rotation
@@ -327,7 +327,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 			newPosition.y -= heightDifference;
 			nextHex.transform.position = newPosition;
 			//add as next Hex to the right Hexagon
-			currentHexColumn[numHexBelow - 1].GetComponent<HexagonScript>().nextHex = nextHex;
+			currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>().nextHex = nextHex;
 		}
 	}
 
@@ -341,8 +341,8 @@ public class HexagonGeneratorScript : MonoBehaviour {
 
 		//recursion
 
-		if(hex.GetComponent<HexagonScript>().nextHex != null){
-			moveHexagonUp(hex.GetComponent<HexagonScript>().nextHex,up);
+		if(hex.GetComponent<Hexagon>().nextHex != null){
+			moveHexagonUp(hex.GetComponent<Hexagon>().nextHex,up);
 		}
 
 
@@ -357,7 +357,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 				//rotate
 				currentHexRow[i].transform.RotateAround(currentHexRow[currentHexnumberInRow].transform.position,Vector3.up,up*rotation);
 				/*
-				HexagonScript script = currentHexRow[i].GetComponent<HexagonScript>();
+				Hexagon script = currentHexRow[i].GetComponent<Hexagon>();
 				script.direction = (script.direction + up) % 6;		//up == up * 1
 				if(script.direction < 0){
 					script.direction += 5;														
@@ -371,10 +371,10 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		int belowOrAbove = numHexBelow - 1;
 		if(up < 0)	belowOrAbove = numHexBelow + 1; 
 		
-		HexagonScript scr = currentHexColumn[belowOrAbove].GetComponent<HexagonScript>();
+		Hexagon scr = currentHexColumn[belowOrAbove].GetComponent<Hexagon>();
 		scr.nextHex = null;
 		scr.prevHex = null;
-		scr = currentHexColumn[numHexBelow].GetComponent<HexagonScript>();
+		scr = currentHexColumn[numHexBelow].GetComponent<Hexagon>();
 		scr.nextHex = currentHexRow[currentHexnumberInRow + 1];
 		scr.prevHex = currentHexRow[currentHexnumberInRow - 1];
 
@@ -388,7 +388,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		for(int i = 0; i < currentHexColumn.Length; i++){
 			if(i != numHexBelow){
 				GameObject hexToMove = currentHexColumn[i];
-				HexagonScript script = hexToMove.GetComponent<HexagonScript>();
+				Hexagon script = hexToMove.GetComponent<Hexagon>();
 				moveHexagon(hexToMove,direction,1);
 				if(script.nextHex != null)	moveHexagon(script.nextHex,direction,1);
 			}
@@ -397,7 +397,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 	}
 
 	private void updateHexDirection(GameObject hex, int factor){
-		HexagonScript script = hex.GetComponent<HexagonScript>();
+		Hexagon script = hex.GetComponent<Hexagon>();
 			script.direction = (script.direction + factor) % 6;	//-up == - up * 1
 			if(script.direction < 0) script.direction += 6;
 	}
@@ -427,7 +427,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		newHex.gameObject.transform.position = newPos;
 		newHex.gameObject.transform.RotateAround(newHex.transform.position, Vector3.down, -rotation);
 
-		HexagonScript script = newHex.GetComponent<HexagonScript>();
+		Hexagon script = newHex.GetComponent<Hexagon>();
 		//script.removeWallNumberBug();
 		script.direction = (script.direction + 1) % 6;
 		script.nextHex = null;
@@ -452,7 +452,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		newHex.gameObject.transform.position = newPos;
 		newHex.gameObject.transform.RotateAround(newHex.transform.position, Vector3.down, rotation);
 
-		HexagonScript script = newHex.GetComponent<HexagonScript>();
+		Hexagon script = newHex.GetComponent<Hexagon>();
 		//script.removeWallNumberBug();
 		script.direction--;
 		if(script.direction < 0) script.direction = 5;
@@ -470,7 +470,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 	 *	dir = -1 => creates PREVIOUS Hexagon
 	 */
 	private GameObject createNextHexagon(GameObject hex, int dir){
-		int direction = hex.GetComponent<HexagonScript>().direction;
+		int direction = hex.GetComponent<Hexagon>().direction;
 
 		if(dir == -1){
 			direction += 3;
@@ -512,9 +512,9 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		newPosition.x += moveX;
 		newPosition.z += moveZ;
 		newHex.transform.position = newPosition;
-		newHex.GetComponent<HexagonScript>().nextHex = null;
+		newHex.GetComponent<Hexagon>().nextHex = null;
 
-		hex.GetComponent<HexagonScript>().nextHex = newHex;
+		hex.GetComponent<Hexagon>().nextHex = newHex;
 
 		return newHex;
 	}
@@ -556,7 +556,7 @@ public class HexagonGeneratorScript : MonoBehaviour {
 
 	private void createFirstRow(){
 
-		HexagonScript script = hexagon.GetComponent<HexagonScript>();
+		Hexagon script = hexagon.GetComponent<Hexagon>();
 
 		currentHexRow[1] = hexagon;
 		//create Hexagon next to first Hexagon
@@ -567,19 +567,19 @@ public class HexagonGeneratorScript : MonoBehaviour {
 		script.prevHex = currentHexRow[0];
 		script.nextHex = currentHexRow[2];
 		//create hexagon next to hexagon.next
-		currentHexRow[3] = script.nextHex.GetComponent<HexagonScript>().nextHex = createNextHexagon(nextHex,1);
+		currentHexRow[3] = script.nextHex.GetComponent<Hexagon>().nextHex = createNextHexagon(nextHex,1);
 	}
 
 	private void updateEnabledBookWalls(){
 		//top two and bottom hexagons don't need shelves and books
-		currentHexColumn[0].GetComponent<HexagonScript>().disableWalls();
+		currentHexColumn[0].GetComponent<Hexagon>().disableWalls();
 
-		currentHexColumn[hexColNumber - 1].GetComponent<HexagonScript>().disableWalls();
-		currentHexColumn[hexColNumber - 2].GetComponent<HexagonScript>().disableWalls();
+		currentHexColumn[hexColNumber - 1].GetComponent<Hexagon>().disableWalls();
+		currentHexColumn[hexColNumber - 2].GetComponent<Hexagon>().disableWalls();
 
 		//enable the rest
-		currentHexColumn[1].GetComponent<HexagonScript>().enableWalls();
-		currentHexColumn[hexColNumber - 3].GetComponent<HexagonScript>().enableWalls();
+		currentHexColumn[1].GetComponent<Hexagon>().enableWalls();
+		currentHexColumn[hexColNumber - 3].GetComponent<Hexagon>().enableWalls();
 
 	}
 

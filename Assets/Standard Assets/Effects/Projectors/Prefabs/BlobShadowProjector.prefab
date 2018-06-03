@@ -5,10 +5,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 400002}
-  - 119: {fileID: 11900000}
+  - component: {fileID: 400002}
+  - component: {fileID: 11900000}
+  - component: {fileID: 114708218704416986}
+  - component: {fileID: 114350551618247178}
   m_Layer: 0
   m_Name: BlobShadowProjector
   m_TagString: Untagged
@@ -25,12 +27,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: .75157696, y: 0, z: 0, w: .659645498}
-  m_LocalPosition: {x: 0, y: 1.87699997, z: 0}
+  m_LocalRotation: {x: 0.75157696, y: 0, z: 0, w: 0.6596455}
+  m_LocalPosition: {x: 0, y: 1.877, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1002 &400003
 EditorExtensionImpl:
   serializedVersion: 6
@@ -42,7 +45,7 @@ Projector:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 2
-  m_NearClipPlane: .100000001
+  m_NearClipPlane: 0.1
   m_FarClipPlane: 50
   m_FieldOfView: 30
   m_AspectRatio: 1
@@ -69,3 +72,31 @@ Prefab:
 --- !u!1002 &100100001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!114 &114350551618247178
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: bc4b8ee9-2458-46ad-bb2e-14246605f7df
+--- !u!114 &114708218704416986
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 100002}
+  _assetGuid: 28a5e79925e3ce04a82856c16a572cbe

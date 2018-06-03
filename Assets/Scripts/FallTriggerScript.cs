@@ -15,6 +15,6 @@ public class FallTriggerScript : MonoBehaviour {
 
 	void OnTriggerExit(Collider collider){
 		print ("fallen");
-		GameObject.Find("Librarian").GetComponent<LibrarianScript>().increaseFallCount();
+		GameObject.Find("Librarian").GetComponent<Librarian>().increaseFallCount();
 	}
 }

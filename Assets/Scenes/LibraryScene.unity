@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 1
+    m_MixedBakeMode: 0
     m_BakeBackend: 0
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
@@ -90,9 +90,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: 29781334c3320400eb310dab50b86f42,
+  m_LightingDataAsset: {fileID: 112000038, guid: 29781334c3320400eb310dab50b86f42,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &5
 NavMeshSettings:
   serializedVersion: 2
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d90de60464341beb9808547392c361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  librarian: {fileID: 1423816722}
+  librarian: {fileID: 0}
   camera: {fileID: 1506871842}
   universeMath: {fileID: 423811949}
   pagetextField: {fileID: 185471421}
@@ -699,145 +699,29 @@ MonoBehaviour:
   soundToggle: {fileID: 229046247}
   musicToggle: {fileID: 1330592499}
   invertCameraToggle: {fileID: 2001586908}
---- !u!1001 &98324453
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1114182640}
-    m_Modifications:
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: universe
-      value: 
-      objectReference: {fileID: 423811949}
-    - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: knowledgeMirror
-      value: 
-      objectReference: {fileID: 2077419570}
-    - target: {fileID: 114596505052250124, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: generator
-      value: 
-      objectReference: {fileID: 242961642}
-    - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: generator
-      value: 
-      objectReference: {fileID: 242961642}
-    - target: {fileID: 114750400467411506, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 114579696467748810, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 223977342281837060, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1506871842}
-    - target: {fileID: 223264330049318400, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1506871842}
-    - target: {fileID: 114305519211705782, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 114851292061865096, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 114255007977956168, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 114647766081003546, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 223926712718233718, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1506871842}
-    - target: {fileID: 223181953270387676, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1506871842}
-    - target: {fileID: 114731345282566854, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 114372842797007406, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_Name
-      value: Main Hexagon
-      objectReference: {fileID: 0}
-    - target: {fileID: 1046069988008808, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-  m_IsPrefabParent: 0
---- !u!1 &99880724 stripped
+--- !u!1 &104167413 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 198056, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
-  m_PrefabInternal: {fileID: 993133879}
+  m_PrefabParentObject: {fileID: 1000060617099428, guid: a2220b169ad1743dd9a1e555f426a93f,
+    type: 2}
+  m_PrefabInternal: {fileID: 749706514}
+--- !u!114 &104167414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 104167413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de033db76d3cd4448b86d011729aaf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  librarian: {fileID: 0}
+  shelfNumber: 0
+  lights: []
+  highlight: {fileID: 0}
+  firstBook: {fileID: 0}
+  bookDistance: 0
+  bookDistanceVariance: 0
 --- !u!1 &106682977
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +839,10 @@ Prefab:
       propertyPath: generator
       value: 
       objectReference: {fileID: 242961642}
+    - target: {fileID: 1046069988008808, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
   m_IsPrefabParent: 0
@@ -1278,7 +1166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &153449319
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1894,10 +1782,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsController: {fileID: 1593715588}
-  librarian: {fileID: 1423816722}
+  librarian: {fileID: 1593715587}
   parentCombine: {fileID: 1114182641}
   hexagon: {fileID: 1936357574}
-  mainHex: {fileID: 1936357576}
+  mainHex: {fileID: 0}
   hexBelow: {fileID: 1680289574}
   hexBefore: {fileID: 113420510}
   heightDifference: 7
@@ -1917,6 +1805,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &269750964 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1795995019003720, guid: a2220b169ad1743dd9a1e555f426a93f,
+    type: 2}
+  m_PrefabInternal: {fileID: 749706514}
+--- !u!114 &269750969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 269750964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0b979b443ff434c85d264a530ab59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  librarian: {fileID: 1593715587}
+  number: 0
+  highlight: {fileID: 1700767836}
+  firstShelf: {fileID: 0}
+  ShelfDistance: 1
 --- !u!1 &277726609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,39 +2085,39 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1423816721}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.48000002
+      value: 0.15840745
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .400000006
+      value: 2.23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 29.9300003
+      value: -6.8287563
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.011980695
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -1.62920685e-07
+      value: -0.9999283
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_WalkSpeed
@@ -2216,7 +2125,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14300000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_Height
-      value: 1.79999995
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_ClearFlags
@@ -2300,7 +2209,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14300000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_Radius
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8200000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: panLevelCustomCurve.m_RotationOrder
@@ -2312,11 +2221,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_OcclusionCulling
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_MouseLook.smooth
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_Name
+      value: Librarian
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
@@ -2472,51 +2393,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -2530,44 +2451,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -2581,15 +2502,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above 2
@@ -2855,7 +2776,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 423811948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.9217567, y: 4.82411, z: -14.632854}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2893,10 +2814,10 @@ RectTransform:
   m_Father: {fileID: 672896835}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000030517578, y: 0}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_SizeDelta: {x: 200, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &480054498
 MonoBehaviour:
@@ -2946,10 +2867,10 @@ RectTransform:
   m_Father: {fileID: 480054497}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2000, y: 2000}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &498679394
 MonoBehaviour:
@@ -2974,7 +2895,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 9664caf138c9749a9b926a73c74ba824, type: 3}
     m_FontSize: 82
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 93
     m_Alignment: 4
@@ -2992,6 +2913,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 498679392}
+--- !u!114 &499153183 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
+    type: 2}
+  m_PrefabInternal: {fileID: 749706514}
+  m_Script: {fileID: 11500000, guid: 12f5e2f71ef8046d3ba6b5367daac493, type: 3}
 --- !u!1 &526846459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3700,7 +3627,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1423816722}
+      - m_Target: {fileID: 0}
         m_MethodName: showSearchInterface
         m_Mode: 1
         m_Arguments:
@@ -3758,6 +3685,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAlpha: 1
+--- !u!1 &620403761 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1601371529834042, guid: a2220b169ad1743dd9a1e555f426a93f,
+    type: 2}
+  m_PrefabInternal: {fileID: 749706514}
 --- !u!1 &622570157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3774,7 +3706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &622570158
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4314,7 +4246,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &712939798 stripped
 GameObject:
@@ -4368,6 +4300,145 @@ Transform:
   m_Father: {fileID: 2134454257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &749706514
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1114182640}
+    m_Modifications:
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 223628232070847502, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1506871842}
+    - target: {fileID: 114845223876036324, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114923490182260814, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 223092574393583796, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1506871842}
+    - target: {fileID: 114121980209455074, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114188101670603044, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 223644776996973544, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1506871842}
+    - target: {fileID: 114696275058720938, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489644957077936, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: universe
+      value: 
+      objectReference: {fileID: 423811949}
+    - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: knowledgeMirror
+      value: 
+      objectReference: {fileID: 2077419570}
+    - target: {fileID: 114596505052250124, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 242961642}
+    - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 242961642}
+    - target: {fileID: 114207604019192958, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114049390806031302, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: librarian
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 223474477357790698, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1506871842}
+    - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_Name
+      value: Main Hexagon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046069988008808, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114464622308121752, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+    - {fileID: 114049390806031302, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+    - {fileID: 114696275058720938, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+    - {fileID: 114207604019192958, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &750960352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,51 +4708,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -4695,44 +4766,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -4746,15 +4817,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Below
@@ -5437,7 +5508,7 @@ Prefab:
     - target: {fileID: 11400008, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1423816720}
+      objectReference: {fileID: 0}
     - target: {fileID: 22300000, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
       propertyPath: m_Enabled
       value: 1
@@ -5673,51 +5744,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -5731,44 +5802,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -5782,15 +5853,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Below 3
@@ -6127,51 +6198,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -6185,44 +6256,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -6236,15 +6307,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Below
@@ -6427,9 +6498,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a152e0265c4514eb890c596e63054314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlineSearch: {fileID: 0}
   universe: {fileID: 423811949}
-  librarian: {fileID: 1423816722}
-  pageInterface: {fileID: 0}
+  librarian: {fileID: 1593715587}
+  pageInterface: {fileID: 18005957}
   canvas: {fileID: 821041076}
   searchInput: {fileID: 1937475703}
   hexNumberField: {fileID: 1161982043}
@@ -6484,51 +6556,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -6542,44 +6614,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -6593,15 +6665,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above
@@ -6994,7 +7066,7 @@ GameObject:
   - component: {fileID: 1029796516}
   - component: {fileID: 1029796520}
   m_Layer: 5
-  m_Name: Knowledge Canvas
+  m_Name: Overlays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7206,51 +7278,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -7264,44 +7336,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -7315,15 +7387,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above
@@ -8277,15 +8349,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187322167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d78ef57c15045b9a1fd7545d4006b9, type: 3}
+  m_Script: {fileID: 11500000, guid: b04e04f4fc4d8443daf3fe4f3385cf26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   zVertDif: 30.8
   xDiagDif: 26.67
   zDiagDif: 15.4
-  baseHeight: 7
-  radius: 25
-  fire: {fileID: 99880724}
+  baseHeight: 4.8
+  radius: 1
 --- !u!1 &1189530156
 GameObject:
   m_ObjectHideFlags: 0
@@ -8402,51 +8473,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -8460,44 +8531,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -8511,15 +8582,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Below 2
@@ -9347,7 +9418,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 651227247}
   m_HandleRect: {fileID: 651227246}
   m_Direction: 2
-  m_Value: 0.99999964
+  m_Value: 0.9999996
   m_Size: 0.13992798
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9388,55 +9459,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1403413826}
---- !u!1 &1423816720
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1423816721}
-  - component: {fileID: 1423816722}
-  m_Layer: 0
-  m_Name: Librarian
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1423816721
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1423816720}
-  m_LocalRotation: {x: 0, y: 0.9999283, z: 0, w: 0.011980858}
-  m_LocalPosition: {x: 3.92, y: 1.83, z: 23.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 41308946}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1423816722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1423816720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f44869c698e2d4f32a5e44681694095b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  universe: {fileID: 423811949}
-  fpc: {fileID: 1593715588}
-  search: {fileID: 967099670}
-  singlePageInterface: {fileID: 0}
-  doublePageInterface: {fileID: 18005957}
-  choiceIndicator: {fileID: 1953196396}
-  backPressed: 0
-  deathTextObject: {fileID: 480054498}
 --- !u!1001 &1428111471
 Prefab:
   m_ObjectHideFlags: 0
@@ -9479,51 +9501,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -9537,44 +9559,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -9588,15 +9610,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above 2
@@ -9669,6 +9691,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f,
     type: 2}
   m_PrefabInternal: {fileID: 1428111471}
+--- !u!1 &1431152071 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1298590700910472, guid: a2220b169ad1743dd9a1e555f426a93f,
+    type: 2}
+  m_PrefabInternal: {fileID: 749706514}
 --- !u!1 &1455684654
 GameObject:
   m_ObjectHideFlags: 0
@@ -9987,6 +10014,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1478147650}
+--- !u!1 &1481297135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1481297137}
+  - component: {fileID: 1481297136}
+  m_Layer: 0
+  m_Name: ViewController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1481297136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1481297135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05536a4ce1c3c42ca91e9c40c7cd4415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceIndicator: {fileID: 1953196396}
+  searchMenu: {fileID: 0}
+--- !u!4 &1481297137
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1481297135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498866072
 GameObject:
   m_ObjectHideFlags: 0
@@ -10250,51 +10319,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -10308,44 +10377,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -10359,15 +10428,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above
@@ -10828,51 +10897,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -10886,44 +10955,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -10937,15 +11006,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above 2
@@ -11033,6 +11102,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dadc417f7e784f3d82bafcfb9c97d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1593715587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593715585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebc2062df0e347e5b7a299bf2868b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  universe: {fileID: 423811949}
+  search: {fileID: 967099670}
+  doublePageInterface: {fileID: 18005957}
+  choiceIndicator: {fileID: 0}
+  backPressed: 0
+  deathTextObject: {fileID: 0}
 --- !u!114 &1593715588 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
@@ -11286,105 +11372,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: generator
-      value: 
-      objectReference: {fileID: 242961642}
-    - target: {fileID: 114596505052250124, guid: a2220b169ad1743dd9a1e555f426a93f,
-        type: 2}
-      propertyPath: generator
-      value: 
-      objectReference: {fileID: 242961642}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -11395,41 +11387,19 @@ Prefab:
       propertyPath: knowledgeMirror
       value: 
       objectReference: {fileID: 2077419570}
-    - target: {fileID: 0}
-      propertyPath: librarian
+    - target: {fileID: 114596505052250124, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: generator
       value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
+      objectReference: {fileID: 242961642}
+    - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
+        type: 2}
+      propertyPath: generator
       value: 
-      objectReference: {fileID: 1423816722}
-    - target: {fileID: 0}
-      propertyPath: librarian
-      value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 242961642}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Below
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -60
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
@@ -11445,6 +11415,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1680289572}
   m_Script: {fileID: 11500000, guid: 3172333b451634816bd8d08e5751aebb, type: 3}
+--- !u!1 &1700767836 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1168599349845708, guid: a2220b169ad1743dd9a1e555f426a93f,
+    type: 2}
+  m_PrefabInternal: {fileID: 749706514}
 --- !u!1 &1724693327
 GameObject:
   m_ObjectHideFlags: 0
@@ -12112,6 +12087,10 @@ Prefab:
       propertyPath: m_Name
       value: Hexagon After
       objectReference: {fileID: 0}
+    - target: {fileID: 1046069988008808, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
   m_IsPrefabParent: 0
@@ -12124,6 +12103,11 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 429158, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
   m_PrefabInternal: {fileID: 993133879}
+--- !u!1 &1861968588 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1174076997064034, guid: a2220b169ad1743dd9a1e555f426a93f,
+    type: 2}
+  m_PrefabInternal: {fileID: 749706514}
 --- !u!1001 &1881681417
 Prefab:
   m_ObjectHideFlags: 0
@@ -12166,51 +12150,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -12224,44 +12208,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -12275,15 +12259,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above 4
@@ -12485,7 +12469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1103aa2cbe6b4268a0056242bf36cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  librarian: {fileID: 1423816722}
+  librarian: {fileID: 0}
   defaultButton: {fileID: 1955424120}
   menuButton: {fileID: 587962479}
   bookButton: {fileID: 1325231050}
@@ -12567,18 +12551,32 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f,
     type: 2}
-  m_PrefabInternal: {fileID: 98324453}
+  m_PrefabInternal: {fileID: 749706514}
 --- !u!4 &1936357575 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4165853799324490, guid: a2220b169ad1743dd9a1e555f426a93f,
     type: 2}
-  m_PrefabInternal: {fileID: 98324453}
---- !u!114 &1936357576 stripped
+  m_PrefabInternal: {fileID: 749706514}
+--- !u!114 &1936357576
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114464622308121752, guid: a2220b169ad1743dd9a1e555f426a93f,
-    type: 2}
-  m_PrefabInternal: {fileID: 98324453}
-  m_Script: {fileID: 11500000, guid: 3172333b451634816bd8d08e5751aebb, type: 3}
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1936357574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6347a569ec92c467c8cbbc7b88a11262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+  prevHex: {fileID: 0}
+  nextHex: {fileID: 0}
+  bookwall1: {fileID: 269750964}
+  bookwall2: {fileID: 1861968588}
+  bookwall3: {fileID: 1431152071}
+  bookwall4: {fileID: 620403761}
+  ghoul: {fileID: 499153183}
+  bugFixed: 0
 --- !u!1 &1937475701
 GameObject:
   m_ObjectHideFlags: 0
@@ -12725,7 +12723,7 @@ GameObject:
   - component: {fileID: 1953196397}
   - component: {fileID: 1953196396}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Choice Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12744,11 +12742,11 @@ RectTransform:
   m_Father: {fileID: 1029796519}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -112.85, y: 88.78}
-  m_SizeDelta: {x: 159.73, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 159.73, y: 11.57}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1953196396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12757,7 +12755,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953196394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2191c2c9d768f41e79e68482c7341cef, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bfc4c802a31a4e9aaad8fa7ad4bb70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1953196397}
@@ -12781,13 +12779,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9664caf138c9749a9b926a73c74ba824, type: 3}
-    m_FontSize: 10
+    m_Font: {fileID: 12800000, guid: ed6b7206a0e6c404db62db8a38691c50, type: 3}
+    m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -12963,51 +12961,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -13021,44 +13019,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -13072,15 +13070,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Below 4
@@ -13547,6 +13545,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2191c2c9d768f41e79e68482c7341cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <wall>k__BackingField: 0
+  <shelf>k__BackingField: 0
+  <book>k__BackingField: 0
   text: {fileID: 2077419570}
 --- !u!114 &2077419570
 MonoBehaviour:
@@ -13631,51 +13632,51 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114520191286979102, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: generator
@@ -13689,44 +13690,44 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 114265750840061352, guid: a2220b169ad1743dd9a1e555f426a93f,
         type: 2}
       propertyPath: universe
@@ -13740,15 +13741,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: librarian
       value: 
-      objectReference: {fileID: 1423816722}
+      objectReference: {fileID: 0}
     - target: {fileID: 1728836179545418, guid: a2220b169ad1743dd9a1e555f426a93f, type: 2}
       propertyPath: m_Name
       value: Hex Above 3

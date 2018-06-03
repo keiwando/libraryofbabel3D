@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33613649021612410}
   - component: {fileID: 65450471962936910}
   - component: {fileID: 23354416062365636}
+  - component: {fileID: 114923600545895216}
   m_Layer: 0
   m_Name: Plank
   m_TagString: Untagged
@@ -42,6 +43,7 @@ GameObject:
   - component: {fileID: 33826338184489100}
   - component: {fileID: 65997300034832882}
   - component: {fileID: 114436934018609424}
+  - component: {fileID: 114277185876411282}
   m_Layer: 0
   m_Name: Book1
   m_TagString: Untagged
@@ -59,6 +61,7 @@ GameObject:
   - component: {fileID: 4182940686277028}
   - component: {fileID: 23537989093691074}
   - component: {fileID: 102750393988368734}
+  - component: {fileID: 114149923662363096}
   m_Layer: 0
   m_Name: Booktext
   m_TagString: Untagged
@@ -75,6 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4779368525728084}
   - component: {fileID: 108215043454650966}
+  - component: {fileID: 114721263685929638}
   m_Layer: 0
   m_Name: Area Light 1
   m_TagString: Untagged
@@ -91,6 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4783257346439138}
   - component: {fileID: 108576278083498378}
+  - component: {fileID: 114503207205585488}
   m_Layer: 0
   m_Name: Area Light
   m_TagString: Untagged
@@ -107,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4179563617484228}
   - component: {fileID: 108469863820935512}
+  - component: {fileID: 114478188465944280}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -125,6 +131,8 @@ GameObject:
   - component: {fileID: 114931532495454806}
   - component: {fileID: 65026560913273860}
   - component: {fileID: 114705043113278644}
+  - component: {fileID: 114894804782644520}
+  - component: {fileID: 114131787493163732}
   m_Layer: 0
   m_Name: Shelf
   m_TagString: Untagged
@@ -495,6 +503,42 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114131787493163732
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949722311252600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 1f29dfec-7f6e-47f5-aba1-896f0d9ab6c4
+--- !u!114 &114149923662363096
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504800690337864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: b533a99c-124b-4c40-a7cd-86480ebfef45
+--- !u!114 &114277185876411282
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252016565666774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: ba669b3f-d838-4d61-ada0-c4b5b60f2f98
 --- !u!114 &114436934018609424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,6 +552,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookLight: {fileID: 108469863820935512}
   bookNumber: 1
+--- !u!114 &114478188465944280
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925212544165406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 8fe74b74-ff62-45bd-bfdd-8d44ec59d236
+--- !u!114 &114503207205585488
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1803046856835776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: b3c00185-dd9a-4dda-94b9-eb3f7d9d86b5
 --- !u!114 &114705043113278644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -522,6 +590,52 @@ MonoBehaviour:
   DEBUG: 0
   runOnStart: 1
   forceDuplicateCombine: 0
+--- !u!114 &114721263685929638
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1542239846380670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 76e01d79-6597-4db0-b2ea-013d2c10e5c6
+--- !u!114 &114894804782644520
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949722311252600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1949722311252600}
+    - {fileID: 1542239846380670}
+    - {fileID: 1803046856835776}
+    - {fileID: 1057003087558634}
+    - {fileID: 1252016565666774}
+    - {fileID: 1925212544165406}
+    - {fileID: 1504800690337864}
+  _assetGuid: 4283c1b686f7c424b9a2923844e47d56
+--- !u!114 &114923600545895216
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057003087558634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 1e0ecd78-a498-4731-9e43-2b12b213b660
 --- !u!114 &114931532495454806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,6 +651,9 @@ MonoBehaviour:
   shelfLight1: {fileID: 108215043454650966}
   shelfLight2: {fileID: 108576278083498378}
   shelfNumber: 1
+  firstBook: {fileID: 0}
+  bookDistance: 0
+  bookDistanceVariance: 0
 --- !u!222 &222228678154198416
 CanvasRenderer:
   m_ObjectHideFlags: 1

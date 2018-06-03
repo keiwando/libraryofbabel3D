@@ -5,10 +5,11 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 492224}
-  - 20: {fileID: 2015220}
+  - component: {fileID: 492224}
+  - component: {fileID: 2015220}
+  - component: {fileID: 114552202242398686}
   m_Layer: 0
   m_Name: S2S Camera
   m_TagString: MainCamera
@@ -21,9 +22,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 404546}
+  - component: {fileID: 404546}
+  - component: {fileID: 114861098074398864}
   m_Layer: 0
   m_Name: Camera Rig
   m_TagString: Untagged
@@ -36,9 +38,10 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 425360}
+  - component: {fileID: 425360}
+  - component: {fileID: 114303167868223834}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -51,13 +54,14 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 432910}
-  - 20: {fileID: 2016896}
-  - 114: {fileID: 11489398}
-  - 114: {fileID: 11484866}
-  - 114: {fileID: 11416880}
+  - component: {fileID: 432910}
+  - component: {fileID: 2016896}
+  - component: {fileID: 11489398}
+  - component: {fileID: 11484866}
+  - component: {fileID: 11416880}
+  - component: {fileID: 114627653601262798}
   m_Layer: 0
   m_Name: Effects Camera
   m_TagString: UICamera
@@ -70,10 +74,11 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 473362}
-  - 20: {fileID: 2007166}
+  - component: {fileID: 473362}
+  - component: {fileID: 2007166}
+  - component: {fileID: 114769490269339290}
   m_Layer: 0
   m_Name: Effects Camera (EMPTY)
   m_TagString: UICamera
@@ -86,14 +91,15 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 475446}
-  - 20: {fileID: 2006858}
-  - 92: {fileID: 9296634}
-  - 124: {fileID: 12423444}
-  - 81: {fileID: 8136090}
-  - 114: {fileID: 11437142}
+  - component: {fileID: 475446}
+  - component: {fileID: 2006858}
+  - component: {fileID: 9296634}
+  - component: {fileID: 12423444}
+  - component: {fileID: 8136090}
+  - component: {fileID: 11437142}
+  - component: {fileID: 114465607831923466}
   m_Layer: 0
   m_Name: 3D Camera (Mobile)
   m_TagString: MainCamera
@@ -106,9 +112,11 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 450384}
+  - component: {fileID: 450384}
+  - component: {fileID: 114399758845119608}
+  - component: {fileID: 114657217135692958}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -121,17 +129,18 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 451122}
-  - 20: {fileID: 2066808}
-  - 92: {fileID: 9271892}
-  - 124: {fileID: 12423976}
-  - 81: {fileID: 8162852}
-  - 114: {fileID: 11488564}
-  - 114: {fileID: 11448520}
-  - 114: {fileID: 11464088}
-  - 114: {fileID: 11412716}
+  - component: {fileID: 451122}
+  - component: {fileID: 2066808}
+  - component: {fileID: 9271892}
+  - component: {fileID: 12423976}
+  - component: {fileID: 8162852}
+  - component: {fileID: 11488564}
+  - component: {fileID: 11448520}
+  - component: {fileID: 11464088}
+  - component: {fileID: 11412716}
+  - component: {fileID: 114758062566291076}
   m_Layer: 0
   m_Name: 3D Camera
   m_TagString: MainCamera
@@ -144,16 +153,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 464172}
-  - 20: {fileID: 2027418}
-  - 114: {fileID: 11494836}
-  - 114: {fileID: 11451030}
-  - 114: {fileID: 11490318}
-  - 114: {fileID: 11425292}
-  - 114: {fileID: 11453290}
-  - 114: {fileID: 11470042}
+  - component: {fileID: 464172}
+  - component: {fileID: 2027418}
+  - component: {fileID: 11494836}
+  - component: {fileID: 11451030}
+  - component: {fileID: 11490318}
+  - component: {fileID: 11425292}
+  - component: {fileID: 11453290}
+  - component: {fileID: 11470042}
+  - component: {fileID: 114090743473485762}
   m_Layer: 0
   m_Name: Effects Camera (Mobile)
   m_TagString: UICamera
@@ -166,13 +176,14 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 475324}
-  - 20: {fileID: 2008368}
-  - 92: {fileID: 9259560}
-  - 124: {fileID: 12419220}
-  - 81: {fileID: 8180462}
+  - component: {fileID: 475324}
+  - component: {fileID: 2008368}
+  - component: {fileID: 9259560}
+  - component: {fileID: 12419220}
+  - component: {fileID: 8180462}
+  - component: {fileID: 114823403533329334}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: UICamera
@@ -185,9 +196,10 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 444012}
+  - component: {fileID: 444012}
+  - component: {fileID: 114480019446175730}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -378,10 +390,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!20 &2007166
 Camera:
   m_ObjectHideFlags: 1
@@ -412,10 +426,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!20 &2008368
 Camera:
   m_ObjectHideFlags: 1
@@ -446,10 +462,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!20 &2015220
 Camera:
   m_ObjectHideFlags: 1
@@ -480,10 +498,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!20 &2016896
 Camera:
   m_ObjectHideFlags: 1
@@ -514,10 +534,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!20 &2027418
 Camera:
   m_ObjectHideFlags: 1
@@ -548,10 +570,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!20 &2066808
 Camera:
   m_ObjectHideFlags: 1
@@ -582,10 +606,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!81 &8136090
 AudioListener:
   m_ObjectHideFlags: 1
@@ -661,63 +687,72 @@ MonoBehaviour:
   redChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 2
+      time: 0
       value: 0
       inSlope: 1.0097994
       outSlope: 1.0097994
-      tangentMode: 10
-    - time: 0.2563806
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 0.2563806
       value: 0.25889295
       inSlope: 1.0856986
       outSlope: 1.0856986
       tangentMode: 0
-    - time: 0.74967015
+    - serializedVersion: 2
+      time: 0.74967015
       value: 0.8111838
       inSlope: 0.8520372
       outSlope: 0.8520372
       tangentMode: 0
-    - time: 1
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 0.75426954
       outSlope: 0.75426954
-      tangentMode: 10
+      tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   greenChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 2
+      time: 0
       value: 0
       inSlope: 1
       outSlope: 1
-      tangentMode: 10
-    - time: 1
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 1
       outSlope: 1
-      tangentMode: 10
+      tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   blueChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0.009850034
+    - serializedVersion: 2
+      time: 0.009850034
       value: 0.01925415
       inSlope: 1.1259359
       outSlope: 1.1259359
-      tangentMode: 10
-    - time: 0.4833984
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 0.4833984
       value: 0.5524393
       inSlope: 0.99614584
       outSlope: 0.99614584
-      tangentMode: 10
-    - time: 1
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 0.8663557
       outSlope: 0.8663557
-      tangentMode: 10
+      tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -725,12 +760,14 @@ MonoBehaviour:
   zCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 2
+      time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -741,12 +778,14 @@ MonoBehaviour:
   depthRedChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 2
+      time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -757,12 +796,14 @@ MonoBehaviour:
   depthGreenChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 2
+      time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -773,12 +814,14 @@ MonoBehaviour:
   depthBlueChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 2
+      time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -1175,3 +1218,161 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154234}
   m_IsPrefabParent: 1
+--- !u!114 &114090743473485762
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 2ec0c63c-e8a0-4a55-a821-4b2385ff8227
+--- !u!114 &114303167868223834
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 60522e3d-3219-42cb-8149-9e07a1c45119
+--- !u!114 &114399758845119608
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 154234}
+    - {fileID: 178516}
+    - {fileID: 126324}
+    - {fileID: 198422}
+    - {fileID: 129268}
+    - {fileID: 162874}
+    - {fileID: 110796}
+    - {fileID: 148124}
+    - {fileID: 134512}
+    - {fileID: 173430}
+    - {fileID: 139852}
+  _assetGuid: 70049f8fedbbc0d4597c3c6597ab30c3
+--- !u!114 &114465607831923466
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: d514ef6d-8c84-4a28-87ca-f162efb12b6f
+--- !u!114 &114480019446175730
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: ed97d7c2-1265-48c0-9e73-44cec67ad5fe
+--- !u!114 &114552202242398686
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 92118eb6-077c-4fc1-b8e8-98b3a5e958de
+--- !u!114 &114627653601262798
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 28477f05-a3ce-4489-9cb1-21caf219a12b
+--- !u!114 &114657217135692958
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 9487578c-8d9a-434a-9411-efabe66a2c96
+--- !u!114 &114758062566291076
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: d2c63dcd-1fd3-416a-b5f0-b6c0481b9e08
+--- !u!114 &114769490269339290
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 7c32fc64-b96e-4d8a-b5b9-1b39d0b13296
+--- !u!114 &114823403533329334
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: c91cc51e-bc39-4ea2-b7b3-04ce954b5dd1
+--- !u!114 &114861098074398864
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: f2da3e60-ffbb-4403-baaa-a303746041c2

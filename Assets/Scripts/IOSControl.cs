@@ -8,7 +8,7 @@ public class IOSControl : MonoBehaviour {
 		Default, Menu, Book
 	}
 
-	public LibrarianScript librarian;
+	public Librarian librarian;
 
 	// The UI button that replaces the missing esc/back button on IOS
 	public Button defaultButton;
