@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Wall : Escapable {
+public class Wall: MonoBehaviour {
+	
+	public int Number { get; set; }
+	public bool IsSelected { get; set; }
 
-	public Librarian librarian;
-	public int number;
+	public Shelf SelectedShelf { get; set; }
 
 	[SerializeField]
 	private GameObject highlight;
-
-	private bool activated = false;
 
 	private BoxCollider[] boxColliders;
 
@@ -18,56 +18,45 @@ public class Wall : Escapable {
 	[SerializeField]
 	private float ShelfDistance = 1f;
 
+	private Librarian librarian;
+
 	void Start () {
 		
 		this.boxColliders = GetComponents<BoxCollider>();
+
+		SelectedShelf = null;
+	}
+
+	public void Setup(Librarian librarian) {
+
+		this.librarian = librarian;
 
 		GenerateShelves();
 
 		GetComponent<CombineChildren>().Combine();
 	}
 
-	void Update () {
-		if(activated){
-			foreach (var col in boxColliders) {
-				col.enabled = false;
-			}
-
-			//librarian.selectedStage = 1;
-			backClick();
-		} /*else if (!boxCollider.enabled) {
-			boxCollider.enabled = true;
-		}*/
-	}
-
 	void OnMouseDown(){
-		
-		if (librarian.isReadingBook() || librarian.isInMenu() || librarian.IsSwipingCamera) return;
-		//EscapeClicked();
-		//if(librarian.selectedStage == 0){
-		print(number + 1);
-		activated = true;
-		librarian.selectedStage = 1;
-		librarian.selectWall(number, this);
-		//}
+
+		if (!librarian.CanSelect())
+			return;
+
+		librarian.WallSelected(this);
+		Select();
 	}
 
 	void OnMouseOver(){
-		//if(librarian.selectedStage == 0){
-		if (librarian.SelectedWall != this && !librarian.IsSwipingCamera) {
-			//wallLight.enabled = true;
+		
+		if (!IsSelected && !librarian.IsSwipingCamera) {
 			highlight.SetActive(true);
-			librarian.setWallIndicator(number + 1);
-			librarian.updateIndicator();
+			librarian.HoveringOver(this);
 		}
 	}
 	
 	void OnMouseExit(){
+		
 		highlight.SetActive(false);
-		if(librarian.selectedStage == 0){
-			librarian.setWallIndicator(0);
-			librarian.updateIndicator();
-		}
+		librarian.HoveringOverEnded(this);
 	}
 
 	private void GenerateShelves() {
@@ -83,44 +72,49 @@ public class Wall : Escapable {
 			newShelfGO.transform.position = newShelfPos;
 			newShelfGO.name = "Shelf " + (i + 1);
 			var shelf = newShelfGO.GetComponent<Shelf>();
+			shelf.librarian = librarian;
+			shelf.Wall = this;
+			shelf.Number = i;
+
 			shelf.GenerateBooks();
-			shelf.shelfNumber = i + 1;
 		}
 
 		firstShelf.GenerateBooks();
 	}
 
-	public void backClick(){
-		if(Input.anyKeyDown){
-			if(Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape)
-			   ){
-				EscapeClicked();
-			}
-		}
-		librarian.backPressed = false;
-	}
+	public void Select(){
+		
+		IsSelected = true;
+		highlight.SetActive(false);
 
-	public override void EscapeClicked (){
-		if(activated){
-
-			if(!librarian.backPressed){
-				if(librarian.selectedStage == 1) librarian.selectedStage = 0;
-				librarian.resetIndicator();
-				activated = false;
-			}
-			librarian.backPressed = false;
+		foreach (var collider in boxColliders) {
+			collider.enabled = false;
 		}
 	}
 
-	public void activate(){
-		activated = true;
-	}
-	public void deactivate(){
-		activated = false;
+	public void Deselect(){
+
+		if (SelectedShelf != null) {
+			SelectedShelf.Deselect();
+		}
+		SelectedShelf = null;
+
+		IsSelected = false;
+		foreach (var collider in boxColliders) {
+			collider.enabled = true;
+		}
 	}
 
-	public void reset(){
-		librarian.resetIndicator();
-		activated = false;
+	public void ShelfSelected(Shelf shelf) {
+
+		if (SelectedShelf != null) {
+			SelectedShelf.Deselect();
+		} 
+		SelectedShelf = shelf;
+	}
+
+	public void BookSelected(Book book) {
+
+		librarian.BookSelected(book);
 	}
 }

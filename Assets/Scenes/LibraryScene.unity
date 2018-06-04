@@ -2239,6 +2239,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_TagString
+      value: Librarian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
@@ -6783,7 +6787,43 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
       propertyPath: randomSeed
+      value: -1827367440
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: ShapeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: ForceModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: SizeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: LightsModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19860616, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19966332, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f2bc0fd10324694da25408e4cc94ce3, type: 2}
@@ -7673,10 +7713,10 @@ MonoBehaviour:
   pageTurn: {fileID: 8300000, guid: 22eb6023dcddc46008b68e9e090510fc, type: 3}
   closeBook: {fileID: 8300000, guid: cb717124e767f417992ffbec79e6cecf, type: 3}
   music:
-  - {fileID: 8300000, guid: 82e84b41cdafd4d9a9b2a8efaf24f7ef, type: 3}
-  - {fileID: 8300000, guid: 6b0f225552d864ee4ae61270693e1715, type: 3}
-  - {fileID: 8300000, guid: ff60d196a96b94f6b8cd2ee982d1f81e, type: 3}
-  - {fileID: 8300000, guid: 9f84d4b3420f84db4aa782d1d506fe71, type: 3}
+  - {fileID: 8300000, guid: e3d65f03602674526b6d523bdcf5639e, type: 3}
+  - {fileID: 8300000, guid: c3b78cd93c4e64eb9a368269c69220a3, type: 3}
+  - {fileID: 8300000, guid: b8595263d98b04eafb6c679900db087f, type: 3}
+  - {fileID: 8300000, guid: c52af1c1b3f78434293ca9ef4074d656, type: 3}
 --- !u!1 &1114182639
 GameObject:
   m_ObjectHideFlags: 0

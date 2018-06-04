@@ -6,92 +6,49 @@ using UnityEngine.UI;
 using System.Text;
 using System.Text.RegularExpressions;
 
-public class PageInterfaceScript : Escapable {
+delegate void OnPageRequestCompleted(string[] pages);
 
-	public Librarian librarian;
-	[SerializeField] private Camera camera;
+public class PageViewController: MonoBehaviour {
 
-	public MathFunctions universeMath;
-	public Text pagetextField;
-	public Text title;
-	public Text position;
-	public InputField inputField;
-	public Canvas canvas;
+	[SerializeField] 
+	private Text pageTextLeft;
+	[SerializeField]
+	private Text pageTextRight;
+	[SerializeField]
+	public Text titleLabel;
+	[SerializeField]
+	public Text positionLabel;
+	[SerializeField]
+	public InputField pageNumberInput;
+	[SerializeField]
 	public GameObject loadingIndicator;
 
 	public IOSControl iosControl;
 
-	public TouchScreenKeyboard keyboard;
+	// In the case of two pages the first one of the two
+	private PageLocation currentPageLocation;
 
-	private bool shouldRequestPage;
-
-	//Double Interface Extras
-	[SerializeField] private bool doubleInterface;
-	[SerializeField] private Text pageText1;
-
-	private string baseUrl = "https://libraryofbabel.info/book.cgi?";
+	/*private string baseUrl = "https://libraryofbabel.info/book.cgi?";
 	private string testUrl = "https://libraryofbabel.info/book.cgi?00000000000-w1-s5-v32:410";
 
 	private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
-	private const string alphabet = "abcdefghijklmnopqrstuvwxyz,. ";
+	private const string alphabet = "abcdefghijklmnopqrstuvwxyz,. ";*/
 
-	// Use this for initialization
-	void Start () {
-		canvas.enabled = false;
-		shouldRequestPage = false;
-	}
-	
-	// Update is called once per frame
 	void Update () {
-		/*
-		if(Input.GetKeyDown(KeyCode.R)){
-			requestRandomPage();
-		}
-		*/
-		if(Input.GetKeyDown(KeyCode.Return)){
-			if(inputField.text != string.Empty){
-				goToSelectedPageAndUpdate();
-			}
-		}
-
-		if(Input.GetKeyDown(KeyCode.Escape)){
-			EscapeClicked();	
-		}
-	}
-
-	void FixedUpdate(){
-		if(shouldRequestPage){
-			if(true){
-				requestPageFromSite(null);
-			}else{
-				print ("offline page Request");
-				requestPage();
-			}
-		}
-	}
-
-	public override void EscapeClicked () {
 		
-		if (librarian.selectedStage == 3){
-			librarian.selectedStage = 0;
-			librarian.setSelectedPage(0);
-			//this.setVisible(false);
-			//librarian.lockMouseUnlockCamera();
-			//librarian.DeselectAll();
+		if (Input.GetKeyDown(KeyCode.Return)) {
+			if (pageNumberInput.text != string.Empty) {
+				GoToSelectedPageAndUpdate();
+			}
 		}
-		//#if MOBILE_INPUT
-		this.setVisible(false);
-		librarian.lockMouseUnlockCamera();
-		librarian.DeselectAll();
-		//#endif
 	}
 
+	public void Show() {
+		this.gameObject.SetActive(true);
+	}
 
-	public void startPageRequestWithLoading(){
-		if(librarian.getSelectedWall() != 0){
-			loadingIndicator.GetComponent<SpriteRenderer>().enabled = true;
-		}
-		shouldRequestPage = true;
+	public void Hide() {
+		this.gameObject.SetActive(false);
 	}
 
 	public void requestPage(){
@@ -231,28 +188,6 @@ public class PageInterfaceScript : Escapable {
 		return text;
 	}
 
-	private string generateUrl(){
-		//return testUrl;
-		string volume = "";
-		if((librarian.getSelectedBook() + 1) < 10){
-			volume += "0";
-		}
-		volume += (librarian.getSelectedBook() + 1);
-
-		return baseUrl + universeMath.getHexNumberBase36() + "-w" + (librarian.getSelectedWall() + 1) + "-s" + (librarian.getSelectedShelf() + 1) + "-v" + volume + ":" + (librarian.getSelectedPage() + 1);
-	}
-
-	private string generateNextPageUrl(){
-		//return testUrl;
-		string volume = "";
-		if((librarian.getSelectedBook() + 1) < 10){
-			volume += "0";
-		}
-		volume += (librarian.getSelectedBook() + 1);
-
-		return baseUrl + universeMath.getHexNumberBase36() + "-w" + (librarian.getSelectedWall() + 1) + "-s" + (librarian.getSelectedShelf() + 1) + "-v" + volume + ":" + (librarian.getSelectedPage() + 2);
-	}
-
 	private void updatePage(){
 		pagetextField.text = librarian.requestPage();
 		GameObject.Find("SoundController").GetComponent<SoundController>().pageFlip();
@@ -357,11 +292,11 @@ public class PageInterfaceScript : Escapable {
 
 		// Make sure the string only contains valid characters
 		pattern = pattern.ToLower();
-		pattern = Regex.Replace(pattern, string.Format("[^{0}]", alphabet), "");
+		pattern = Regex.Replace(pattern, string.Format("[^{0}]", Universe.Shared.Settings.Alphabet), "");
 		if (pattern == "") return;
 
-		pageText1.text = HighlightPatternInText(pattern, pageText1.text);
-		pagetextField.text = HighlightPatternInText(pattern, pagetextField.text);
+		pageTextLeft.text = HighlightPatternInText(pattern, pageTextLeft.text);
+		pageTextRight.text = HighlightPatternInText(pattern, pageTextRight.text);
 	}
 
 	/// <summary>
@@ -410,16 +345,10 @@ public class PageInterfaceScript : Escapable {
 	}
 
 	public void setPositionIndication(string t){
-		position.text = t;
+		positionLabel.text = t;
 	}
 
 	public void setTitle(string t){
-		title.text = t;
+		titleLabel.text = t;
 	}
-
-	private void testPageAlgorithms(){	
-		print("pagebefore:  " + pagetextField.text);
-		string s = universeMath.getPageFromData(universeMath.turnPageIntoData(pagetextField.text));
-		print ("pageAfter:  " + s);
-	}	
 }

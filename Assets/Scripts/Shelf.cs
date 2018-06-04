@@ -2,16 +2,19 @@
 using System.Collections;
 using System.Text.RegularExpressions;
 
-public class Shelf : Escapable {
+public class Shelf: MonoBehaviour {
 
-	public Librarian librarian;
-	public int shelfNumber;
+	public Librarian librarian { get; set; }
+	public int Number { get; set; }
+	public bool IsSelected { get; set; }
 
-	[SerializeField]
-	private Light[] lights;
+	public Wall Wall { get; set; }
+	public Book SelectedBook { get; set; }
 
 	[SerializeField]
 	private GameObject highlight;
+
+	private BoxCollider boxCollider;
 
 	[SerializeField]
 	private Book firstBook;
@@ -20,8 +23,7 @@ public class Shelf : Escapable {
 	[SerializeField]
 	private float bookDistanceVariance = 0f;
 
-	private bool activated;
-	private bool pointedAt;
+	private Book[] books;
 
 	private string baseUrl = "https://libraryofbabel.info/titler.cgi?";
 
@@ -29,30 +31,18 @@ public class Shelf : Escapable {
 
 	// Use this for initialization
 	void Start () {
-		activated = false;
 
-		for(int i = 0; i < lights.Length; i++){
-			lights[i].enabled = false;
-		}
+		IsSelected = false;
+		SelectedBook = null;
 
-		//turn shelf number into index
-		shelfNumber--;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(activated){
-			GetComponent<BoxCollider>().enabled = false;
-			//librarian.selectedStage = 2;
-			backClick();
-		}else{
-			GetComponent<BoxCollider>().enabled = true;
-		}
+		boxCollider = GetComponent<BoxCollider>();
 	}
 
 	public void GenerateBooks() {
 
-		for (int i = 1; i < 32; i++) {
+		books[0] = firstBook;
+
+		for (int i = 1; i < Universe.BOOKS_PER_SHELF; i++) {
 
 			var offset = Random.Range(-bookDistanceVariance, bookDistanceVariance);
 			var distance = i * bookDistance + offset;
@@ -62,11 +52,14 @@ public class Shelf : Escapable {
 			newBookGO.name = "Book " + (i + 1);
 
 			var book = newBookGO.GetComponent<Book>();
-			book.bookNumber = i + 1;
+			//book.librarian = librarian;
+			book.Number = i;
+
+			books[i] = book;
 		}
 	}
 
-	private void requestBookTitles(){
+	/*private void RequestBookTitles(){
 		string url = baseUrl;
 		print(url);
 
@@ -89,7 +82,7 @@ public class Shelf : Escapable {
 		}));
 	}
 
-	private void setBookTitles(string[] titles){
+	private void SetBookTitles(string[] titles){
 		librarian.setTitles(titles);
 		foreach(Transform child in transform){
 			if(child.gameObject.GetComponent<Book>() != null){
@@ -117,120 +110,51 @@ public class Shelf : Escapable {
 
 	private string generateUrl(){
 		return baseUrl + GameObject.Find("Mathematics").GetComponent<MathFunctions>().getHexNumberBase36() + "-w" + (librarian.getSelectedWall() + 1) + "-s" + (librarian.getSelectedShelf() + 1);
-	}
+	}*/
 
 	void OnMouseDown(){
 		//if(librarian.selectedStage == 1){
-		if (librarian.isReadingBook() || librarian.isInMenu() || librarian.IsSwipingCamera) return;
-			
-		print (shelfNumber + 1);
-		activated = true;
-		librarian.selectedStage = 2;
-		librarian.selectShelf(shelfNumber, this);
+		//if (librarian.IsReadingBook() || librarian.isInMenu() || librarian.IsSwipingCamera) return;
+		if (!librarian.CanSelect())
+			return;
+		
 
-		activateAllBooks();
-
-		librarian.setShelfIndicator(shelfNumber + 1);
-		librarian.updateIndicator();
-		//}
+		Wall.ShelfSelected(this);
+		Select();
 	}
 
 	void OnMouseOver(){
 		//if(librarian.selectedStage == 1){
-		if (librarian.SelectedShelf != this) {
-			for(int i = 0; i < lights.Length; i++){
-				lights[i].enabled = true;
-			}
-			highlight.SetActive(true);
-			librarian.setWallIndicator(librarian.getSelectedWall() + 1);
-			librarian.setShelfIndicator(shelfNumber + 1);
-			librarian.updateIndicator();
-		}
+
+		highlight.SetActive(true);
+		librarian.HoveringOver(this);
 	}
 	
 	void OnMouseExit(){
-		for(int i = 0; i < lights.Length; i++){
-			lights[i].enabled = false;
-		}
+
 		highlight.SetActive(false);
-		if(librarian.selectedStage == 1){
-			librarian.setWallIndicator(librarian.getSelectedWall() + 1);
-			librarian.setShelfIndicator(0);
-			librarian.updateIndicator();
-		}
+		librarian.HoveringOverEnded(this);
 	}
 
-	public void backClick(){
-		if(Input.anyKeyDown){
-			if(Input.GetKeyDown(KeyCode.Backspace)){
-				//go back one step
-				if(!librarian.backPressed){
-					if(librarian.selectedStage == 2) librarian.selectedStage = 1;
-					gameObject.GetComponentInParent<Wall>().activate();
-					activated = false;
-
-					librarian.setShelfIndicator(0);
-					//deactivateBooks
-					deactivateAllBooks();
-				}
-				librarian.backPressed = true;
-			}else if(Input.GetKeyDown(KeyCode.Escape)){
-				EscapeClicked();
-			}
-		}
+	public void Select(){
+		IsSelected = true;
+		boxCollider.enabled = false;
 	}
 
-	public override void EscapeClicked (){
+	public void Deselect(){
 		
-		if(activated){
-			//go back to wall choice
-			if(librarian.selectedStage == 2){
-				librarian.selectedStage = 0;
-				gameObject.GetComponentInParent<Wall>().deactivate();
-				activated = false;
-
-				librarian.resetIndicator();
-
-				deactivateAllBooks();
-			}
+		IsSelected = false;
+		if (SelectedBook != null) {
+			SelectedBook.Deselect();
 		}
+		SelectedBook = null;
+
+		boxCollider.enabled = true;
 	}
 
-	public void activate(){
-		activated = true;
-	}
-
-	public void deactivate(){
-		activated = false;
-	}
-
-	public void reset(){
-		librarian.selectedStage = 0;
-		gameObject.GetComponentInParent<Wall>().deactivate();
-		activated = false;
-
-		librarian.resetIndicator();
-
-		deactivateAllBooks();
-	}
-
-	private void activateAllBooks(){
-		requestBookTitles();
-
-		foreach(Transform child in transform){
-			if(child.gameObject.GetComponent<Book>() != null){
-				Book book = child.gameObject.GetComponent<Book>();
-				child.gameObject.SetActive(true);
-				book.removeLightBug();
-			}
-		}
-	}
-
-	private void deactivateAllBooks(){
-		foreach(Transform child in transform){
-			if(child.gameObject.GetComponent<Book>() != null){
-				child.gameObject.SetActive(false);
-			}
-		}
+	public void BookSelected(Book book){
+	
+		SelectedBook = book;
+		Wall.BookSelected(book);
 	}
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 
 [RequireComponent(typeof(FirstPersonController))]
-public class Librarian : Escapable {
+public class Librarian : MonoBehaviour {
 
 	private enum Selection {
 		None = 0,
@@ -17,42 +17,16 @@ public class Librarian : Escapable {
 		Settings
 	}
 
-	public MathFunctions universe;
 	private FirstPersonController fpc;
 
 	[SerializeField]
 	private ViewController viewController;
 
-	//public SearchInterfaceScript search;
-	//private PageInterfaceScript pageInterface;
-	//public PageInterfaceScript singlePageInterface;
-	//[SerializeField] private PageInterfaceScript doublePageInterface;
-	//public ChoiceIndicator choiceIndicator;
+	private Selection selection;
 
-	//public Wall SelectedWall { get; set; }
-	//public Shelf SelectedShelf { get; set; }
-
-	/*public int selectedStage {
-		get { return _selectedStage; }
-		set { _selectedStage = value; }
-	}	//0 = nothing selected | 1 = wall selected | 2 = shelf selected | 3 = book selected | 4 = searchInterface*/
-	public Selection selection { 
-		get { return _selection; }
-	}
-	private Selection _selection;
-
-	//private int _selectedStage = 0;
-	private int selectedWall;
-	private int selectedShelf;
-	private int selectedBook;
-	private int selectedPage;
-
-	//private string selectedTitle;
-	//private string[] titles;
-
-	//private bool cmdPressed;
-	//private bool escPressed;
-	//public bool backPressed;
+	[SerializeField]
+	private Hexagon currentHexagon;
+	private Wall selectedWall;
 
 	private Vector3 swipeStartPosition;
 	private Vector3 swipeEndPosition;
@@ -68,32 +42,18 @@ public class Librarian : Escapable {
 	private string deathText;
 	public DeathText deathTextObject;
 
-	// Use this for initialization
 	void Start () {
 
 		fpc = GetComponent<FirstPersonController>();
 
-		//cmdPressed = false;
-		//escPressed = false;
-		//backPressed = false;
-
-		//selectedStage = 0;
 		selection = Selection.None;
-
-		selectedBook = -1;
-		selectedShelf = -1;
-		selectedWall = -1;
-		selectedPage = 0;
-		//selectedTitle = "";
-
-		//titles = null;
 
 		fallCount = 0;
 
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
 
-		universe.generateRandomHexagonNumber();
-		universe.setRandomHexagonNameInBase36();
+		//universe.generateRandomHexagonNumber();
+		//universe.setRandomHexagonNameInBase36();
 
 		ChooseDeathText();
 	}
@@ -107,22 +67,9 @@ public class Librarian : Escapable {
 	}
 
 	private void KeyPressHandling(){
-		/*if(cmdPressed && escPressed){
-			Application.Quit();
-
-		}*/
-		/*if(Input.GetKeyDown(KeyCode.RightCommand) || Input.GetKeyDown(KeyCode.LeftCommand)){
-			cmdPressed = true;
-		}
-		if(Input.GetKeyUp(KeyCode.RightCommand) || Input.GetKeyUp(KeyCode.LeftCommand)){
-			cmdPressed = false;
-		}
-		if(Input.GetKeyUp(KeyCode.Escape)){
-			escPressed = false;
-		}*/
+		
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			EscapeClicked();
-			//pageInterface.setVisible(false);
 		}
 
 		if(Input.GetKeyDown(KeyCode.M)){
@@ -133,61 +80,19 @@ public class Librarian : Escapable {
 		}
 	}
 
-	override public void EscapeClicked(){
-		//escPressed = true;
-		//choiceIndicator.setVisible(true);v
+	public void EscapeClicked(){
+		
 		viewController.ShowChoiceIndicator();
+		viewController.CloseAllMenus();
 
 		DeselectAll();
+
+		LockMouseUnlockCamera();
 	}
 
-	private void SwipeHandling(){
-
-		var touches = FilterSwipeValidTouches(Input.touches);
-
-		if (touches.Length != 1) {	// swipe ends
-			isSwipingCamera = false;
-			touchExistsInSwipeArea = false;
-			return;
-		}
-
-		if (!touchExistsInSwipeArea) {	// swipe begins
-
-			swipeStartPosition = swipeEndPosition = touches[0].position;
-			touchExistsInSwipeArea = true;
-			return;
-		}
-
-		swipeEndPosition = touches[0].position;
-			
-		if (swipeStartPosition != swipeEndPosition) {
-
-			if (swipeStartPosition.magnitude < Screen.width / 2.5 || swipeStartPosition.y < Screen.height * 0.2) return;
-			
-			float swipeDistance = Vector3.Distance(swipeStartPosition,swipeEndPosition);
-
-			if(swipeDistance >= 0.1){
-				
-				isSwipingCamera = true;
-				DeselectAll();
-
-				var newPos = swipeEndPosition - swipeStartPosition;
-				var xAngle = newPos.x * 180.0f / Screen.width;
-				var yAngle = newPos.y * 90.0f / Screen.height;
-
-				var invert = PlayerPrefs.GetInt(SettingsScript.INVERTCAM_KEY, 0) == 1 ? -1 : 1;
-				var rotateVector = new Vector2(invert * xAngle, invert * yAngle);
-
-				var fromRotation = fpc.transform.rotation;
-				RotateCamera(rotateVector, 1f);
-				var toRotation = fpc.transform.rotation;
-
-				fpc.VROffset *= Quaternion.Inverse(fromRotation) * toRotation;
-
-				swipeStartPosition = swipeEndPosition;
-			}
-		}
-	}
+	public void RequestPages(PageLocation[] pages, OnPageRequestCompleted onComplete) {
+		
+	} 
 
 	private Touch[] FilterSwipeValidTouches(Touch[] touches) {
 
@@ -205,22 +110,22 @@ public class Librarian : Escapable {
 		
 		viewController.ShowSearchMenu();
 		
-		lockCameraUnlockMouse();
+		LockCameraUnlockMouse();
 		selection = Selection.Search;
 	}
 
-	public void lockCameraUnlockMouse(){
+	public void LockCameraUnlockMouse(){
 		fpc.setLocked(true);
 	}
 
-	public void lockMouseUnlockCamera(){
+	public void LockMouseUnlockCamera(){
 		fpc.setLocked(false);
 	}
 
 	public void IncreaseFallCount(){
 		fallCount++;
 		if(fallCount > maxFallNum){
-			if(!Application.isMobilePlatform){
+			if(!Application.isMobilePlatform && !Application.platform != RuntimePlatform.WebGLPlayer){
 				Application.Quit();		// Quit the Application on Standalone builds
 			} else {
 				deathTextObject.activate();
@@ -254,16 +159,6 @@ public class Librarian : Escapable {
 		return content.Split(new char[] {'.',';'});
 	}
 
-	public string requestPage(){
-		//createRoomPos in Mathfunctions
-		int roomPosition = universe.calcRoomPosNumber(selectedWall, selectedShelf, selectedBook, selectedPage);
-		print ("Roomposition: " + roomPosition);
-		//run the algorithm
-		universe.algorithm(roomPosition);
-
-		return universe.getPageFromData();
-	}
-
 	public void movedToNextRoom(){
 		//increase hex number by 1
 		universe.addToHexNumber36(1);
@@ -289,106 +184,68 @@ public class Librarian : Escapable {
 	/// </summary>
 	public void DeselectAll() {
 
-		selectWall(-1, null);
-		selectedShelf = -1;
-		selectedBook = -1;
-		selectedPage = 0;
-		selectedStage = 0;
-		choiceIndicator.reset();
+		if (selectedWall != null) {
+			selectedWall.Deselect();
+		}
+		selectedWall = null;
+		selection = Selection.None;
+		viewController.ResetChoiceIndicator();
 	}
 
-	public void selectWall(int w, Wall wall) {
-
-		if (SelectedWall != null) {
-			SelectedWall.deactivate();	
-		}
-		if (SelectedShelf != null) {
-			SelectedShelf.deactivate();
-			SelectedShelf = null;
+	public void WallSelected(Wall wall) {
+	
+		if (selectedWall != null) {
+			selectedWall.Deselect();	
 		}
 
-		selectedWall = w;
-		SelectedWall = wall;
+		selectedWall = wall;
 	}
 
-	public void selectWall(int w){
-		selectedWall = w;
+	public void BookSelected(Book book) {
+		// TODO: Open and Show first page of the book
 	}
 
-	public void selectShelf(int s, Shelf shelf) {
-
-		if (SelectedShelf != null) {
-			SelectedShelf.deactivate();
-		}
-
-		selectedShelf = s;
-		SelectedShelf = shelf;
+	private bool CannotSelect() {
+		return IsReadingBook() || IsInMenu() || isSwipingCamera;
 	}
 
-	public void selectShelf(int s){
-		selectedShelf = s;
+	public bool CanSelect() {
+		return !CannotSelect();
 	}
 
-	public void selectBook(int b){
-		selectedBook = b;
+	public void HoveringOver(Wall wall) {
+		viewController.RefreshChoiceIndicator(wall.Number, -1, -1);
 	}
 
-	public void setSelectedPage(int p){
-		selectedPage = p;
+	public void HoveringOver(Shelf shelf) {
+		viewController.RefreshChoiceIndicator(selectedWall.Number, shelf.Number, -1);
 	}
 
-	public int getSelectedPage(){
-		return selectedPage;
+	public void HoveringOver(Book book) {
+		viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, book.Number);
 	}
 
-	public int getSelectedWall(){
-		return selectedWall;
+	public void HoveringOverEnded(Wall wall) {
+		viewController.ResetChoiceIndicator();
 	}
 
-	public int getSelectedShelf(){
-		return selectedShelf;
+	public void HoveringOverEnded(Shelf shelf) {
+		viewController.RefreshChoiceIndicator(selectedWall.Number, -1, -1);
 	}
 
-	public int getSelectedBook(){
-		return selectedBook;
+	public void HoveringOverEnded(Book book) {
+		viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, -1);
 	}
 
-	public bool isReadingBook() {
-		return pageInterface.isVisible();
+	public bool IsReadingBook() {
+		return selection == Selection.Book;
+	}
+					
+	private bool IsInMenu() {
+		return selection == Selection.Search || selection == Selection.Settings;
 	}
 
-	public bool isInMenu() {
-		return search.isVisible();
-	}
-
-	public void setRoomPosition(int[] roomposition){
-		//roomposition[0] equals the page (between 0-409
-		selectedPage = roomposition[1];
-		//roomposition[1] equals the book number
-		selectedBook = roomposition[2];
-		//roomposition[2] equals the shelf number
-		selectedShelf = roomposition[3];
-		//roomposition[3] equals the wall number
-		selectedWall = roomposition[0];
-	}
-
-	public void setWallIndicator(int i){
-		choiceIndicator.wall = i;
-	}
-
-	public void setShelfIndicator(int i){
-		choiceIndicator.shelf = i;
-	}
-
-	public void setBookIndicator(int i){
-		choiceIndicator.book = i;
-	}
-
-	public void updateIndicator(){
-		choiceIndicator.updateText();
-	}
-
-	public void resetIndicator(){
+	/*public void resetIndicator(){
 		pageInterface.setPositionIndication(choiceIndicator.toString());
 		pageInterface.setTitle(selectedTitle);
 		choiceIndicator.reset();
@@ -399,23 +256,57 @@ public class Librarian : Escapable {
 		pageInterface.setTitle(t);
 	}
 
-	public void setTitles(string[] t){
-		titles = t;
-		updateTitle();
-	}
-
 	public void updateTitle(){
 		if(titles != null && selectedBook >= 0 && selectedBook < 32){
 			pageInterface.setTitle(titles[selectedBook]);
 		}
-	}
+	}*/	
 
-	public void setIndicatorVisible(bool b){
-		choiceIndicator.setVisible(b);
-	}
+	private void SwipeHandling(){
 
-	public PageInterfaceScript getPageInterface(){
-		return pageInterface;
+		var touches = FilterSwipeValidTouches(Input.touches);
+
+		if (touches.Length != 1) {	// swipe ends
+			isSwipingCamera = false;
+			touchExistsInSwipeArea = false;
+			return;
+		}
+
+		if (!touchExistsInSwipeArea) {	// swipe begins
+
+			swipeStartPosition = swipeEndPosition = touches[0].position;
+			touchExistsInSwipeArea = true;
+			return;
+		}
+
+		swipeEndPosition = touches[0].position;
+
+		if (swipeStartPosition != swipeEndPosition) {
+
+			if (swipeStartPosition.magnitude < Screen.width / 2.5 || swipeStartPosition.y < Screen.height * 0.2) return;
+
+			float swipeDistance = Vector3.Distance(swipeStartPosition,swipeEndPosition);
+
+			if(swipeDistance >= 0.1){
+
+				isSwipingCamera = true;
+				DeselectAll();
+
+				var newPos = swipeEndPosition - swipeStartPosition;
+				var xAngle = newPos.x * 180.0f / Screen.width;
+				var yAngle = newPos.y * 90.0f / Screen.height;
+
+				var invert = PlayerPrefs.GetInt(SettingsScript.INVERTCAM_KEY, 0) == 1 ? -1 : 1;
+				var rotateVector = new Vector2(invert * xAngle, invert * yAngle);
+
+				var fromRotation = fpc.transform.rotation;
+				RotateCamera(rotateVector, 1f);
+				var toRotation = fpc.transform.rotation;
+
+				fpc.VROffset *= Quaternion.Inverse(fromRotation) * toRotation;
+
+				swipeStartPosition = swipeEndPosition;
+			}
+		}
 	}
-		
 }

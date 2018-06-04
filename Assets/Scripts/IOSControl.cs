@@ -30,12 +30,6 @@ public class IOSControl : MonoBehaviour {
 
 		this.displayCorrectButton(Location.Default);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	
-	}
 
 	public void ButtonClicked(){
 		// call the appropiate function

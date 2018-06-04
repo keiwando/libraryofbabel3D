@@ -9,11 +9,7 @@ public enum SearchError {
 
 public struct SearchResult {
 
-	public string Hex { get; set; }
-	public int Wall { get; set; }
-	public int Shelf { get; set; }
-	public int Book { get; set; }
-	public int Page { get; set; }
+	public PageLocation PageLocation { get; set; }
 
 	public SearchError Error { get; set; }
 }

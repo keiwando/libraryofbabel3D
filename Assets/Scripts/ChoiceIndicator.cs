@@ -2,60 +2,40 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Text))]
 public class ChoiceIndicator : MonoBehaviour {
-
-	public int wall {get;set;}
-	public int shelf {get;set;}
-	public int book {get;set;}
-
-	public Text text;
-
-	void Start () {
 	
-	}
-	
+	private Text text;
 
-	void Update () {
-	
+	void Start() {
+		this.text = GetComponent<Text>();
 	}
 
-	public void updateText(){
+	public void Refresh(int wall, int shelf, int book){
 		text.text = getWall() + " " + getShelf() + " " + getBook();
 	}
 
-	private string getWall(){
-		if(wall != 0){
-			return "W:" + wall;
-		}else{
-			return "";
-		}
+	private string getWall(int wall){
+
+		return wall == 0 ? "" : "W:" + wall;
 	}
 
-	private string getShelf(){
-		if(shelf != 0){
-			return "S:" + shelf;
-		}else{
-			return "";
-		}
+	private string getShelf(int shelf){
+
+		return shelf == 0 ? "" : "S:" + shelf;
 	}
 
-	private string getBook(){
-		if(book != 0){
-			return "B:" + book;
-		}else{
-			return "";
-		}
+	private string getBook(int book){
+
+		return book == 0 ? "" : "B:" + book;
 	}
 
-	public string toString(){
+	public string ToString(){
 		return text.text;
 	}
 
-	public void reset(){
-		wall = 0;
-		shelf = 0;
-		book = 0;
-		updateText();
+	public void Reset(){
+		Refresh(0, 0, 0);
 	}
 
 	public void setVisible(bool b){

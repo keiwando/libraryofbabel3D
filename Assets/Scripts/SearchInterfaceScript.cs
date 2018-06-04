@@ -3,14 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-public class SearchInterfaceScript : Escapable {
+public class SearchInterfaceScript : MonoBehaviour {
 
 	[SerializeField]
 	private OnlineSearch onlineSearch;
 
 	public MathFunctions universe;
 	public Librarian librarian;
-	public PageInterfaceScript pageInterface;
+	public PageViewController pageInterface;
 	public Canvas canvas;
 	public InputField searchInput;
 	public InputField hexNumberField;

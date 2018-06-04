@@ -3,90 +3,55 @@ using System.Collections;
 
 public class Hexagon : MonoBehaviour {
 
-	public int direction;	//0-5
-	public GameObject prevHex;
-	public GameObject nextHex;
+	public int direction; // Multiple of 60°
 
-	public GameObject bookwall1;
-	public GameObject bookwall2;
-	public GameObject bookwall3;
-	public GameObject bookwall4;
-	private GameObject[] bookwalls;
+	private Wall[] walls;
 
-	[SerializeField] private GhoulScript ghoul;
-	public bool bugFixed;
+	private GhoulScript ghoul;
+	private Librarian librarian;
+
+	[SerializeField]
+	private string visibleWallMask = "0000";
 
 	void Start () {
-		bookwalls = new GameObject[4] {bookwall1,bookwall2,bookwall3,bookwall4};
-		//bugFixed = false;
+		
+		walls = GetComponentsInChildren<Wall>();
+		ghoul = GetComponentInChildren<GhoulScript>();
+		librarian = GameObject.FindGameObjectWithTag("Librarian").GetComponent<Librarian>();
 
+		SetupWalls();
 	}
 
+	private void SetupWalls() {
 
-	public GameObject[] getBookWalls(){
-		return bookwalls;
-	}
+		int visibilityMask = int.Parse(visibleWallMask);
+		int counter = 1;
 
-	public void disableWalls(){
-		for(int i = 0; i < 4; i++){ 
-			bookwalls[i].SetActive(false);
-		}
-		if(nextHex != null){
-			nextHex.GetComponent<Hexagon>().disableWalls();
-		}
-	}
+		for (int i = 0; i < walls.Length; i++) {
 
-	public void enableWalls(){
-		for(int i = 0; i < 4; i++){
-			bookwalls[i].SetActive(true);
-		}
-		//nextHex should always be disabled
-		if(nextHex != null){
-			nextHex.GetComponent<Hexagon>().disableWalls();
+			Wall wall = walls[i];
+
+			bool visible = counter & visibilityMask == counter;
+			counter++;
+
+			if (visible) {
+				wall.gameObject.SetActive(true);
+				wall.Setup();
+			} else {
+				wall.gameObject.SetActive(false);
+			}
 		}
 	}
 
-	public void respawnGhoul(){
+	public void RespawnGhoul(){
 		ghoul.respawn();
 	}
 
-	public void activateGhoul(){
+	public void ActivateGhoul(){
 		ghoul.setShouldRead(true);
 	}
 
-	public void deactivateGhoul(){
+	public void DeactivateGhoul(){
 		ghoul.setShouldRead(false);
-	}
-
-	public void removeWallNumberBug(){
-		//make sure wall with the name BookWall 4 has the wallnumber of 4
-		bookwall4.GetComponent<Wall>().number = 3;
-		//remove mesh bug as well
-		//remove last three child objects of bookwall4 (duplicate meshes)
-
-		if(!bugFixed){
-			for(int i = 1; i <= 6; i++){
-				if(i == 1 || i == 2 || i == 3 || i == 6){
-					Transform child = bookwall4.transform.GetChild(bookwall4.transform.childCount - i);
-					//safety name check
-					string name = child.gameObject.name;
-					if(name == "Combined mesh0" || name == "Combined mesh1" || name == "Combined mesh2"){
-						Destroy(child.gameObject);
-					}
-				}
-			}
-			bugFixed = true;
-		}
-	}
-
-	public void setBugFixed(){
-		bugFixed = true;
-	}
-
-	public void removeFirstHexMesh(){
-		Transform child = bookwall4.transform.GetChild(bookwall4.transform.childCount - 3);
-		if(child.gameObject.name == "Combined mesh0"){
-			Destroy(child.gameObject);
-		}
 	}
 }
