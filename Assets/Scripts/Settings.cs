@@ -1,0 +1,58 @@
+﻿using System;
+using UnityEngine;
+
+public static class Settings {
+
+	private const string FIRSTTIME_KEY = "FIRSTTIME";
+	private const string SOUND_KEY = "SOUND";
+	private const string MUSIC_KEY = "MUSIC";
+	private const string ONLINE_KEY = "ONLINE";
+	private const string INVERTCAM_KEY = "INVERTCAMERA";
+
+	public static bool Offline { 
+		get { return GetBool(ONLINE_KEY); }
+		set { SetBool(ONLINE_KEY, value); }
+	}
+
+	public static bool FirstTime {
+		get { return GetBool(FIRSTTIME_KEY); }
+		set { SetBool(FIRSTTIME_KEY, value); }
+	}
+
+	public static bool SoundEnabled {
+		get { return false; GetBool(SOUND_KEY); }
+		set { SetBool(SOUND_KEY, value); }
+	}
+
+	public static bool MusicEnabled {
+		get { return GetBool(MUSIC_KEY); }
+		set { SetBool(MUSIC_KEY, value); }
+	}
+
+	public static bool ShouldInvertCamera {
+		get { return GetBool(INVERTCAM_KEY); }
+		set { SetBool(INVERTCAM_KEY, value); }
+	}
+
+	public static void SetupFirstTime() {
+
+		if (!FirstTime)
+			return;
+
+		SoundEnabled = true;
+		MusicEnabled = true;
+		ShouldInvertCamera = false;
+	}
+
+	private static bool GetBool(string key) {
+
+		return PlayerPrefs.GetInt(key, 0) == 1;
+	}
+
+	private static void SetBool(string key, bool b) {
+		PlayerPrefs.SetInt(key, b ? 1 : 0);
+		PlayerPrefs.Save();
+	}
+}
+
+
