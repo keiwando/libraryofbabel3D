@@ -8,10 +8,13 @@ public enum SearchError {
 }
 
 public struct SearchResult {
-
-	public PageLocation PageLocation { get; set; }
-
-	public SearchError Error { get; set; }
+	
+	public string Title { get; set; }
+	public string HexName { get; set; }
+	public int WallNum { get; set; }
+	public int ShelfNum { get; set; }
+	public int BookNum { get; set; }
+	public int PageNum { get; set; }
 }
 
 public delegate void OnSearchCompleted(SearchResult result);

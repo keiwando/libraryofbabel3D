@@ -12,21 +12,20 @@ public class Universe : MonoBehaviour {
 	public static readonly int CHARACTERS_PER_LINE = 80;
 	public static int CHARACTERS_PER_PAGE {
 		get { return LINES_PER_PAGE * CHARACTERS_PER_LINE; }
-	} 
+	}
+
+	public static readonly string Alphabet = "abcdefghijklmnopqrstuvwxyz,. ";
 
 	public static Universe Shared {
 		get { return shared; }
 	}
 	private static Universe shared;
 
-	public LibrarySettings Settings {
-		get { return settings; }
-	}
-	private LibrarySettings settings;
-
 	[SerializeField]
 	private OnlineLibrary onlineLibrary;
 	private OfflineLibrary offlineLibrary;
+
+	private ILibrary library;
 
 	void Awake() {
 		if (shared == null) {
@@ -39,21 +38,26 @@ public class Universe : MonoBehaviour {
 
 	void Start() {
 
-		settings = new LibrarySettings() { 
-			Alphabet = "abcdefghijklmnopqrstuvwxyz,. ",
-			Offline = false
-		};
-
 		offlineLibrary = new OfflineLibrary();
+
+		this.library = Settings.Offline ? offlineLibrary as ILibrary : onlineLibrary as ILibrary;
 	}
 
+	public void RequestPages(PageLocation[] pages, OnPageRequestCompleted onCompletion) {
+	
+		library.RequestPages(pages, onCompletion);
+	}
 
+	public void RequestTitle(PageLocation page, OnTitleRequestCompleted onCompletion) {
+
+		library.RequestBookTitle(page, onCompletion);
+	}
 
 	/// <summary>
 	/// Creates a page containing the specified text at a random position and
 	/// is otherwise filled with random characters of the Universe's alphabet
 	/// </summary>
-	public string FillPageRandomly(string text){
+	public static string FillPageRandomly(string text){
 
 		var charactersPerPage = CHARACTERS_PER_PAGE;
 
@@ -70,7 +74,7 @@ public class Universe : MonoBehaviour {
 		int charactersBefore = Random.Range(0, missingCharacters);
 		int charactersAfter = missingCharacters - charactersBefore - 1;
 
-		char[] alphabetArray = settings.Alphabet.ToCharArray();
+		char[] alphabetArray = Universe.Alphabet.ToCharArray();
 
 		//add random characters before
 		for(int i = 0; i < charactersBefore; i++){
@@ -94,7 +98,7 @@ public class Universe : MonoBehaviour {
 	/// Creates a page that begins with the given text and is otherwise filled
 	/// with spaces
 	/// </summary>
-	public string FillPageBlank(string text){
+	public static string FillPageBlank(string text){
 
 		var stringBuilder = new StringBuilder(text);
 		int pageLength = CHARACTERS_PER_PAGE;
@@ -111,17 +115,17 @@ public class Universe : MonoBehaviour {
 	/// <summary>
 	/// Converts a string consisting of characters of the Universe's alphabet to an equivalent number (base conversion).
 	/// </summary>
-	public BigInteger TextToNumber(string text) {
+	public static BigInteger TextToNumber(string text, string alphabet) {
 
-		return Universe.ArbitraryToDecimalSystem(text, settings.Alphabet);
+		return Universe.ArbitraryToDecimalSystem(text, alphabet);
 	}
 
 	/// <summary>
 	/// Converts a number to an equivalent string consisting of cahracters of the Universe's alphabet (base conversion).
 	/// </summary>
-	public string NumberToText(BigInteger number) {
+	public static string NumberToText(BigInteger number, string alphabet) {
 
-		return Universe.DecimalToArbitrarySystem(number, settings.Alphabet);
+		return Universe.DecimalToArbitrarySystem(number, alphabet);
 	}
 
 	/// <summary>

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MathFunctions : MonoBehaviour {
 
-	private Random random;
+	//private Random random;
 
 	const string BOOKCHARACTERSET = "abcdefghijklmnopqrstuvwxyz,. ";
 	const string HEXCHARACTERSET = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -38,7 +38,7 @@ public class MathFunctions : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		random = new Random();
+		//random = new Random();
 		hexagonNumber = new long[LongNumber];
 		roomposition = new int[4];
 		pageData = new long[LongNumber];

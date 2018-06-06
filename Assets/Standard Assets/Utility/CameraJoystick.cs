@@ -18,7 +18,7 @@ public class CameraJoystick : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 	public string verticalAxisName = "Vertical"; // The name given to the vertical axis for the cross platform input
 
 	public bool controlsCamera;
-	public Camera camera;
+	new public Camera camera;
 	public GameObject player;
 	private bool shouldRotateCamera;
 	private Vector2 rotateVector;

@@ -7,7 +7,7 @@ public class Book: MonoBehaviour {
 	public Librarian librarian { get; set; }
 
 	public int Number { get; set; }
-	public int IsSelected { get; set; }
+	public bool IsSelected { get; set; }
 
 	public Shelf Shelf { get; set; }
 
@@ -22,27 +22,31 @@ public class Book: MonoBehaviour {
 
 	private Text titleLabel;
 
-	public Light bookLight;
+	//public Light bookLight;
+	[SerializeField]
+	private GameObject highlight;
 
 	void Start () {
 		
 		titleLabel = GetComponentInChildren<Text>();
 		titleLabel.text = "";
 
-		bookLight.enabled = false;
+		//bookLight.enabled = false;
 		IsSelected = false;
 	}
 
 	void OnMouseOver(){
 
 		librarian.HoveringOver(this);
-		bookLight.enabled = true;
+		//bookLight.enabled = true;
+		highlight.SetActive(true);
 	}
 
 	void OnMouseExit(){
 		
 		librarian.HoveringOverEnded(this);
-		bookLight.enabled = false;
+		//bookLight.enabled = false;
+		highlight.SetActive(false);
 	}
 
 	void OnMouseUp(){
@@ -57,6 +61,7 @@ public class Book: MonoBehaviour {
 	public void Deselect() {
 
 		IsSelected = false;
-		bookLight.enabled = false;
+		//bookLight.enabled = false;
+		highlight.SetActive(false);
 	} 
 }

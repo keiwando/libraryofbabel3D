@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33321582396639434}
   - component: {fileID: 136671497474665230}
   - component: {fileID: 23739186447774364}
-  - component: {fileID: 114123333940370264}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -41,8 +40,6 @@ GameObject:
   - component: {fileID: 33031826268732290}
   - component: {fileID: 135585859072266540}
   - component: {fileID: 23580609120881012}
-  - component: {fileID: 114717148225099308}
-  - component: {fileID: 114303518804361010}
   m_Layer: 0
   m_Name: LampFruit
   m_TagString: Untagged
@@ -59,7 +56,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4391509168835496}
   - component: {fileID: 108185563732849148}
-  - component: {fileID: 114132372459925194}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -226,60 +222,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114123333940370264
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123611349712570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 9937c7e5-cd39-4394-bcac-63eb5fb69c9e
---- !u!114 &114132372459925194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1557981305626500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 9804f90c-ecfe-4ff7-8fb8-a4ff6f8b837c
---- !u!114 &114303518804361010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1367880377153714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 
-  _referenceCollection:
-    _collection:
-    - {fileID: 1367880377153714}
-    - {fileID: 1557981305626500}
-    - {fileID: 1123611349712570}
-  _assetGuid: 9fa5d7945ecf74c6c92400e291057287
---- !u!114 &114717148225099308
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1367880377153714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 0e84789c-2348-485e-abca-3adbf540c0ee
 --- !u!135 &135585859072266540
 SphereCollider:
   m_ObjectHideFlags: 1

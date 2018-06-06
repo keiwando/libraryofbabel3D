@@ -25,9 +25,9 @@ public class Shelf: MonoBehaviour {
 
 	private Book[] books;
 
-	private string baseUrl = "https://libraryofbabel.info/titler.cgi?";
+	//private string baseUrl = "https://libraryofbabel.info/titler.cgi?";
 
-	private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
+	//private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +40,11 @@ public class Shelf: MonoBehaviour {
 
 	public void GenerateBooks() {
 
+		books = new Book[Universe.BOOKS_PER_SHELF];
+
 		books[0] = firstBook;
+		firstBook.Number = 1;
+		firstBook.librarian = librarian;
 
 		for (int i = 1; i < Universe.BOOKS_PER_SHELF; i++) {
 
@@ -52,8 +56,9 @@ public class Shelf: MonoBehaviour {
 			newBookGO.name = "Book " + (i + 1);
 
 			var book = newBookGO.GetComponent<Book>();
-			//book.librarian = librarian;
-			book.Number = i;
+			book.librarian = librarian;
+			book.Number = i + 1;
+			book.Shelf = this;
 
 			books[i] = book;
 		}
@@ -106,10 +111,6 @@ public class Shelf: MonoBehaviour {
 			Debug.Log("WWW Error: "+ www.error);
 			Debug.Log("WWW text:" + www.text);
 		}
-	}
-
-	private string generateUrl(){
-		return baseUrl + GameObject.Find("Mathematics").GetComponent<MathFunctions>().getHexNumberBase36() + "-w" + (librarian.getSelectedWall() + 1) + "-s" + (librarian.getSelectedShelf() + 1);
 	}*/
 
 	void OnMouseDown(){
@@ -118,7 +119,6 @@ public class Shelf: MonoBehaviour {
 		if (!librarian.CanSelect())
 			return;
 		
-
 		Wall.ShelfSelected(this);
 		Select();
 	}
@@ -156,5 +156,13 @@ public class Shelf: MonoBehaviour {
 	
 		SelectedBook = book;
 		Wall.BookSelected(book);
+	}
+
+	public void SetTitles(string[] titles) {
+	
+		for (int i = 0; i < Mathf.Min(titles.Length, books.Length); i++) {
+
+			books[i].Title = titles[i];
+		}
 	}
 }

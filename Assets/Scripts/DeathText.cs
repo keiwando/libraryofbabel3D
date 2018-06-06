@@ -3,29 +3,32 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Threading;
 
+[RequireComponent(typeof(Text))]
 public class DeathText : MonoBehaviour {
 
-	// Use this for initialization
-	public Text text;
+
+	private Text text;
 
 	void Start () {
-		foreach(Transform child in transform){
+
+		text = GetComponent<Text>();
+
+		foreach (Transform child in transform){
 			child.gameObject.SetActive(false);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-	public void activate(){
+	public void Activate(){
 		foreach(Transform child in transform){
 			child.gameObject.SetActive(true);
 		}
 	}
 
-	public void setText(string t){
+	public void SetText(string t){
+
+		if (text == null)
+			return;
+
 		text.text = t;
 	}
 }

@@ -7,15 +7,16 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 	private const string BASE_URL = "https://libraryofbabel.info/search.cgi";
 
 	//private readonly Regex textPattern = new Regex("<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform[0-9a-z.,'()\\s]*");
-	
+
+	private Regex pattern = new Regex("Title: <b>([a-z.,\\s]*)</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform([0-9a-z.,'()\\s]*)");
+	private Regex bracketPattern = new Regex("[()]");
+
 	public void Search(string text, bool exactMatch, OnSearchCompleted onCompleted){
 
-		//string text = Regex.Replace(searchInput.text, string.Format("[^{0}]", alphabet), "", RegexOptions.IgnoreCase);
+		text = Regex.Replace(text, string.Format("[^{0}]", Universe.Alphabet), "", RegexOptions.IgnoreCase);
 		if (text == "") return;
 
-		var universe = Universe.Shared;
-
-		text = exactMatch ? universe.FillPageBlank(text) : universe.FillPageRandomly(text);
+		text = exactMatch ? Universe.FillPageBlank(text) : Universe.FillPageRandomly(text);
 
 		WWWForm form = new WWWForm();
 		form.AddField("find",text);
@@ -23,13 +24,10 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 
 		StartCoroutine(WaitForRequest(BASE_URL, form, (www, error) => {
 
-			string[] info = Parse(www.text);
-			/*foundHexagon = info[1];
-			hexNumberField.text = foundHexagon;
-			wallnumber.text = info[3];
-			shelfNumber.text = info[5];
-			bookNumber.text = info[7];
-			pageNumber.text = info[9];*/
+			if (error != SearchError.None) 
+				return;
+			
+			onCompleted(Parse(www.text));
 		}));
 	}
 
@@ -48,32 +46,42 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 		}
 	}
 
-	private string[] Parse(string html){
+	private SearchResult Parse(string html){
 
-		string choice = "exact match";
+		//string choice = "exact match";
 
-		string pattern = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform[0-9a-z.,'()\\s]*";
+		/*string pattern = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform[0-9a-z.,'()\\s]*";
 		string replacement = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform";
 		string titlePattern = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*";
 		string titleReplacement = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>";
-		string text = "";
-		Regex regex = new Regex (pattern);
-		Match res = regex.Match (html);
-		text = res.Groups [0].Value;
+		string text = "";*/
+		//Regex regex = new Regex (pattern);
+		Match res = pattern.Match (html);
+		var text = res.Groups[2].Value;
+		var title = res.Groups[1].Value;
 
-		text=Regex.Replace(text,replacement,"");
-		text=Regex.Replace(text,"[()]","");
+		//text=Regex.Replace(text,replacement,"");
+		text = bracketPattern.Replace(text, "");
 
-		string[] information = text.Split('\'');
+		var parts = text.Split('\'');
+
+		return new SearchResult() {
+			Title = title,
+			HexName = parts[1],
+			WallNum = int.Parse(parts[3]),
+			ShelfNum = int.Parse(parts[5]),
+			BookNum = int.Parse(parts[7]),
+			PageNum = int.Parse(parts[9])
+		};
 
 		//parseTitle
-		regex = new Regex(titlePattern);
-		res = regex.Match(html);
+		//regex = new Regex(titlePattern);
+		//res = regex.Match(html);
 		//title = res.Groups[0].Value;
 
 		//title = Regex.Replace(title,titleReplacement,"");
 
-		return information;
+		//return information;
 	}
 }
 

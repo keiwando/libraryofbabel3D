@@ -10,7 +10,6 @@ GameObject:
   - component: {fileID: 476186}
   - component: {fileID: 19860616}
   - component: {fileID: 19966332}
-  - component: {fileID: 114866145925220810}
   m_Layer: 0
   m_Name: particles
   m_TagString: Untagged
@@ -28,7 +27,6 @@ GameObject:
   - component: {fileID: 402058}
   - component: {fileID: 10884134}
   - component: {fileID: 11435754}
-  - component: {fileID: 114092374881559852}
   m_Layer: 0
   m_Name: point light
   m_TagString: Untagged
@@ -45,8 +43,6 @@ GameObject:
   m_Component:
   - component: {fileID: 429158}
   - component: {fileID: 11490812}
-  - component: {fileID: 114335854474093680}
-  - component: {fileID: 114508888372962574}
   m_Layer: 0
   m_Name: pf_vfx-inf_particle_perpetual_fire4
   m_TagString: Untagged
@@ -3644,57 +3640,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198056}
   m_IsPrefabParent: 1
---- !u!114 &114092374881559852
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 5b67a25d-3775-4e1a-882d-1d2e1f88a6e3
---- !u!114 &114335854474093680
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 
-  _referenceCollection:
-    _collection:
-    - {fileID: 198056}
-    - {fileID: 117698}
-    - {fileID: 160816}
-  _assetGuid: 1f2bc0fd10324694da25408e4cc94ce3
---- !u!114 &114508888372962574
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 70fa5914-fa95-44ad-bfb0-790d69639a46
---- !u!114 &114866145925220810
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 117698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 1ffdb905-9449-48b7-96ac-3ebdbbc52d86

@@ -3,18 +3,14 @@ using System.Collections;
 
 public class FallTriggerScript : MonoBehaviour {
 
-	// Use this for initialization
+	private Librarian librarian;
+
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		librarian = Librarian.Find();
 	}
 
 	void OnTriggerExit(Collider collider){
 		print ("fallen");
-		GameObject.Find("Librarian").GetComponent<Librarian>().increaseFallCount();
+		librarian.IncreaseFallCount();
 	}
 }

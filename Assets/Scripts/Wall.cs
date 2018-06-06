@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Wall: MonoBehaviour {
+
+	public Hexagon Hex { get; set; }
 	
 	public int Number { get; set; }
 	public bool IsSelected { get; set; }
@@ -62,8 +64,11 @@ public class Wall: MonoBehaviour {
 	private void GenerateShelves() {
 
 		//firstShelf.GenerateBooks();
+		//firstShelf.Number = 1;
+		//firstShelf.librarian = librarian;
+		//firstShelf
 
-		for (int i = 1; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 
 			var newShelfPos = firstShelf.transform.position;
 			newShelfPos.y += i * ShelfDistance;
@@ -74,12 +79,13 @@ public class Wall: MonoBehaviour {
 			var shelf = newShelfGO.GetComponent<Shelf>();
 			shelf.librarian = librarian;
 			shelf.Wall = this;
-			shelf.Number = i;
+			shelf.Number = i + 1;
 
 			shelf.GenerateBooks();
 		}
 
 		firstShelf.GenerateBooks();
+		firstShelf.gameObject.SetActive(false);
 	}
 
 	public void Select(){

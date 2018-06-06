@@ -42,10 +42,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-		//CUSTOMIZIATION
+		// CUSTOMIZATION
 		private bool locked;	//refers to the CAMERA, NOT the mouse
 
-		//Rotation
+		// Rotation
 		public Quaternion VROffset { get; set; }
 		public float yRotationOffset { get; set; }
 		public Quaternion rotationOffset { get; set; }
@@ -141,7 +141,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void PlayLandingSound()
         {
             m_AudioSource.clip = m_LandSound;
-            m_AudioSource.Play();
+            //m_AudioSource.Play();
+			m_AudioSource.PlayOneShot(m_LandSound);
             m_NextStep = m_StepCycle + .5f;
         }
 

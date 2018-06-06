@@ -4,15 +4,17 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(LibraryTranslator))]
 public class GhoulScript : MonoBehaviour {
-
-	[SerializeField] private Librarian librarian;
-	[SerializeField] private MathFunctions universe;
-	[SerializeField] private LibraryTranslator translator;
+	
+	//[SerializeField] private MathFunctions universe;
 	[SerializeField] private Light pointLight;
 	[SerializeField] private Text knowledgeMirror;
 	[SerializeField] private int spawningChance;	//out of 100
 	[SerializeField] private int maxTextLength;
+
+	private LibraryTranslator translator;
+	private Librarian librarian;
 
 	private string baseUrl = "https://libraryofbabel.info/book.cgi?";
 	private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
@@ -23,8 +25,11 @@ public class GhoulScript : MonoBehaviour {
 	private const string baseKnowledge = "It's all just gibberish!";
 
 
-	// Use this for initialization
 	void Start () {
+
+		translator = GetComponent<LibraryTranslator>();
+		librarian = Librarian.Find();
+
 		checkSpawn();
 		currentPage = "";
 		shouldRead = false;
@@ -33,11 +38,7 @@ public class GhoulScript : MonoBehaviour {
 
 		InvokeRepeating("requestPageFromSite",3,20);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
 	private void checkSpawn(){
 		int rand = Random.Range(0,100);
@@ -188,7 +189,7 @@ public class GhoulScript : MonoBehaviour {
 		}
 		volume += book;
 
-		return baseUrl + universe.getHexNumberBase36() + "-w" + wall + "-s" + shelf + "-v" + volume + ":" + page;
+		return baseUrl + librarian.CurrentLocation.Name + "-w" + wall + "-s" + shelf + "-v" + volume + ":" + page;
 	}
 
 	public void setShouldRead(bool b){

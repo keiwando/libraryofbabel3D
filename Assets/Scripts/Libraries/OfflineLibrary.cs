@@ -10,8 +10,23 @@ public class OfflineLibrary: ILibrary {
 		return new OfflineSearch();
 	}
 
-	private class OfflineSearch {
-		
+	public void RequestPages(PageLocation[] pages, OnPageRequestCompleted onCompletion) {
+		// TODO: Implement offline library
+	}
+
+	public void RequestBookTitles(ShelfLocation shelfLocation, OnTitleRequestCompleted onCompletion) {
+		// TODO: Implement offline library
+	}
+
+	public void RequestBookTitle(PageLocation page, OnTitleRequestCompleted onCompletion) {
+		// TODO: Implement offline library
+	}
+
+	private class OfflineSearch: ILibrarySearch {
+
+		public void Search(string text, bool exactMatch, OnSearchCompleted onCompletion) {
+			// TODO: Implement Offline library
+		}
 	}
 }
 

@@ -31,7 +31,7 @@ public class IOSControl : MonoBehaviour {
 		this.displayCorrectButton(Location.Default);
 	}
 
-	public void ButtonClicked(){
+	/*public void ButtonClicked(){
 		// call the appropiate function
 		print("Back button clicked.");
 		// Loop over all gameobjects of type Escapable and call the EscapeClicked function
@@ -43,7 +43,7 @@ public class IOSControl : MonoBehaviour {
 
 		// go Default button
 		displayCorrectButton(Location.Default);
-	}
+	}*/
 
 	public void displayCorrectButton(Location location){
 		

@@ -10,8 +10,7 @@ public class Librarian : MonoBehaviour {
 
 	private enum Selection {
 		None = 0,
-		Wall,
-		Shelf, 
+		Wall, 
 		Book,
 		Search,
 		Settings
@@ -28,6 +27,11 @@ public class Librarian : MonoBehaviour {
 	private Hexagon currentHexagon;
 	private Wall selectedWall;
 
+	public HexagonLocation CurrentLocation {
+		get { return currentHexagon.location; }
+		set { currentHexagon.location = value; }
+	}
+
 	private Vector3 swipeStartPosition;
 	private Vector3 swipeEndPosition;
 	public bool IsSwipingCamera {
@@ -40,7 +44,6 @@ public class Librarian : MonoBehaviour {
 	private const int maxFallNum = 3;
 
 	private string deathText;
-	public DeathText deathTextObject;
 
 	void Start () {
 
@@ -54,6 +57,7 @@ public class Librarian : MonoBehaviour {
 
 		//universe.generateRandomHexagonNumber();
 		//universe.setRandomHexagonNameInBase36();
+		CurrentLocation = HexagonLocation.RandomLocation();
 
 		ChooseDeathText();
 	}
@@ -91,8 +95,14 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void RequestPages(PageLocation[] pages, OnPageRequestCompleted onComplete) {
-		
+
+		Universe.Shared.RequestPages(pages, onComplete);
 	} 
+
+	public void RequestTitle(PageLocation page, OnTitleRequestCompleted onCompletion) {
+
+		Universe.Shared.RequestTitle(page, onCompletion);
+	}
 
 	private Touch[] FilterSwipeValidTouches(Touch[] touches) {
 
@@ -125,10 +135,10 @@ public class Librarian : MonoBehaviour {
 	public void IncreaseFallCount(){
 		fallCount++;
 		if(fallCount > maxFallNum){
-			if(!Application.isMobilePlatform && !Application.platform != RuntimePlatform.WebGLPlayer){
+			if(!Application.isMobilePlatform && Application.platform != RuntimePlatform.WebGLPlayer){
 				Application.Quit();		// Quit the Application on Standalone builds
 			} else {
-				deathTextObject.activate();
+				viewController.ActivateDeathText();
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);				// Respawn on mobile
 			}
 		}
@@ -147,7 +157,7 @@ public class Librarian : MonoBehaviour {
 			deathText += sentences[i] + ". ";
 		}
 
-		deathTextObject.setText(deathText);
+		viewController.SetDeathText(deathText);
 	}
 
 	private string[] ReadTextFile() {
@@ -161,22 +171,26 @@ public class Librarian : MonoBehaviour {
 
 	public void movedToNextRoom(){
 		//increase hex number by 1
-		universe.addToHexNumber36(1);
+		//universe.addToHexNumber36(1);
+		currentHexagon.location = currentHexagon.NextHexLocation();
 	}
 
 	public void movedToPreviousRoom(){
 		//decrease hex number by 0
-		universe.addToHexNumber36(-1);
+		//universe.addToHexNumber36(-1);
+		currentHexagon.location = currentHexagon.PrevHexLocation();
 	}
 
 	public void movedToRoomAbove(){
 		//increase each part of hex number by 66666
-		universe.addToAllHexNumbers36(66666);
+		//universe.addToAllHexNumbers36(66666);
+		currentHexagon.location = currentHexagon.AboveLocation();
 	}
 
 	public void movedToRoomBelow(){
 		//subtract each part of hex number by 66666
-		universe.addToAllHexNumbers36(-66666);
+		//universe.addToAllHexNumbers36(-66666);
+		currentHexagon.location = currentHexagon.BelowLocation();
 	}
 
 	/// <summary>
@@ -202,7 +216,11 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void BookSelected(Book book) {
-		// TODO: Open and Show first page of the book
+		viewController.ShowBook(book);
+	}
+
+	public void PageSelected(PageLocation pageLocation) {
+		viewController.ShowPage(pageLocation, "", "");
 	}
 
 	private bool CannotSelect() {
@@ -214,11 +232,11 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void HoveringOver(Wall wall) {
-		viewController.RefreshChoiceIndicator(wall.Number, -1, -1);
+		viewController.RefreshChoiceIndicator(wall.Number, 0, 0);
 	}
 
 	public void HoveringOver(Shelf shelf) {
-		viewController.RefreshChoiceIndicator(selectedWall.Number, shelf.Number, -1);
+		viewController.RefreshChoiceIndicator(selectedWall.Number, shelf.Number, 0);
 	}
 
 	public void HoveringOver(Book book) {
@@ -230,11 +248,11 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void HoveringOverEnded(Shelf shelf) {
-		viewController.RefreshChoiceIndicator(selectedWall.Number, -1, -1);
+		viewController.RefreshChoiceIndicator(selectedWall.Number, 0, 0);
 	}
 
 	public void HoveringOverEnded(Book book) {
-		viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, -1);
+		viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, 0);
 	}
 
 	public bool IsReadingBook() {
@@ -245,22 +263,10 @@ public class Librarian : MonoBehaviour {
 		return selection == Selection.Search || selection == Selection.Settings;
 	}
 
-	/*public void resetIndicator(){
-		pageInterface.setPositionIndication(choiceIndicator.toString());
-		pageInterface.setTitle(selectedTitle);
-		choiceIndicator.reset();
-	}
+	public void MenusClosed() {
 
-	public void setTitle(string t){
-		selectedTitle = t;
-		pageInterface.setTitle(t);
+		LockCameraUnlockMouse();
 	}
-
-	public void updateTitle(){
-		if(titles != null && selectedBook >= 0 && selectedBook < 32){
-			pageInterface.setTitle(titles[selectedBook]);
-		}
-	}*/	
 
 	private void SwipeHandling(){
 
@@ -296,7 +302,7 @@ public class Librarian : MonoBehaviour {
 				var xAngle = newPos.x * 180.0f / Screen.width;
 				var yAngle = newPos.y * 90.0f / Screen.height;
 
-				var invert = PlayerPrefs.GetInt(SettingsScript.INVERTCAM_KEY, 0) == 1 ? -1 : 1;
+				var invert = Settings.ShouldInvertCamera ? -1 : 1;
 				var rotateVector = new Vector2(invert * xAngle, invert * yAngle);
 
 				var fromRotation = fpc.transform.rotation;
@@ -308,5 +314,9 @@ public class Librarian : MonoBehaviour {
 				swipeStartPosition = swipeEndPosition;
 			}
 		}
+	}
+
+	public static Librarian Find() {
+		return GameObject.FindGameObjectWithTag("Librarian").GetComponent<Librarian>();
 	}
 }

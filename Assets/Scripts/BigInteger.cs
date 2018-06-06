@@ -1,262 +1,272 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
+/** Based on BigInteger.cs by ScottGarland from http://biginteger.codeplex.com/ */
 //namespace ScottGarland
 //{
 	using DType = System.UInt32; // This could be UInt32, UInt16 or Byte; not UInt64.
 
-    #region DigitsArray
-    internal class DigitsArray
-    {
-        internal DigitsArray(int size)
-        {
-            Allocate(size, 0);
-        }
+	#region DigitsArray
+	internal class DigitsArray
+	{
+		internal DigitsArray(int size)
+		{
+			Allocate(size, 0);
+		}
 
-        internal DigitsArray(int size, int used)
-        {
-            Allocate(size, used);
-        }
+		internal DigitsArray(int size, int used)
+		{
+			Allocate(size, used);
+		}
 
-        internal DigitsArray(DType[] copyFrom)
-        {
-            Allocate(copyFrom.Length);
-            CopyFrom(copyFrom, 0, 0, copyFrom.Length);
-            ResetDataUsed();
-        }
+		internal DigitsArray(DType[] copyFrom)
+		{
+			Allocate(copyFrom.Length);
+			CopyFrom(copyFrom, 0, 0, copyFrom.Length);
+			ResetDataUsed();
+		}
 
-        internal DigitsArray(DigitsArray copyFrom)
-        {
-            Allocate(copyFrom.Count, copyFrom.DataUsed);
-            Array.Copy(copyFrom.m_data, 0, m_data, 0, copyFrom.Count);
-        }
+		internal DigitsArray(DigitsArray copyFrom)
+		{
+			Allocate(copyFrom.Count, copyFrom.DataUsed);
+			Array.Copy(copyFrom.m_data, 0, m_data, 0, copyFrom.Count);
+		}
 
-        private DType[] m_data;
+		private DType[] m_data;
 
-        internal static readonly DType AllBits;		// = ~((DType)0);
-        internal static readonly DType HiBitSet;	// = 0x80000000;
-        internal static int DataSizeOf
-        {
-            get { return sizeof(DType); }
-        }
+		internal static readonly DType AllBits;		// = ~((DType)0);
+		internal static readonly DType HiBitSet;	// = 0x80000000;
+		internal static int DataSizeOf
+		{
+			get { return sizeof(DType); }
+		}
 
-        internal static int DataSizeBits
-        {
-            get { return sizeof(DType) * 8; }
-        }
+		internal static int DataSizeBits
+		{
+			get { return sizeof(DType) * 8; }
+		}
 
-        static DigitsArray()
-        {
-            unchecked
-            {
-                AllBits = (DType)~((DType)0);
-                HiBitSet = (DType)(((DType)1) << (DataSizeBits) - 1);
-            }
-        }
+		static DigitsArray()
+		{
+			unchecked
+			{
+				AllBits = (DType)~((DType)0);
+				HiBitSet = (DType)(((DType)1) << (DataSizeBits) - 1);
+			}
+		}
 
-        public void Allocate(int size)
-        {
-            Allocate(size, 0);
-        }
+		public void Allocate(int size)
+		{
+			Allocate(size, 0);
+		}
 
-        public void Allocate(int size, int used)
-        {
-            m_data = new DType[size + 1];
-            m_dataUsed = used;
-        }
+		public void Allocate(int size, int used)
+		{
+			m_data = new DType[size + 1];
+			m_dataUsed = used;
+		}
 
-        internal void CopyFrom(DType[] source, int sourceOffset, int offset, int length)
-        {
-            Array.Copy(source, sourceOffset, m_data, 0, length);
-        }
+		internal void CopyFrom(DType[] source, int sourceOffset, int offset, int length)
+		{
+			Array.Copy(source, sourceOffset, m_data, 0, length);
+		}
 
-        internal void CopyTo(DType[] array, int offset, int length)
-        {
-            Array.Copy(m_data, 0, array, offset, length);
-        }
+		internal void CopyTo(DType[] array, int offset, int length)
+		{
+			Array.Copy(m_data, 0, array, offset, length);
+		}
 
-        internal DType this[int index]
-        {
-            get
-            {
-                if (index < m_dataUsed) return m_data[index];
-                return (IsNegative ? (DType)AllBits : (DType)0);
-            }
-            set { m_data[index] = value; }
-        }
+		internal DType this[int index]
+		{
+			get
+			{
+				if (index < m_dataUsed) return m_data[index];
+				return (IsNegative ? (DType)AllBits : (DType)0);
+			}
+			set { m_data[index] = value; }
+		}
 
-        private int m_dataUsed;
-        internal int DataUsed
-        {
-            get { return m_dataUsed; }
-            set { m_dataUsed = value; }
-        }
+		private int m_dataUsed;
+		internal int DataUsed
+		{
+			get { return m_dataUsed; }
+			set { m_dataUsed = value; }
+		}
 
-        internal int Count
-        {
-            get { return m_data.Length; }
-        }
+		internal int Count
+		{
+			get { return m_data.Length; }
+		}
 
-        internal bool IsZero
-        {
-            get { return m_dataUsed == 0 || (m_dataUsed == 1 && m_data[0] == 0); }
-        }
+		internal bool IsZero
+		{
+			get { return m_dataUsed == 0 || (m_dataUsed == 1 && m_data[0] == 0); }
+		}
 
-        internal bool IsNegative
-        {
-            get { return (m_data[m_data.Length - 1] & HiBitSet) == HiBitSet; }
-        }
+		internal bool IsNegative
+		{
+			get { return (m_data[m_data.Length - 1] & HiBitSet) == HiBitSet; }
+		}
 
-        internal void ResetDataUsed()
-        {
-            m_dataUsed = m_data.Length;
-            if (IsNegative)
-            {
-                while (m_dataUsed > 1 && m_data[m_dataUsed - 1] == AllBits)
-                {
-                    --m_dataUsed;
-                }
-                m_dataUsed++;
-            }
-            else
-            {
-                while (m_dataUsed > 1 && m_data[m_dataUsed - 1] == 0)
-                {
-                    --m_dataUsed;
-                }
-                if (m_dataUsed == 0)
-                {
-                    m_dataUsed = 1;
-                }
-            }
-        }
+		internal string GetDataAsString()
+		{
+			string result = "";
+			foreach (DType data in m_data) {
+				result += data + " ";
+			}
+			return result;
+		}
 
-        internal int ShiftRight(int shiftCount)
-        {
-            return ShiftRight(m_data, shiftCount);
-        }
+		internal void ResetDataUsed()
+		{
+			m_dataUsed = m_data.Length;
+			if (IsNegative)
+			{
+				while (m_dataUsed > 1 && m_data[m_dataUsed - 1] == AllBits)
+				{
+					--m_dataUsed;
+				}
+				m_dataUsed++;
+			}
+			else
+			{
+				while (m_dataUsed > 1 && m_data[m_dataUsed - 1] == 0)
+				{
+					--m_dataUsed;
+				}
+				if (m_dataUsed == 0)
+				{
+					m_dataUsed = 1;
+				}
+			}
+		}
 
-        internal static int ShiftRight(DType[] buffer, int shiftCount)
-        {
-            int shiftAmount = DigitsArray.DataSizeBits;
-            int invShift = 0;
-            int bufLen = buffer.Length;
+		internal int ShiftRight(int shiftCount)
+		{
+			return ShiftRight(m_data, shiftCount);
+		}
 
-            while (bufLen > 1 && buffer[bufLen - 1] == 0)
-            {
-                bufLen--;
-            }
+		internal static int ShiftRight(DType[] buffer, int shiftCount)
+		{
+			int shiftAmount = DigitsArray.DataSizeBits;
+			int invShift = 0;
+			int bufLen = buffer.Length;
 
-            for (int count = shiftCount; count > 0; count -= shiftAmount)
-            {
-                if (count < shiftAmount)
-                {
-                    shiftAmount = count;
-                    invShift = DigitsArray.DataSizeBits - shiftAmount;
-                }
+			while (bufLen > 1 && buffer[bufLen - 1] == 0)
+			{
+				bufLen--;
+			}
 
-                ulong carry = 0;
-                for (int i = bufLen - 1; i >= 0; i--)
-                {
-                    ulong val = ((ulong)buffer[i]) >> shiftAmount;
-                    val |= carry;
+			for (int count = shiftCount; count > 0; count -= shiftAmount)
+			{
+				if (count < shiftAmount)
+				{
+					shiftAmount = count;
+					invShift = DigitsArray.DataSizeBits - shiftAmount;
+				}
 
-                    carry = ((ulong)buffer[i]) << invShift;
-                    buffer[i] = (DType)(val);
-                }
-            }
+				ulong carry = 0;
+				for (int i = bufLen - 1; i >= 0; i--)
+				{
+					ulong val = ((ulong)buffer[i]) >> shiftAmount;
+					val |= carry;
 
-            while (bufLen > 1 && buffer[bufLen - 1] == 0)
-            {
-                bufLen--;
-            }
+					carry = ((ulong)buffer[i]) << invShift;
+					buffer[i] = (DType)(val);
+				}
+			}
 
-            return bufLen;
-        }
+			while (bufLen > 1 && buffer[bufLen - 1] == 0)
+			{
+				bufLen--;
+			}
 
-        internal int ShiftLeft(int shiftCount)
-        {
-            return ShiftLeft(m_data, shiftCount);
-        }
+			return bufLen;
+		}
 
-        internal static int ShiftLeft(DType[] buffer, int shiftCount)
-        {
-            int shiftAmount = DigitsArray.DataSizeBits;
-            int bufLen = buffer.Length;
+		internal int ShiftLeft(int shiftCount)
+		{
+			return ShiftLeft(m_data, shiftCount);
+		}
 
-            while (bufLen > 1 && buffer[bufLen - 1] == 0)
-            {
-                bufLen--;
-            }
+		internal static int ShiftLeft(DType[] buffer, int shiftCount)
+		{
+			int shiftAmount = DigitsArray.DataSizeBits;
+			int bufLen = buffer.Length;
 
-            for (int count = shiftCount; count > 0; count -= shiftAmount)
-            {
-                if (count < shiftAmount)
-                {
-                    shiftAmount = count;
-                }
+			while (bufLen > 1 && buffer[bufLen - 1] == 0)
+			{
+				bufLen--;
+			}
 
-                ulong carry = 0;
-                for (int i = 0; i < bufLen; i++)
-                {
-                    ulong val = ((ulong)buffer[i]) << shiftAmount;
-                    val |= carry;
+			for (int count = shiftCount; count > 0; count -= shiftAmount)
+			{
+				if (count < shiftAmount)
+				{
+					shiftAmount = count;
+				}
 
-                    buffer[i] = (DType)(val & DigitsArray.AllBits);
-                    carry = (val >> DigitsArray.DataSizeBits);
-                }
+				ulong carry = 0;
+				for (int i = 0; i < bufLen; i++)
+				{
+					ulong val = ((ulong)buffer[i]) << shiftAmount;
+					val |= carry;
 
-                if (carry != 0)
-                {
-                    if (bufLen + 1 <= buffer.Length)
-                    {
-                        buffer[bufLen] = (DType)carry;
-                        bufLen++;
-                        carry = 0;
-                    }
-                    else
-                    {
-                        throw new OverflowException();
-                    }
-                }
-            }
-            return bufLen;
-        }
+					buffer[i] = (DType)(val & DigitsArray.AllBits);
+					carry = (val >> DigitsArray.DataSizeBits);
+				}
 
-        internal int ShiftLeftWithoutOverflow(int shiftCount)
-        {
-            List<DType> temporary = new List<DType>(m_data);
-            int shiftAmount = DigitsArray.DataSizeBits;
+				if (carry != 0)
+				{
+					if (bufLen + 1 <= buffer.Length)
+					{
+						buffer[bufLen] = (DType)carry;
+						bufLen++;
+						carry = 0;
+					}
+					else
+					{
+						throw new OverflowException();
+					}
+				}
+			}
+			return bufLen;
+		}
 
-            for (int count = shiftCount; count > 0; count -= shiftAmount)
-            {
-                if (count < shiftAmount)
-                {
-                    shiftAmount = count;
-                }
+		internal int ShiftLeftWithoutOverflow(int shiftCount)
+		{
+			List<DType> temporary = new List<DType>(m_data);
+			int shiftAmount = DigitsArray.DataSizeBits;
 
-                ulong carry = 0;
-                for (int i = 0; i < temporary.Count; i++)
-                {
-                    ulong val = ((ulong)temporary[i]) << shiftAmount;
-                    val |= carry;
+			for (int count = shiftCount; count > 0; count -= shiftAmount)
+			{
+				if (count < shiftAmount)
+				{
+					shiftAmount = count;
+				}
 
-                    temporary[i] = (DType)(val & DigitsArray.AllBits);
-                    carry = (val >> DigitsArray.DataSizeBits);
-                }
+				ulong carry = 0;
+				for (int i = 0; i < temporary.Count; i++)
+				{
+					ulong val = ((ulong)temporary[i]) << shiftAmount;
+					val |= carry;
 
-                if (carry != 0)
-                {
-                    temporary.Add(0);
-                    temporary[temporary.Count - 1] = (DType)carry;
-                }
-            }
-            m_data = new DType[temporary.Count];
-            temporary.CopyTo(m_data);
-            return m_data.Length;
-        }
-    }
-    #endregion
+					temporary[i] = (DType)(val & DigitsArray.AllBits);
+					carry = (val >> DigitsArray.DataSizeBits);
+				}
+
+				if (carry != 0)
+				{
+					temporary.Add(0);
+					temporary[temporary.Count - 1] = (DType)carry;
+				}
+			}
+			m_data = new DType[temporary.Count];
+			temporary.CopyTo(m_data);
+			return m_data.Length;
+		}
+	}
+	#endregion
 
 	/// <summary>
 	/// Represents a integer of abitrary length.
@@ -398,17 +408,17 @@ using System.Collections.Generic;
 				m_digits[j] = (DType)((array[i - 3] << 24) + (array[i - 2] << 16) + (array[i - 1] <<  8) + array[i]);
 				m_digits.DataUsed++;
 			}
-			
-            DType accumulator = 0;
-            for (int i = leftOver; i > 0; i--)
-            {
-                DType digit = array[offset + leftOver - i];
-                digit = (digit << ((i - 1) * 8));
-                accumulator |= digit;
-            }
-            m_digits[m_digits.DataUsed] = accumulator;
 
-            m_digits.ResetDataUsed();
+			DType accumulator = 0;
+			for (int i = leftOver; i > 0; i--)
+			{
+				DType digit = array[offset + leftOver - i];
+				digit = (digit << ((i - 1) * 8));
+				accumulator |= digit;
+			}
+			m_digits[m_digits.DataUsed] = accumulator;
+
+			m_digits.ResetDataUsed();
 		}
 
 		/// <summary>
@@ -446,7 +456,7 @@ using System.Collections.Generic;
 			BigInteger multiplier = new BigInteger(1);
 			BigInteger result = new BigInteger();
 			digits = digits.ToUpper(System.Globalization.CultureInfo.CurrentCulture).Trim();
-			
+
 			int nDigits = (digits[0] == '-' ? 1 : 0);
 
 			for (int idx = digits.Length - 1; idx >= nDigits ; idx--)
@@ -585,7 +595,7 @@ using System.Collections.Generic;
 		/// <returns>The BigInteger result of adding <paramref name="leftSide" /> and <paramref name="rightSide" />.</returns>
 		public static BigInteger Add(BigInteger leftSide, BigInteger rightSide)
 		{
-			return leftSide - rightSide;
+			return leftSide + rightSide;	
 		}
 
 		/// <summary>
@@ -618,7 +628,7 @@ using System.Collections.Generic;
 		{
 			int size = System.Math.Max(leftSide.m_digits.DataUsed, rightSide.m_digits.DataUsed) + 1;
 			DigitsArray da = new DigitsArray(size);
-			
+
 			long carry = 0;
 			for (int i = 0; i < da.Count; i++)
 			{
@@ -1038,6 +1048,48 @@ using System.Collections.Generic;
 		{
 			return leftSide % rightSide;
 		}
+
+		#endregion
+
+		#region Exponentiation
+
+		public BigInteger Pow(BigInteger power) {
+			return Pow (this, power);
+		}
+
+		/// <summary>
+		/// Returns a base number raised to a specified power. Currently only positive (>= 0) 
+		/// exponents allowed.
+		/// </summary>
+		/// <param name="b">A BigInteger to be raised to a power.</param>
+		/// <param name="power">A BigInteger that specifies the power.</param>
+		public static BigInteger Pow(BigInteger b, BigInteger power) {
+
+			if (b == null) {
+				throw new ArgumentNullException ("b");
+			}
+
+			if (power == null) {
+				throw new ArgumentNullException("power");
+			}
+
+			if (power < 0) {
+				throw new ArgumentOutOfRangeException ("power", "Currently negative exponents are not supported");
+			}
+
+
+			BigInteger result = 1;
+			while (power != 0) {
+
+				if ((power & 1) != 0)
+					result *= b;
+				power >>= 1;
+				b *= b;
+			}
+
+			return result;
+		}
+
 		#endregion
 
 		#region Bitwise Operator Overloads
@@ -1089,7 +1141,7 @@ using System.Collections.Generic;
 		{
 			return leftSide ^ rightSide;
 		}
-		
+
 		public static BigInteger operator ~ (BigInteger leftSide)
 		{
 			DigitsArray da = new DigitsArray(leftSide.m_digits.Count);
@@ -1115,7 +1167,7 @@ using System.Collections.Generic;
 			{
 				throw new ArgumentNullException("leftSide");
 			}
-			
+
 			DigitsArray da = new DigitsArray(leftSide.m_digits);
 			da.DataUsed = da.ShiftLeftWithoutOverflow(shiftCount);
 
@@ -1263,7 +1315,7 @@ using System.Collections.Generic;
 			{
 				return true;
 			}
-			
+
 			if (object.ReferenceEquals(leftSide, null ) || object.ReferenceEquals(rightSide, null ))
 			{
 				return false;
@@ -1273,7 +1325,7 @@ using System.Collections.Generic;
 			{
 				return false;
 			}
-        
+
 			return leftSide.Equals(rightSide);
 		}
 
@@ -1335,7 +1387,7 @@ using System.Collections.Generic;
 			{
 				return leftSide.m_digits.DataUsed < rightSide.m_digits.DataUsed;
 			}
-			
+
 			for (int idx = leftSide.m_digits.DataUsed - 1; idx >= 0; idx--)
 			{
 				if (leftSide.m_digits[idx] != rightSide.m_digits[idx])
@@ -1400,6 +1452,14 @@ using System.Collections.Generic;
 		public override int GetHashCode()
 		{
 			return this.m_digits.GetHashCode();
+		}
+
+		/// <summary>
+		///  Returns the array entries as a string. Used for debugging.
+		/// </summary>
+		/// <returns>The data as string.</returns>
+		public string GetDataAsString() {
+			return this.m_digits.GetDataAsString ();
 		}
 
 		/// <summary>
@@ -1469,8 +1529,8 @@ using System.Collections.Generic;
 		{
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			sb.AppendFormat("{0:X}", m_digits[m_digits.DataUsed - 1]);
-			
-            string f = "{0:X" + (2 * DigitsArray.DataSizeOf) + "}";
+
+			string f = "{0:X" + (2 * DigitsArray.DataSizeOf) + "}";
 			for (int i = m_digits.DataUsed - 2; i >= 0; i--)
 			{
 				sb.AppendFormat(f, m_digits[i]);

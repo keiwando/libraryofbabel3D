@@ -3,68 +3,71 @@ using System.Collections;
 
 public class SoundController : MonoBehaviour {
 
-	[SerializeField] private AudioSource audio;
+	[SerializeField] private AudioSource source;
 
 	[SerializeField] private AudioClip pageTurn;
 	[SerializeField] private AudioClip closeBook;
 	[SerializeField] private AudioClip[] music;
 
-	private int currentMusic;
-	private float time;
-	private float lastTimeStop;
+	private int currentMusicIndex;
 
-	private int musicNumber;
+	private Coroutine musicLoop;
 
 	void Start () {
-		currentMusic = 3;
-		lastTimeStop = Time.realtimeSinceStartup;
-		musicNumber = music.Length;
+		currentMusicIndex = 3;
 
-		if(PlayerPrefs.GetInt("MUSIC") == 1)
-			audio.PlayOneShot(music[currentMusic]);
+		PlayMusic();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		playMusic();
+ 	
+	public void PlayMusic() {
+
+		if (!Settings.MusicEnabled)
+			return;
+
+		StopMusic();
+
+		musicLoop = StartCoroutine(LoopThroughMusic());
 	}
 
-	private void playMusic(){
-		if(PlayerPrefs.GetInt("MUSIC") == 1){
-			time = Time.realtimeSinceStartup - lastTimeStop;
-			if(time >= music[currentMusic].length + 4){
-				currentMusic = (currentMusic + 1) % musicNumber;
-				audio.PlayOneShot(music[currentMusic]);
-				lastTimeStop = Time.realtimeSinceStartup;
-			}
+	private IEnumerator LoopThroughMusic() {
+
+		while (true) {
+
+			var currentMusic = music[currentMusicIndex];
+			var length = currentMusic.length;
+			source.PlayOneShot(currentMusic);
+
+			yield return new WaitForSecondsRealtime(length);
+			currentMusicIndex = NextMusicIndex(currentMusicIndex);
 		}
 	}
 
-	public void startMusic(){
+	private int NextMusicIndex(int currentIndex) {
 		if(Application.platform == RuntimePlatform.IPhonePlayer)
-			currentMusic = 3;
+			return 3;
 		else
-			currentMusic = (currentMusic + 1) % musicNumber;
-		audio.PlayOneShot(music[currentMusic]);
-		lastTimeStop = Time.realtimeSinceStartup;
+			return (currentIndex + 1) % music.Length;
 	}
 	
-	public void pageFlip(){
-		if (SoundEnabled())
-			audio.PlayOneShot(pageTurn);
+	public void PageFlip() {
+		if (Settings.SoundEnabled)
+			source.PlayOneShot(pageTurn);
 	}
 
-	public void bookClose(){
-		if (SoundEnabled())
-			audio.PlayOneShot(closeBook);
+	public void BookClose() {
+		if (Settings.SoundEnabled)
+			source.PlayOneShot(closeBook);
 	}
 
-	public void stopMusic(){
-		if (SoundEnabled())
-			audio.Stop();
+	public void StopMusic() {
+		
+		source.Stop();
+		if (musicLoop != null) {
+			StopCoroutine(musicLoop);
+		}
 	}
 
-	private bool SoundEnabled() {
-		return PlayerPrefs.GetInt("SOUND", 1) == 1;
+	public static SoundController Find() {
+		return GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
 	}
 }

@@ -11,13 +11,16 @@ public class ViewController : MonoBehaviour {
 	private ChoiceIndicator choiceIndicator;
 
 	[SerializeField]
-	private SearchMenu searchMenu;
+	private SearchViewController searchViewController;
 
 	[SerializeField]
 	private PageViewController pageViewController;
 
 	[SerializeField]
-	private SettingsScript settingsViewController;
+	private SettingsViewController settingsViewController;
+
+	[SerializeField]
+	private DeathText deathText;
 
 	void Start () {
 		librarian = GameObject.FindGameObjectWithTag("Librarian").GetComponent<Librarian>();
@@ -38,19 +41,19 @@ public class ViewController : MonoBehaviour {
 	/// <summary>
 	/// Refreshes the choice indicator.
 	/// </summary>
-	/// <param name="wallIndex">Wall index (0 indexed)</param>
-	/// <param name="shelfIndex">Shelf index (0 indexed)</param>
-	/// <param name="bookIndex">Book index (0 indexed)</param>
-	public void RefreshChoiceIndicator(int wallIndex, int shelfIndex, int bookIndex) {
-		choiceIndicator.Refresh(wallIndex + 1, shelfIndex + 1, bookIndex + 1);
+	/// <param name="wall">Wall number</param>
+	/// <param name="shelf">Shelf number</param>
+	/// <param name="book">Book number</param>
+	public void RefreshChoiceIndicator(int wall, int shelf, int book) {
+		choiceIndicator.Refresh(wall, shelf, book);
 	}
 
 	public void ShowSearchMenu() {
-		searchMenu.Show();
+		searchViewController.Show();
 	}
 
 	public void HideSearchMenu() {
-		searchMenu.Hide();
+		searchViewController.Hide();
 	}
 
 	public void ShowSettings() {
@@ -61,8 +64,12 @@ public class ViewController : MonoBehaviour {
 		settingsViewController.Hide();
 	}
 
-	public void ShowPage() {
-		pageViewController.Show();
+	public void ShowBook(Book book) {
+		pageViewController.Show(book);
+	}
+
+	public void ShowPage(PageLocation pageLocation, string title, string textToHighlight = "") {
+		pageViewController.Show(pageLocation, title, textToHighlight);
 	}
 
 	public void HidePage() {
@@ -74,10 +81,36 @@ public class ViewController : MonoBehaviour {
 		librarian.RequestPages(pages, onCompletion);
 	}
 
+	public void RequestTitle(PageLocation page, OnTitleRequestCompleted onCompletion) {
+
+		librarian.RequestTitle(page, onCompletion);
+	}
+
+	public void SetDeathText(string text) {
+		deathText.SetText(text);
+	}
+
+	public void ActivateDeathText() {
+		deathText.Activate();
+	}
+
 	public void CloseAllMenus() {
 
-		searchMenu.Hide();
+		searchViewController.Hide();
 		settingsViewController.Hide();
 		pageViewController.Hide();
+		librarian.MenusClosed();
+	}
+
+	public HexagonLocation GetCurrentHexLocation() {
+		return librarian.CurrentLocation;
+	}
+
+	public void GoToLocation(HexagonLocation location) {
+		librarian.CurrentLocation = location;
+	}
+
+	public static ViewController Find() {
+		return GameObject.FindGameObjectWithTag("ViewController").GetComponent<ViewController>();
 	}
 }

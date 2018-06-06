@@ -7,6 +7,8 @@ TagManager:
   - UICamera
   - ViewController
   - Librarian
+  - SoundController
+  - LibraryMovementSimulator
   layers:
   - Default
   - TransparentFX
