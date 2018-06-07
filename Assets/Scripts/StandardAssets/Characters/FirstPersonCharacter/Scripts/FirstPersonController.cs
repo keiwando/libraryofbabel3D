@@ -140,6 +140,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayLandingSound()
         {
+			if (!Settings.SoundEnabled)
+				return;
+
             m_AudioSource.clip = m_LandSound;
             //m_AudioSource.Play();
 			m_AudioSource.PlayOneShot(m_LandSound);
@@ -193,6 +196,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayJumpSound()
         {
+			if (!Settings.SoundEnabled)
+				return;
+
             m_AudioSource.clip = m_JumpSound;
             m_AudioSource.Play();
         }
@@ -213,7 +219,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_NextStep = m_StepCycle + m_StepInterval;
 
-			if(PlayerPrefs.GetInt("SOUND") == 1){
+			if(Settings.SoundEnabled){
 				PlayFootStepAudio();
 			}
         }

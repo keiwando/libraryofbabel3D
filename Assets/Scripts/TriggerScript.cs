@@ -24,6 +24,7 @@ public class TriggerScript : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider collider){
+		
 		if(!stairTrigger){
 			movementSimulator.TriggerLeft(col, inwardVector);
 		}else{

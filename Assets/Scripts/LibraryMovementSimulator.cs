@@ -83,7 +83,7 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		Hexagon lastHex = currentHex;
 
 		if (dif.y > 0) {
-			librarian.movedToRoomAbove();
+			//librarian.movedToRoomAbove();
 
 			nextHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>();
 			lastHex = currentHex;
@@ -91,7 +91,7 @@ public class LibraryMovementSimulator : MonoBehaviour {
 			//fpsController.yRotationOffset -= 60.0f;
 			//librarian.transform.RotateAround(librarian.transform.
 		} else {
-			librarian.movedToRoomBelow();
+			//librarian.movedToRoomBelow();
 
 			nextHex = currentHex;
 			lastHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>();

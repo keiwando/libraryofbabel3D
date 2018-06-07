@@ -79,12 +79,14 @@ public class OnlineLibrary : MonoBehaviour, ILibrary {
 		form.AddField("wall", shelfLocation.Wall);
 		form.AddField("shelf", shelfLocation.Shelf);
 
+		print("FDS");
+
 		StartCoroutine(WaitForRequest(TITLE_REQ_BASE_URL, form, (error, www) => {
 
 			if (error) {
 				onCompletion(emptyTitles);
 			} else {
-				onCompletion(ParseTitles(www.text).Split(titleSplitArray));
+				onCompletion(www.text.Split(titleSplitArray));
 			}
 		}));
 	}
@@ -102,7 +104,7 @@ public class OnlineLibrary : MonoBehaviour, ILibrary {
 			if (error) {
 				onCompletion(emptyTitles);
 			} else {
-				onCompletion(ParseTitles(www.text).Split(titleSplitArray));
+				onCompletion(www.text.Split(titleSplitArray));
 			}
 		}));
 	}
@@ -113,8 +115,9 @@ public class OnlineLibrary : MonoBehaviour, ILibrary {
 		yield return www;
 
 		if (www.error == null) {
+			Debug.Log("WWW Ok!: " + www.text);
+			Debug.Log("Pased " + ParseTitles(www.text));
 			onCompletion(false, www);
-			//Debug.Log("WWW Ok!: " + www.text);
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 			onCompletion(true, www);

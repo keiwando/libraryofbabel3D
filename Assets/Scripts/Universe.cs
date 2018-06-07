@@ -53,6 +53,15 @@ public class Universe : MonoBehaviour {
 		library.RequestBookTitle(page, onCompletion);
 	}
 
+	public void RequestTitles(ShelfLocation shelf, OnTitleRequestCompleted onCompletion) {
+
+		library.RequestBookTitles(shelf, onCompletion);
+	}
+
+	public ILibrarySearch GetSearcher() {
+		return library.GetSearch();
+	}
+
 	/// <summary>
 	/// Creates a page containing the specified text at a random position and
 	/// is otherwise filled with random characters of the Universe's alphabet

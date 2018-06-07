@@ -24,11 +24,20 @@ public class GhoulScript : MonoBehaviour {
 	private Queue<string> knowledge;
 	private const string baseKnowledge = "It's all just gibberish!";
 
+	[SerializeField]
+	private Material defaultMaterial;
+	[SerializeField]
+	private Material highlightMaterial;
+
+	private SkinnedMeshRenderer meshRenderer;
 
 	void Start () {
 
 		translator = GetComponent<LibraryTranslator>();
 		librarian = Librarian.Find();
+
+		meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+		SetMaterial(defaultMaterial);
 
 		checkSpawn();
 		currentPage = "";
@@ -39,6 +48,9 @@ public class GhoulScript : MonoBehaviour {
 		InvokeRepeating("requestPageFromSite",3,20);
 	}
 
+	private void SetMaterial(Material material) {
+		meshRenderer.material = material;
+	}
 
 	private void checkSpawn(){
 		int rand = Random.Range(0,100);
@@ -77,11 +89,13 @@ public class GhoulScript : MonoBehaviour {
 	}
 
 	void OnMouseOver(){
-		pointLight.enabled = true;
+		//pointLight.enabled = true;
+		SetMaterial(highlightMaterial);
 	}
 
 	void OnMouseExit(){
-		pointLight.enabled = false;
+		//pointLight.enabled = false;
+		SetMaterial(defaultMaterial);
 	}
 
 	void OnMouseDown(){

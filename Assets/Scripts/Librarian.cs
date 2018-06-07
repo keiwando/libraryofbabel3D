@@ -55,8 +55,6 @@ public class Librarian : MonoBehaviour {
 
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
 
-		//universe.generateRandomHexagonNumber();
-		//universe.setRandomHexagonNameInBase36();
 		CurrentLocation = HexagonLocation.RandomLocation();
 
 		ChooseDeathText();
@@ -118,7 +116,7 @@ public class Librarian : MonoBehaviour {
 
 	public void ShowSearchInterface(){
 		
-		viewController.ShowSearchMenu();
+		viewController.ShowSearchMenu(Universe.Shared.GetSearcher());
 		
 		LockCameraUnlockMouse();
 		selection = Selection.Search;
@@ -185,12 +183,14 @@ public class Librarian : MonoBehaviour {
 		//increase each part of hex number by 66666
 		//universe.addToAllHexNumbers36(66666);
 		currentHexagon.location = currentHexagon.AboveLocation();
+		currentHexagon.direction += 1;
 	}
 
 	public void movedToRoomBelow(){
 		//subtract each part of hex number by 66666
 		//universe.addToAllHexNumbers36(-66666);
 		currentHexagon.location = currentHexagon.BelowLocation();
+		currentHexagon.direction -= 1;
 	}
 
 	/// <summary>
@@ -215,8 +215,16 @@ public class Librarian : MonoBehaviour {
 		selectedWall = wall;
 	}
 
+	public void ShelfSelected(Shelf shelf) {
+
+		Universe.Shared.RequestTitles(shelf.Location, delegate(string[] titles) {
+			shelf.SetTitles(titles);	
+		});
+	}
+
 	public void BookSelected(Book book) {
 		viewController.ShowBook(book);
+		LockCameraUnlockMouse();
 	}
 
 	public void PageSelected(PageLocation pageLocation) {
@@ -240,7 +248,7 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void HoveringOver(Book book) {
-		viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, book.Number);
+		viewController.RefreshChoiceIndicator(book.Shelf.Wall.Number, book.Shelf.Number, book.Number);
 	}
 
 	public void HoveringOverEnded(Wall wall) {
@@ -248,11 +256,22 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void HoveringOverEnded(Shelf shelf) {
-		viewController.RefreshChoiceIndicator(selectedWall.Number, 0, 0);
+		//viewController.RefreshChoiceIndicator(selectedWall != null ? selectedWall.Number : 0, 0, 0);
+		HoveringOverEndedIndicatorRefresh();
 	}
 
 	public void HoveringOverEnded(Book book) {
-		viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, 0);
+
+		//viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, 0);
+		HoveringOverEndedIndicatorRefresh();
+	}
+
+	private void HoveringOverEndedIndicatorRefresh() {
+
+		int wall = selectedWall != null ? selectedWall.Number : 0;
+		int shelf = (wall != 0 && selectedWall.SelectedShelf != null) ? selectedWall.SelectedShelf.Number : 0;
+
+		viewController.RefreshChoiceIndicator(wall, shelf, 0);
 	}
 
 	public bool IsReadingBook() {
@@ -265,7 +284,7 @@ public class Librarian : MonoBehaviour {
 
 	public void MenusClosed() {
 
-		LockCameraUnlockMouse();
+		LockMouseUnlockCamera();
 	}
 
 	private void SwipeHandling(){

@@ -15,37 +15,51 @@ public class Book: MonoBehaviour {
 		get { return title; }
 		set { 
 			title = value;
-			titleLabel.text = title;
+
+			if (title == "") {
+				
+				canvas.gameObject.SetActive(false);
+			} else {
+
+				canvas.gameObject.SetActive(true);
+				titleLabel.text = title;
+
+				if (titleHideRoutine != null) {
+					StopCoroutine(titleHideRoutine);
+				}
+				StartCoroutine(HideTitleAfterSeconds(hideCanvasTime));
+			}
 		} 
 	}
 	private string title;
+	private Coroutine titleHideRoutine;
+	private float hideCanvasTime = 40f;
 
 	private Text titleLabel;
 
-	//public Light bookLight;
 	[SerializeField]
 	private GameObject highlight;
+	[SerializeField]
+	private Canvas canvas;
+
 
 	void Start () {
 		
 		titleLabel = GetComponentInChildren<Text>();
-		titleLabel.text = "";
+		Title = "";
 
-		//bookLight.enabled = false;
 		IsSelected = false;
 	}
 
 	void OnMouseOver(){
 
 		librarian.HoveringOver(this);
-		//bookLight.enabled = true;
 		highlight.SetActive(true);
 	}
 
 	void OnMouseExit(){
 		
 		librarian.HoveringOverEnded(this);
-		//bookLight.enabled = false;
 		highlight.SetActive(false);
 	}
 
@@ -61,7 +75,12 @@ public class Book: MonoBehaviour {
 	public void Deselect() {
 
 		IsSelected = false;
-		//bookLight.enabled = false;
 		highlight.SetActive(false);
 	} 
+
+	private IEnumerator HideTitleAfterSeconds(float seconds) {
+
+		yield return new WaitForSecondsRealtime(seconds);
+		canvas.gameObject.SetActive(false);
+	}
 }

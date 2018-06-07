@@ -48,8 +48,8 @@ public class ViewController : MonoBehaviour {
 		choiceIndicator.Refresh(wall, shelf, book);
 	}
 
-	public void ShowSearchMenu() {
-		searchViewController.Show();
+	public void ShowSearchMenu(ILibrarySearch searcher) {
+		searchViewController.Show(searcher);
 	}
 
 	public void HideSearchMenu() {

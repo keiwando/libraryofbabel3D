@@ -117,6 +117,7 @@ public class Wall: MonoBehaviour {
 			SelectedShelf.Deselect();
 		} 
 		SelectedShelf = shelf;
+		librarian.ShelfSelected(shelf);
 	}
 
 	public void BookSelected(Book book) {

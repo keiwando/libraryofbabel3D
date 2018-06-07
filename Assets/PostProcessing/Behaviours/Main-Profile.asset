@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 2
+        preset: 4
       taaSettings:
         jitterSpread: 0.75
         sharpen: 0.3
@@ -80,7 +80,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       shutterAngle: 270
-      sampleCount: 10
+      sampleCount: 5
       frameBlending: 0
   eyeAdaptation:
     m_Enabled: 0

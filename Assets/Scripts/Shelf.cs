@@ -11,6 +11,16 @@ public class Shelf: MonoBehaviour {
 	public Wall Wall { get; set; }
 	public Book SelectedBook { get; set; }
 
+	public ShelfLocation Location {
+		get { 
+			return new ShelfLocation() {
+				Hex = Wall.Hex.location,
+				Wall = Wall.Number,
+				Shelf = Number
+			};
+		}
+	}
+
 	[SerializeField]
 	private GameObject highlight;
 
@@ -42,11 +52,7 @@ public class Shelf: MonoBehaviour {
 
 		books = new Book[Universe.BOOKS_PER_SHELF];
 
-		books[0] = firstBook;
-		firstBook.Number = 1;
-		firstBook.librarian = librarian;
-
-		for (int i = 1; i < Universe.BOOKS_PER_SHELF; i++) {
+		for (int i = 0; i < Universe.BOOKS_PER_SHELF; i++) {
 
 			var offset = Random.Range(-bookDistanceVariance, bookDistanceVariance);
 			var distance = i * bookDistance + offset;
@@ -62,6 +68,8 @@ public class Shelf: MonoBehaviour {
 
 			books[i] = book;
 		}
+
+		firstBook.gameObject.SetActive(false);
 	}
 
 	/*private void RequestBookTitles(){
@@ -165,4 +173,6 @@ public class Shelf: MonoBehaviour {
 			books[i].Title = titles[i];
 		}
 	}
+
+
 }

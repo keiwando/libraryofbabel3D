@@ -1,0 +1,1 @@
+Unable to locate texture file "D:\WerksfeuerwehrSim2012\textures\buch_0001.bmp".

@@ -23,6 +23,9 @@ public class PageViewController: MonoBehaviour {
 	[SerializeField]
 	private Button previousPageButton;
 
+	[SerializeField]
+	private GameObject pageView;
+
 	// In the case of two pages the first one of the two
 	private PageLocation currentPageLocation;
 	private string bookTitle = "";
@@ -37,7 +40,7 @@ public class PageViewController: MonoBehaviour {
 	private SoundController soundController;
 
 	void Start() {
-		viewController = GameObject.FindGameObjectWithTag("ViewController").GetComponent<ViewController>();
+		viewController = ViewController.Find();
 		soundController = SoundController.Find();
 
 		nextPageButton.onClick.AddListener(delegate {
@@ -60,6 +63,7 @@ public class PageViewController: MonoBehaviour {
 
 	public void Show(PageLocation pageLocation, string title, string textToHighlight = "") {
 
+		viewController = ViewController.Find();
 		this.gameObject.SetActive(true);
 		currentPageLocation = pageLocation;
 
@@ -79,7 +83,8 @@ public class PageViewController: MonoBehaviour {
 	}
 
 	public void Show(Book book) {
-		
+
+		viewController = ViewController.Find();
 		this.gameObject.SetActive(true);
 
 		currentPageLocation = new PageLocation() {
@@ -95,16 +100,22 @@ public class PageViewController: MonoBehaviour {
 
 	public void Hide() {
 		this.gameObject.SetActive(false);
+		pageView.gameObject.SetActive(false);
 	}
 
 	private void ShowCurrentPages(string textToHighlight = "") {
+
+		SetTitle("");
+		SetPositionIndication("");
+		//pageTextLeft.text = "";
+		//pageTextRight.text = "";
 
 		var pageLocations = new List<PageLocation>() { currentPageLocation };
 
 		int pageNum = currentPageLocation.Page;
 
 		if (pageNum > 1 && pageNum < 410) {
-			if (currentPageLocation.Page % 2 == 0) {
+			if (pageNum % 2 == 0) {
 				// Current page shows on the left
 				pageLocations.Add(currentPageLocation.NextPage());
 			} else {
@@ -123,21 +134,27 @@ public class PageViewController: MonoBehaviour {
 				}
 			}
 
-			if (textToHighlight != "") {
-				HighlightPatternOnPages(textToHighlight);
-			}
-
-			if (pageNum == 1) {
+			if (pages[0].Location.Page == 1) {
 				// Show the title and book location
 				SetTitle(bookTitle);
 				SetPositionIndication(currentPageLocation);
+				pageTextLeft.text = "";
+			} else if (pages[0].Location.Page == Universe.PAGES_PER_BOOK) {
+				pageTextRight.text = "";
 			} else {
 				SetTitle("");
 				SetPositionIndication("");
 			}
 
+			if (textToHighlight != "") {
+				print("Trying to highlight " + textToHighlight);
+				HighlightPatternOnPages(textToHighlight);
+			}
+
 			pageNumberInput.text = pageNum.ToString();
 			soundController.PageFlip();
+
+			pageView.gameObject.SetActive(true);
 		});
 	}
 

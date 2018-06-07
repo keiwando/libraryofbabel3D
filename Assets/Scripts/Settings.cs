@@ -20,7 +20,7 @@ public static class Settings {
 	}
 
 	public static bool SoundEnabled {
-		get { return false; GetBool(SOUND_KEY); }
+		get { return GetBool(SOUND_KEY); }
 		set { SetBool(SOUND_KEY, value); }
 	}
 
