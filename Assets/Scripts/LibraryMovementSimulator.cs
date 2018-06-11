@@ -4,6 +4,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class LibraryMovementSimulator : MonoBehaviour {
 
+	private const float yOffset = 7f;
+	private const float xBaseOffset = 30.8f;
+
 	[SerializeField]
 	private Hexagon mainHex;
 	[SerializeField]
@@ -12,13 +15,14 @@ public class LibraryMovementSimulator : MonoBehaviour {
 	private Hexagon hexBefore;
 
 	[SerializeField]
-	private Fire fire;
+	private GameObject[] movables;
 
 	private Librarian librarian;
 	private FirstPersonController fpController;
 
 	private Vector3 posBefore;
 	private Vector3 posAfter;
+
 
 	void Start() {
 
@@ -38,23 +42,24 @@ public class LibraryMovementSimulator : MonoBehaviour {
 			return; // The player hasn't moved through the trigger
 
 		// deactivate ghoul
-		var currentHex = mainHex;// currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>();
+		var currentHex = mainHex;
 
 		currentHex.DeactivateGhoul();
 
 		var directionAngle = Vector3.Angle(inwardVector, dif);
 
-		var destHex = directionAngle < 90 ? currentHex : hexBefore; // currentHex.nextHex;
-		//Hexagon destHex = destHexGO.GetComponent<Hexagon>();
+		var destHex = directionAngle < 90 ? currentHex : hexBefore;
 
 		var outCollider = destHex.transform.Find("Hallway Trigger").GetComponent<Collider>();
 
 		if (directionAngle < 90) {
 			// going into hex
-			librarian.movedToNextRoom();
+			librarian.MovedToNextRoom();
+			MovedToNextRoom();
 		} else {
 			// going out of hex
-			librarian.movedToPreviousRoom();
+			librarian.MovedToPreviousRoom();
+			MovedToPreviousRoom();
 		}
 
 		var currentColPos = collider.transform.position;
@@ -75,7 +80,7 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		if (dif.magnitude <= 3)
 			return; // The player hasn't moved through the trigger
 
-		var currentHex = mainHex; //currentHexRow[currentHexnumberInRow].GetComponent<Hexagon>();
+		var currentHex = mainHex;
 
 		currentHex.DeactivateGhoul();
 
@@ -83,20 +88,18 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		Hexagon lastHex = currentHex;
 
 		if (dif.y > 0) {
-			//librarian.movedToRoomAbove();
+			librarian.MovedToRoomAbove();
+			MovedToRoomAbove();
 
-			nextHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>();
+			nextHex = hexBelow;
 			lastHex = currentHex;
-			//fpsController.transform.Rotate(Vector3.up, -60.0f);
-			//fpsController.yRotationOffset -= 60.0f;
-			//librarian.transform.RotateAround(librarian.transform.
+
 		} else {
-			//librarian.movedToRoomBelow();
+			librarian.MovedToRoomBelow();
+			MovedToRoomBelow();
 
 			nextHex = currentHex;
-			lastHex = hexBelow; // currentHexColumn[numHexBelow - 1].GetComponent<Hexagon>();
-			//fpsController.yRotationOffset += 60.0f;
-			//fpsController.transform.Rotate(Vector3.up, 60.0f);
+			lastHex = hexBelow;
 		}
 
 		var outCollider = nextHex.transform.Find("Staircase Trigger").GetComponent<Collider>();
@@ -116,6 +119,62 @@ public class LibraryMovementSimulator : MonoBehaviour {
 
 		currentHex.RespawnGhoul();
 		currentHex.ActivateGhoul();
+	}
+
+	private void MovedToNextRoom() {
+	
+		//ShiftOnSameFloor(-mainHex.direction);
+		ShiftOnSameFloor(1);
+	}
+
+	private void MovedToPreviousRoom() {
+		//ShiftOnSameFloor(mainHex.direction);
+		ShiftOnSameFloor(-1);
+	}
+
+	private void MovedToRoomAbove() {
+		ShiftToDifferentFloor(1);
+	}
+
+	private void MovedToRoomBelow() {
+		ShiftToDifferentFloor(-1);
+	}
+
+	private void ShiftOnSameFloor(int direction) {
+
+		var offset = direction * (mainHex.transform.position - hexBefore.transform.position);
+	
+		var angle = Mathf.PI * direction / 3f; // = Mathf.PI * (direction * 60f) / (180f);
+		var dX = Mathf.Sin(angle) * xBaseOffset;
+		var dZ = Mathf.Cos(angle) * xBaseOffset;
+
+		dX = offset.x;
+		dZ = offset.z;
+
+		foreach (var obj in movables) {
+
+			var pos = obj.transform.position;
+			pos.x += dX;
+			pos.z += dZ;
+			obj.transform.position = pos;
+		}
+	}
+
+	private void ShiftToDifferentFloor(int offset) {
+
+		var rotation = offset * -60.0f;
+
+		foreach (var obj in movables) {
+
+			//if (Vector3.Distance(obj.transform.position, mainHex.transform.position) > xBaseOffset ) {
+			obj.transform.RotateAround(mainHex.transform.position, Vector3.up, rotation);
+			//}
+
+			var pos = obj.transform.position;
+			// Shift all of the movable objects against the logical movement direction of the librarian
+			pos.y += -offset * yOffset;
+			obj.transform.position = pos;
+		}
 	}
 
 	public static LibraryMovementSimulator Find() {

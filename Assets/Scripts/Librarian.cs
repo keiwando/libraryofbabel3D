@@ -4,6 +4,7 @@ using System.IO;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.PostProcessing;
 
 [RequireComponent(typeof(FirstPersonController))]
 public class Librarian : MonoBehaviour {
@@ -17,6 +18,7 @@ public class Librarian : MonoBehaviour {
 	}
 
 	private FirstPersonController fpc;
+	private PostProcessingBehaviour postProcessing;
 
 	[SerializeField]
 	private ViewController viewController;
@@ -48,6 +50,8 @@ public class Librarian : MonoBehaviour {
 	void Start () {
 
 		fpc = GetComponent<FirstPersonController>();
+		postProcessing = GetComponentInChildren<PostProcessingBehaviour>();
+		postProcessing.enabled = Settings.PostProcessingEnabled;
 
 		selection = Selection.None;
 
@@ -66,6 +70,15 @@ public class Librarian : MonoBehaviour {
 		if (PlatformHelper.IsPlatformMobile() || PlatformHelper.IsPlatformEditor()) {
 			SwipeHandling();
 		}
+	}
+
+	// TODO: Remove when done debugging gyro rotation
+	void OnGUI() {
+
+		var gyro = Input.gyro;
+
+		GUI.Label(new Rect(500, 300, 200, 40), "Gyro rotation rate " + gyro.rotationRate);
+		GUI.Label(new Rect(500, 350, 200, 40), "Gyro attitude" + gyro.attitude);
 	}
 
 	private void KeyPressHandling(){
@@ -133,7 +146,7 @@ public class Librarian : MonoBehaviour {
 	public void IncreaseFallCount(){
 		fallCount++;
 		if(fallCount > maxFallNum){
-			if(!Application.isMobilePlatform && Application.platform != RuntimePlatform.WebGLPlayer){
+			if(false && !Application.isMobilePlatform && Application.platform != RuntimePlatform.WebGLPlayer){ // TODO: REMOVE false when done testing
 				Application.Quit();		// Quit the Application on Standalone builds
 			} else {
 				viewController.ActivateDeathText();
@@ -147,13 +160,15 @@ public class Librarian : MonoBehaviour {
 		string[] sentences = ReadTextFile();
 		int pickedSentenceCount = 1;
 
-		int startIndex = Random.Range(0,sentences.Length - pickedSentenceCount -1);
+		int startIndex = Random.Range(0, sentences.Length - pickedSentenceCount -1);
 
 		deathText = "";
 
 		for(int i = startIndex; i < startIndex + pickedSentenceCount; i++){
 			deathText += sentences[i] + ". ";
 		}
+
+		print("Death text = \n" + deathText);
 
 		viewController.SetDeathText(deathText);
 	}
@@ -167,26 +182,26 @@ public class Librarian : MonoBehaviour {
 		return content.Split(new char[] {'.',';'});
 	}
 
-	public void movedToNextRoom(){
+	public void MovedToNextRoom(){
 		//increase hex number by 1
 		//universe.addToHexNumber36(1);
-		currentHexagon.location = currentHexagon.NextHexLocation();
+		currentHexagon.location = currentHexagon.NextHexLocation();	
 	}
 
-	public void movedToPreviousRoom(){
+	public void MovedToPreviousRoom(){
 		//decrease hex number by 0
 		//universe.addToHexNumber36(-1);
 		currentHexagon.location = currentHexagon.PrevHexLocation();
 	}
 
-	public void movedToRoomAbove(){
+	public void MovedToRoomAbove(){
 		//increase each part of hex number by 66666
 		//universe.addToAllHexNumbers36(66666);
 		currentHexagon.location = currentHexagon.AboveLocation();
 		currentHexagon.direction += 1;
 	}
 
-	public void movedToRoomBelow(){
+	public void MovedToRoomBelow(){
 		//subtract each part of hex number by 66666
 		//universe.addToAllHexNumbers36(-66666);
 		currentHexagon.location = currentHexagon.BelowLocation();
@@ -285,6 +300,11 @@ public class Librarian : MonoBehaviour {
 	public void MenusClosed() {
 
 		LockMouseUnlockCamera();
+		selection = Selection.None;
+	}
+
+	public void PostProcessingSettingUpdated() {
+		postProcessing.enabled = Settings.PostProcessingEnabled;
 	}
 
 	private void SwipeHandling(){

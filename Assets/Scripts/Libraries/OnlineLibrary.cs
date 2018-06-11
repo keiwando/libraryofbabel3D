@@ -116,7 +116,7 @@ public class OnlineLibrary : MonoBehaviour, ILibrary {
 
 		if (www.error == null) {
 			Debug.Log("WWW Ok!: " + www.text);
-			Debug.Log("Pased " + ParseTitles(www.text));
+			//Debug.Log("Parsed " + ParseTitles(www.text));
 			onCompletion(false, www);
 		} else {
 			Debug.Log("WWW Error: "+ www.error);

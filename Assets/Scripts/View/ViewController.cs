@@ -72,6 +72,10 @@ public class ViewController : MonoBehaviour {
 		pageViewController.Show(pageLocation, title, textToHighlight);
 	}
 
+	public void SetCurrentBookTitle(string title) {
+		pageViewController.SetBookTitle(title);
+	}
+
 	public void HidePage() {
 		pageViewController.Hide();
 	}
@@ -100,6 +104,10 @@ public class ViewController : MonoBehaviour {
 		settingsViewController.Hide();
 		pageViewController.Hide();
 		librarian.MenusClosed();
+	}
+
+	public void PostProcessingSettingUpdated() {
+		librarian.PostProcessingSettingUpdated();
 	}
 
 	public HexagonLocation GetCurrentHexLocation() {

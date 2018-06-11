@@ -311,7 +311,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 					transform.rotation *= rotationOffset;
 				}
 			} else {
-				updateGyroRotation();
+				UpdateGyroRotation();
 			}
         }
 
@@ -332,9 +332,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
 
-		private void updateGyroRotation(){
+		private void UpdateGyroRotation(){
 
-			if(Input.gyro.enabled){
+			if (Input.gyro.enabled) {
 
 				transform.rotation = Input.gyro.attitude;// * VROffset;
 				transform.Rotate( 0f, 0f, 180f, Space.Self ); // Swap "handedness" of quaternion from gyro.

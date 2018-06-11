@@ -8,6 +8,7 @@ public static class Settings {
 	private const string MUSIC_KEY = "MUSIC";
 	private const string ONLINE_KEY = "ONLINE";
 	private const string INVERTCAM_KEY = "INVERTCAMERA";
+	private const string POST_PROCESSING_ENABLED_KEY = "POST_PROCESSING_ENABLED";
 
 	public static bool Offline { 
 		get { return GetBool(ONLINE_KEY); }
@@ -34,6 +35,11 @@ public static class Settings {
 		set { SetBool(INVERTCAM_KEY, value); }
 	}
 
+	public static bool PostProcessingEnabled {
+		get { return GetBool(POST_PROCESSING_ENABLED_KEY); }
+		set { SetBool(POST_PROCESSING_ENABLED_KEY, value); }
+	}
+
 	public static void SetupFirstTime() {
 
 		if (!FirstTime)
@@ -42,6 +48,9 @@ public static class Settings {
 		SoundEnabled = true;
 		MusicEnabled = true;
 		ShouldInvertCamera = false;
+		PostProcessingEnabled = false;
+
+		FirstTime = false;
 	}
 
 	private static bool GetBool(string key) {

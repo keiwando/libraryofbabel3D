@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using UnityEngine.UI;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -70,13 +71,16 @@ public class PageViewController: MonoBehaviour {
 		if (string.IsNullOrEmpty(title)) {
 			viewController.RequestTitle(pageLocation, delegate(string[] titles) {
 
-				if (titles.Length == 0) return;
+				if (titles.Length == 0)
+					return;
 
 				bookTitle = titles[0];
 				if (currentPageLocation.Page == 1) {
 					titleLabel.text = bookTitle;
 				}
 			});
+		} else {
+			bookTitle = title;
 		}
 
 		ShowCurrentPages(textToHighlight);
@@ -86,6 +90,7 @@ public class PageViewController: MonoBehaviour {
 
 		viewController = ViewController.Find();
 		this.gameObject.SetActive(true);
+		this.bookTitle = book.Title;
 
 		currentPageLocation = new PageLocation() {
 			Hex = book.Shelf.Wall.Hex.location,
@@ -99,13 +104,18 @@ public class PageViewController: MonoBehaviour {
 	}
 
 	public void Hide() {
+
+		if (gameObject.activeSelf) {
+			soundController.BookClose();
+		}
+
 		this.gameObject.SetActive(false);
 		pageView.gameObject.SetActive(false);
 	}
 
 	private void ShowCurrentPages(string textToHighlight = "") {
 
-		SetTitle("");
+		SetVisibleTitle("");
 		SetPositionIndication("");
 		//pageTextLeft.text = "";
 		//pageTextRight.text = "";
@@ -126,6 +136,10 @@ public class PageViewController: MonoBehaviour {
 
 		viewController.RequestPages(pageLocations.ToArray(), delegate(Page[] pages) {
 
+			if (pages.Select(x => x.Location.Page == currentPageLocation.Page).Count() == 0) {
+				return;
+			}
+
 			foreach (var page in pages) {
 				if (page.Location.Page % 2 == 0) {
 					pageTextLeft.text = page.Text;
@@ -136,13 +150,13 @@ public class PageViewController: MonoBehaviour {
 
 			if (pages[0].Location.Page == 1) {
 				// Show the title and book location
-				SetTitle(bookTitle);
+				SetVisibleTitle(bookTitle);
 				SetPositionIndication(currentPageLocation);
 				pageTextLeft.text = "";
 			} else if (pages[0].Location.Page == Universe.PAGES_PER_BOOK) {
 				pageTextRight.text = "";
 			} else {
-				SetTitle("");
+				SetVisibleTitle("");
 				SetPositionIndication("");
 			}
 
@@ -160,12 +174,18 @@ public class PageViewController: MonoBehaviour {
 
 	public void ShowNextPages() {
 
+		if (currentPageLocation.Page == Universe.PAGES_PER_BOOK)
+			return;
+
 		currentPageLocation = currentPageLocation.Page == 1 ? currentPageLocation.NextPage() : currentPageLocation.NextPage().NextPage();
 		pageNumberInput.text = currentPageLocation.Page.ToString();
 		ShowCurrentPages();
 	}
 
 	public void ShowPreviousPages() {
+
+		if (currentPageLocation.Page == 1)
+			return;
 
 		currentPageLocation = currentPageLocation.Page == 2 ? currentPageLocation.PreviousPage() : currentPageLocation.PreviousPage().PreviousPage();
 		pageNumberInput.text = currentPageLocation.Page.ToString();
@@ -199,49 +219,63 @@ public class PageViewController: MonoBehaviour {
 		pageTextRight.text = HighlightPatternInText(pattern, pageTextRight.text);
 	}
 
-	/// <summary>
-	/// Highlights the given pattern in the page text and returns the resulting string.
-	/// Highlighting is done by using the Unity Rich Text <color> tag.
-	/// </summary>
-	/// <returns>The text with the pattern highlighted in red</returns>
-	/// <param name="pattern">The pattern to be highlighted</param>
-	/// <param name="text">The text that contains the pattern</param>
 	private string HighlightPatternInText(string pattern, string text) {
 
-		var highlight = "<color=#800000ff>";
-		var tagEnd = "</color>";
-		var replacement = string.Format("{0}{1}{2}", highlight, pattern, tagEnd);
+		var startTag = "<color=#800000ff>";
+		var endTag = "</color>";
 
-		pattern = Regex.Replace(pattern, @"\.", "\\.");
+		pattern = Regex.Replace(pattern, @"\t|\n|\r", "");
 
-		text = Regex.Replace(text, @"\t|\n|\r", "");
+		var mainBuilder = new StringBuilder();
+		var matchedBuilder = new StringBuilder();
 
-		text = Regex.Replace(text, pattern, replacement, RegexOptions.Singleline);
+		bool inHighlight = false;
+		int currentMatchIndex = 0;
 
-		var lines = new List<string>();
+		for (int i = 0; i < text.Length; i++) {
 
-		int startIndex = 0;
-		for (int i = 0; i < 40; i++) { // There are 40 lines per page
-			bool inTag = false;
-			int length = 0;
-			int c = 0;
-			while (c < 80) { // There are 80 characters per line
-				
-				switch (text[startIndex + length]) {
+			char current = text[i];
 
-				case '<': inTag = true; break;
-				case '>': inTag = false; break;
-				default: break;
+			if (current == pattern[currentMatchIndex]) {
+				inHighlight = true;
+				matchedBuilder.Append(current);
+
+				currentMatchIndex++;
+				if (currentMatchIndex >= pattern.Length) {
+					// successful match
+					mainBuilder.Append(startTag);
+					mainBuilder.Append(matchedBuilder.ToString());
+					mainBuilder.Append(endTag);
+
+					matchedBuilder = new StringBuilder();
+					currentMatchIndex = 0;
+					inHighlight = false;
 				}
+			
+			} else if (current == '\t' || current == '\n' || current == '\r') {
 
-				c += inTag ? 0 : 1; 
-				length += 1;
+				if (inHighlight) {
+					matchedBuilder.Append("\n");	
+				} else {
+					mainBuilder.Append("\n");
+				}
+			
+			} else {
+
+				if (inHighlight) {
+					// Failed match
+					mainBuilder.Append(matchedBuilder.ToString());
+					matchedBuilder = new StringBuilder();
+				} 
+
+				mainBuilder.Append(current);
+
+				inHighlight = false;
+				currentMatchIndex = 0;
 			}
-			lines.Add(text.Substring(startIndex, length));
-			startIndex += length;
 		}
 
-		return string.Join("\n", lines.ToArray());
+		return mainBuilder.ToString();
 	}
 
 	private void SetPositionIndication(PageLocation page) {
@@ -253,7 +287,15 @@ public class PageViewController: MonoBehaviour {
 		positionLabel.text = t;
 	}
 
-	public void SetTitle(string t){
+	private void SetVisibleTitle(string t){
 		titleLabel.text = t;
+	}
+
+	public void SetBookTitle(string title) {
+		this.bookTitle = title;
+
+		if (int.Parse(pageNumberInput.text) == 1) {
+			SetVisibleTitle(title);
+		}
 	}
 }

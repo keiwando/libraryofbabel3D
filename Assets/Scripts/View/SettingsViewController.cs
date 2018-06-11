@@ -10,30 +10,41 @@ public class SettingsViewController : MonoBehaviour {
 	private Toggle musicToggle;
 	[SerializeField]
 	private Toggle invertCameraToggle;
+	[SerializeField]
+	private Toggle postProcessingEnabledToggle;
 
 	private SoundController soundController;
+	private ViewController viewController;
 
 	void Start () {
 
+		viewController = ViewController.Find();
 		soundController = SoundController.Find();
 
 		if (Settings.FirstTime) {
 			Settings.SetupFirstTime();
 		}
 
+		SetupToggleStates();
+
 		soundToggle.onValueChanged.AddListener(delegate(bool arg0) {
 			Settings.SoundEnabled = arg0;	
 		});
+
 		musicToggle.onValueChanged.AddListener(delegate(bool arg0) {
 
 			Settings.MusicEnabled = arg0;
 			PlayStopMusic(arg0);
 		});
+
 		invertCameraToggle.onValueChanged.AddListener(delegate(bool arg0) {
 			Settings.ShouldInvertCamera = arg0;	
 		});
 
-		SetupToggleStates();
+		postProcessingEnabledToggle.onValueChanged.AddListener(delegate(bool arg0) {
+			Settings.PostProcessingEnabled = arg0;
+			viewController.PostProcessingSettingUpdated();
+		});
 	}
 
 	public void Show() {
@@ -57,5 +68,6 @@ public class SettingsViewController : MonoBehaviour {
 		musicToggle.isOn = Settings.MusicEnabled;
 		soundToggle.isOn = Settings.SoundEnabled;
 		invertCameraToggle.isOn = Settings.ShouldInvertCamera;
+		postProcessingEnabledToggle.isOn = Settings.PostProcessingEnabled;
 	}
 }

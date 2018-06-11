@@ -110,9 +110,10 @@ public class SearchViewController : MonoBehaviour {
 			wallNumLabel.text = result.WallNum.ToString();
 			shelfNumLabel.text = result.ShelfNum.ToString();
 			bookNumLabel.text = result.BookNum.ToString();
-			pageNumLabel.text = result.BookNum.ToString();
+			pageNumLabel.text = result.PageNum.ToString();
 
 			foundTitle = result.Title;
+			print("Found title: " + foundTitle);
 		});
 	}
 
@@ -126,7 +127,7 @@ public class SearchViewController : MonoBehaviour {
 		return validHexNameCharactersFilter.Replace(text, "");
 	}
 
-	public void GoToSelection(){
+	public void GoToSelection() {
 
 		var name = FilterValidHexCharacters(hexNameField.text);
 		var newLocation = HexagonLocation.FromName(name);
@@ -150,9 +151,11 @@ public class SearchViewController : MonoBehaviour {
 			};
 
 			viewController.ShowPage(pageLocation, foundTitle, searchInput.text);
+			Hide();
+		} else {
+			
+			viewController.CloseAllMenus();
 		}
-
-		Hide();
 	}
 
 	private void ResetLabels(){

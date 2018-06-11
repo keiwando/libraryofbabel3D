@@ -172,6 +172,10 @@ public class Shelf: MonoBehaviour {
 
 			books[i].Title = titles[i];
 		}
+
+		if (SelectedBook != null) {
+			ViewController.Find().SetCurrentBookTitle(SelectedBook.Title);
+		}
 	}
 
 

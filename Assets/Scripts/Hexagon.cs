@@ -32,13 +32,13 @@ public class Hexagon : MonoBehaviour {
 
 	private void SetupWalls() {
 
-		int visibilityMask = int.Parse(visibleWallMask);
-		int counter = 1;
+		short visibilityMask = System.Convert.ToInt16(visibleWallMask, 2);
+		short counter = 1;
 
 		for (int i = 0; i < wallTransforms.Length; i++) {
 
 			bool visible = (counter & visibilityMask) == counter;
-			counter++;
+			counter = (short)(counter << 1);
 
 			if (!visible)
 				continue;
@@ -62,42 +62,43 @@ public class Hexagon : MonoBehaviour {
 	}
 
 	public void RespawnGhoul(){
-		ghoul.respawn();
+		ghoul.Respawn();
 	}
 
 	public void ActivateGhoul(){
-		ghoul.setShouldRead(true);
+		ghoul.ShouldRead = true;
 	}
 
 	public void DeactivateGhoul(){
-		ghoul.setShouldRead(false);
+		ghoul.ShouldRead = false;
 	}
 
 	public HexagonLocation NextHexLocation() {
 	
-		var offset = (direction % 6) * 666 + 1;
+		var offset = (direction % 6) * 10 + 1;
 		return HexLocationWithOffset(offset);
 	}
 
 	public HexagonLocation PrevHexLocation() {
 
-		var offset = -((direction % 6) * 666 + 1);
+		var offset = -((direction % 6) * 10 + 1);
 		return HexLocationWithOffset(offset);
 	}
 
 	public HexagonLocation AboveLocation() {
 		
-		return HexLocationWithOffset(123456789);
+		return location.LocationAbove();
 	}
 
 	public HexagonLocation BelowLocation() {
 		
-		return HexLocationWithOffset(-123456789);
+		return location.LocationBelow();
 	}
 
-	private HexagonLocation HexLocationWithOffset(BigInteger offset) {
+	private HexagonLocation HexLocationWithOffset(int offset) {
+	//private HexagonLocation HexLocationWithOffset(BigInteger offset) {
 
-		var newNumber = location.Number + offset;
+		/*var newNumber = location.Number + offset;
 
 		if (newNumber > HexagonLocation.MAX) {
 			newNumber -= HexagonLocation.MAX;
@@ -105,6 +106,7 @@ public class Hexagon : MonoBehaviour {
 			newNumber += HexagonLocation.MAX;
 		}
 
-		return HexagonLocation.FromNumber(newNumber);
+		return HexagonLocation.FromNumber(newNumber);*/
+		return location.LocationWithOffset(offset);
 	}
 }

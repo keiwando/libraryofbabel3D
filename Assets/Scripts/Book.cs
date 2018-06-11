@@ -35,17 +35,16 @@ public class Book: MonoBehaviour {
 	private Coroutine titleHideRoutine;
 	private float hideCanvasTime = 40f;
 
-	private Text titleLabel;
-
 	[SerializeField]
 	private GameObject highlight;
 	[SerializeField]
 	private Canvas canvas;
+	[SerializeField]
+	private Text titleLabel;
 
 
 	void Start () {
-		
-		titleLabel = GetComponentInChildren<Text>();
+
 		Title = "";
 
 		IsSelected = false;

@@ -15,14 +15,17 @@ public class GhoulScript : MonoBehaviour {
 
 	private LibraryTranslator translator;
 	private Librarian librarian;
+	private Hexagon hexagon;
 
 	private string baseUrl = "https://libraryofbabel.info/book.cgi?";
-	private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
+	private string regexp = "<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
 
-	private string currentPage;
-	private bool shouldRead;
+	public bool ShouldRead { get; set; }
+
 	private Queue<string> knowledge;
 	private const string baseKnowledge = "It's all just gibberish!";
+
+	private const float pageReadingInterval = 20.0f;
 
 	[SerializeField]
 	private Material defaultMaterial;
@@ -35,102 +38,138 @@ public class GhoulScript : MonoBehaviour {
 
 		translator = GetComponent<LibraryTranslator>();
 		librarian = Librarian.Find();
+		hexagon = transform.parent.GetComponent<Hexagon>();
 
 		meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		SetMaterial(defaultMaterial);
 
-		checkSpawn();
-		currentPage = "";
-		shouldRead = false;
+		StartCoroutine(ReadPage(pageReadingInterval));
+
+		CheckSpawn();
+		ShouldRead = false;
 		pointLight.enabled = false;
 		knowledge = new Queue<string>();
-
-		InvokeRepeating("requestPageFromSite",3,20);
 	}
 
 	private void SetMaterial(Material material) {
 		meshRenderer.material = material;
 	}
 
-	private void checkSpawn(){
-		int rand = Random.Range(0,100);
-		if(rand >= spawningChance){
-			this.gameObject.SetActive(false);
-		}
-	}
+	private void CheckSpawn() {
 
-	public void respawn(){
 		int rand = Random.Range(0,100);
-		if(rand >= spawningChance){
+
+		if (rand >= spawningChance) {
 			this.gameObject.SetActive(false);
-		}else{
+		} else {
 			this.gameObject.SetActive(true);
-			//reset knowledge and mirror
-			knowledge = new Queue<string>();
-			knowledgeMirror.text = "";
 		}
 	}
 
-	private void provideKnowledge(){
-		if(knowledge.Count > 0){
+	public void Respawn(){
+		
+		CheckSpawn();
+
+		knowledge = new Queue<string>();
+		knowledgeMirror.text = "";
+	}
+
+	private void ProvideKnowledge(){
+		
+		if (knowledge.Count > 0) {
+			
 			string s = knowledge.Dequeue();
 			knowledge.Enqueue(s);
-			showKnowledge(s);
+			ShowKnowledge(s);
 		}else{
-			showKnowledge(baseKnowledge);
+			ShowKnowledge(baseKnowledge);
 		}
 	}
 
-	private void showKnowledge(string s){
+	private void ShowKnowledge(string s){
+		
 		string text = s + "\n" + knowledgeMirror.text;
 		knowledgeMirror.text = text;
-		knowledgeMirror.CrossFadeAlpha(1f,0f,true);
-		knowledgeMirror.CrossFadeAlpha(0f,5f,true);
+		knowledgeMirror.CrossFadeAlpha(1f, 0f, true);
+		knowledgeMirror.CrossFadeAlpha(0f, 5f, true);
 	}
 
 	void OnMouseOver(){
-		//pointLight.enabled = true;
+
 		SetMaterial(highlightMaterial);
 	}
 
 	void OnMouseExit(){
-		//pointLight.enabled = false;
+		
 		SetMaterial(defaultMaterial);
 	}
 
 	void OnMouseDown(){
-		provideKnowledge();
+
+		ProvideKnowledge();
 	}
 
-	private void readPage(){
-		string[] array = currentPage.Split(' ');
-		print("Number of parts: " + array.Length);
+	private IEnumerator ReadPage(float secondDifference) {
 
-		Queue<string> findings = new Queue<string>();
-		filterShortStrings(findings,array);
+		while (true) {
+
+			yield return new WaitForSeconds(secondDifference);
+
+			if (ShouldRead) {
+				ReadPage();
+			}
+		}
 	}
 
-	private void filterShortStrings(Queue<string> findings,string[] text){
-		foreach(string s in text){
+	private void ReadPage() {
+
+		// Pick random page
+		int wall = Random.Range(1, Universe.WALLS_PER_ROOM);
+		int shelf = Random.Range(1, Universe.SHELVES_PER_WALL);
+		int book = Random.Range(1, Universe.BOOKS_PER_SHELF);
+		int page = Random.Range(1, Universe.PAGES_PER_BOOK);
+
+		var pageLocation = new PageLocation() {
+			Hex = hexagon.location,
+			Wall = wall,
+			Shelf = shelf,
+			Book = book,
+			Page = page
+		};
+
+		librarian.RequestPages(new PageLocation[]{ pageLocation }, delegate(Page[] pages) {
+
+			var splitPage = pages[0].Text.Split(' ');
+			FilterShortStrings(splitPage);
+
+		});
+	}
+
+	private void FilterShortStrings(string[] text) {
+
+		var findings = new Queue<string>();
+		
+		foreach (string s in text) {
+			
 			int length = s.Length;
 
-			CommaAndPeriodInfo result = countCommasAndPeriods(s);
+			CommaAndPeriodInfo result = CountCommasAndPeriods(s);
 			int commaNumber = result.getCommaNumber();
 			int periodNumber = result.getPeriodNumber();
 			//every Comma extends the maxlength by 2 (because commas themselves translate to a conjunctor => their own number + 1 extra word for each comma)
 			//every period extends the maclengt by 1 (have no effect on the length of the translation)
-			if(length > 2 && length <= maxTextLength + (2 * commaNumber) + periodNumber){
+			if (length > 2 && length <= maxTextLength + (2 * commaNumber) + periodNumber) {
 				findings.Enqueue(s);
 			}
 		}
-		print("The number of short strings is: " + findings.Count);
-		if(findings.Count > 0){
+
+		if (findings.Count > 0) {
 			knowledge.Enqueue(translator.translateText(findings.Dequeue()));
-			//print(translator.translateText(findings.Dequeue()));
 		}
 	}
 
-	private CommaAndPeriodInfo countCommasAndPeriods(string s){
+	private CommaAndPeriodInfo CountCommasAndPeriods(string s){
+		
 		char[] characters = s.ToCharArray();
 		int periodCount = 0;
 		int commaCount = 0;
@@ -154,84 +193,28 @@ public class GhoulScript : MonoBehaviour {
 		return capI;
 	}
 
-	public void requestPageFromSite(){
-		if(shouldRead && this.gameObject.activeSelf){
-
-			string url = generateUrl();
-
-			StartCoroutine(waitForRequest(url,(www) => {
-				currentPage = Parse(www.text);
-				readPage();
-			}));
-		}
-	}
-
-	private IEnumerator waitForRequest(string url,System.Action<WWW> complete){
-		WWW www = new WWW(url);
-		yield return www;
-		complete(www);
-		// check for errors
-		if (www.error == null)
-		{
-			Debug.Log("WWW Ok!: " + www.text);
-		} else {
-			Debug.Log("WWW Error: "+ www.error);
-		}
-	}
-
-	private string Parse(string html){
-		string text = "";
-		Regex regex = new Regex (regexp);
-		Match res = regex.Match (html);
-		text = res.Groups [0].Value;
-		text=Regex.Replace(text,"<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">\n","");
-		text=Regex.Replace(text,"</PRE></div>","");
-		return text;
-	}
-
-	private string generateUrl(){
-		//pick random book
-		int wall = Random.Range(1,4);
-		int shelf = Random.Range(1,5);
-		int book = Random.Range(1,32);
-		int page = Random.Range(1,410);
-
-		//return testUrl;
-		string volume = "";
-		if(book < 10){
-			volume += "0";
-		}
-		volume += book;
-
-		return baseUrl + librarian.CurrentLocation.Name + "-w" + wall + "-s" + shelf + "-v" + volume + ":" + page;
-	}
-
-	public void setShouldRead(bool b){
-		shouldRead = b;
-	}
-
-	private class CommaAndPeriodInfo{
+	private class CommaAndPeriodInfo {
 		private int periodNumber;
 		private int commaNumber;
 
-		public CommaAndPeriodInfo(){
+		public CommaAndPeriodInfo() {
 			periodNumber = 0;
 			commaNumber = 0;
 		}
 
-		public void setPeriodNumber(int i){
+		public void setPeriodNumber(int i) {
 			periodNumber = i;
 		}
 
-		public void setCommaNumber(int i){
+		public void setCommaNumber(int i) {
 			commaNumber = i;
 		}
 
-		public int getPeriodNumber(){
+		public int getPeriodNumber() {
 			return periodNumber;
 		}
 
-		public int getCommaNumber(){
+		public int getCommaNumber() {
 			return commaNumber;
 		}
 	}

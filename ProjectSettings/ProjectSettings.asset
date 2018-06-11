@@ -168,7 +168,7 @@ PlayerSettings:
   buildNumber:
     Standalone: 1
     iOS: 1
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
@@ -251,7 +251,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: /Users/Keiwan/Documents/Android/Keystore/GeneralKeystore.keystore
+  AndroidKeystoreName: /Users/Keiwan/Documents/Android/Keystores/GeneralKeystore.keystore
   AndroidKeyaliasName: library of babel
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
