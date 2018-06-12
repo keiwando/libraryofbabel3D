@@ -51,16 +51,6 @@ public struct HexagonLocation {
 		return new HexagonLocation(name);
 	}
 
-	public static BigInteger NameToNumber(string name) {
-
-		return Universe.TextToNumber(name, ALPHABET);
-	}
-
-	public static string NumberToName(BigInteger number) {
-
-		return Universe.NumberToText(number, ALPHABET);
-	}
-
 	public static HexagonLocation RandomLocation() {
 
 		var stringBuilder = new System.Text.StringBuilder();

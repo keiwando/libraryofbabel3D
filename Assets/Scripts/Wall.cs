@@ -63,11 +63,6 @@ public class Wall: MonoBehaviour {
 
 	private void GenerateShelves() {
 
-		//firstShelf.GenerateBooks();
-		//firstShelf.Number = 1;
-		//firstShelf.librarian = librarian;
-		//firstShelf
-
 		for (int i = 0; i < 5; i++) {
 
 			var newShelfPos = firstShelf.transform.position;

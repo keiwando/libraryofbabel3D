@@ -72,16 +72,7 @@ public class Librarian : MonoBehaviour {
 		}
 	}
 
-	// TODO: Remove when done debugging gyro rotation
-	void OnGUI() {
-
-		var gyro = Input.gyro;
-
-		GUI.Label(new Rect(500, 300, 200, 40), "Gyro rotation rate " + gyro.rotationRate);
-		GUI.Label(new Rect(500, 350, 200, 40), "Gyro attitude" + gyro.attitude);
-	}
-
-	private void KeyPressHandling(){
+	private void KeyPressHandling() {
 		
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			EscapeClicked();
@@ -146,7 +137,7 @@ public class Librarian : MonoBehaviour {
 	public void IncreaseFallCount(){
 		fallCount++;
 		if(fallCount > maxFallNum){
-			if(false && !Application.isMobilePlatform && Application.platform != RuntimePlatform.WebGLPlayer){ // TODO: REMOVE false when done testing
+			if(!Application.isMobilePlatform && Application.platform != RuntimePlatform.WebGLPlayer){
 				Application.Quit();		// Quit the Application on Standalone builds
 			} else {
 				viewController.ActivateDeathText();
@@ -168,7 +159,7 @@ public class Librarian : MonoBehaviour {
 			deathText += sentences[i] + ". ";
 		}
 
-		print("Death text = \n" + deathText);
+		//print("Death text = \n" + deathText);
 
 		viewController.SetDeathText(deathText);
 	}
@@ -271,13 +262,12 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void HoveringOverEnded(Shelf shelf) {
-		//viewController.RefreshChoiceIndicator(selectedWall != null ? selectedWall.Number : 0, 0, 0);
+		
 		HoveringOverEndedIndicatorRefresh();
 	}
 
 	public void HoveringOverEnded(Book book) {
 
-		//viewController.RefreshChoiceIndicator(selectedWall.Number, selectedWall.SelectedShelf.Number, 0);
 		HoveringOverEndedIndicatorRefresh();
 	}
 

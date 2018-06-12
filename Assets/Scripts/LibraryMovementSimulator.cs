@@ -122,13 +122,12 @@ public class LibraryMovementSimulator : MonoBehaviour {
 	}
 
 	private void MovedToNextRoom() {
-	
-		//ShiftOnSameFloor(-mainHex.direction);
+
 		ShiftOnSameFloor(1);
 	}
 
 	private void MovedToPreviousRoom() {
-		//ShiftOnSameFloor(mainHex.direction);
+		
 		ShiftOnSameFloor(-1);
 	}
 
@@ -166,9 +165,7 @@ public class LibraryMovementSimulator : MonoBehaviour {
 
 		foreach (var obj in movables) {
 
-			//if (Vector3.Distance(obj.transform.position, mainHex.transform.position) > xBaseOffset ) {
 			obj.transform.RotateAround(mainHex.transform.position, Vector3.up, rotation);
-			//}
 
 			var pos = obj.transform.position;
 			// Shift all of the movable objects against the logical movement direction of the librarian

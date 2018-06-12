@@ -13,6 +13,12 @@ public class PageViewController: MonoBehaviour {
 	private Text pageTextLeft;
 	[SerializeField]
 	private Text pageTextRight;
+
+	[SerializeField]
+	private PageTextView leftPage;
+	[SerializeField]
+	private PageTextView rightPage;
+
 	[SerializeField]
 	private Text titleLabel;
 	[SerializeField]
@@ -30,12 +36,6 @@ public class PageViewController: MonoBehaviour {
 	// In the case of two pages the first one of the two
 	private PageLocation currentPageLocation;
 	private string bookTitle = "";
-
-	/*private string baseUrl = "https://libraryofbabel.info/book.cgi?";
-	private string testUrl = "https://libraryofbabel.info/book.cgi?00000000000-w1-s5-v32:410";
-
-	private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
-	private const string alphabet = "abcdefghijklmnopqrstuvwxyz,. ";*/
 
 	private ViewController viewController;
 	private SoundController soundController;

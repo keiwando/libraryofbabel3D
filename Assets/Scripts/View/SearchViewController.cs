@@ -36,26 +36,10 @@ public class SearchViewController : MonoBehaviour {
 
 	private ViewController viewController;
 
-	//private string url = "https://libraryofbabel.info/search.cgi";
-	//private string foundHexagon = "";
-	//private string searchedString = "";
-	//private const string alphabet = "abcdefghijklmnopqrstuvwxyw,. ";
 	private Regex validSearchCharactersFilter = new Regex(string.Format("[^{0}]", Universe.Alphabet), RegexOptions.IgnoreCase);
 	private Regex validHexNameCharactersFilter = new Regex(string.Format("[^{0}]", HexagonLocation.ALPHABET), RegexOptions.IgnoreCase);
 
-	// Use this for initialization
 	void Start () {
-
-		//viewController = ViewController.Find();
-
-		/*if(Application.platform != RuntimePlatform.OSXPlayer && Application.platform != RuntimePlatform.OSXEditor){
-			//remove bugButton
-			print(Application.platform);
-			bugButton.enabled = false;
-		}
-		if(Application.platform == RuntimePlatform.WindowsPlayer){
-			bugButton.enabled = false;
-		}*/
 
 		searchInput.onValueChanged.AddListener(delegate(string arg0) {
 
@@ -103,7 +87,6 @@ public class SearchViewController : MonoBehaviour {
 
 	public void Search(){
 
-		//RequestSearchFromSite();
 		this.search.Search(searchInput.text, exactMatchToggle.isOn, delegate(SearchResult result) {
 
 			hexNameField.text = result.HexName;
@@ -169,14 +152,4 @@ public class SearchViewController : MonoBehaviour {
 
 		searchInput.text = "";
 	}
-
-	/*public void removeBug(){
-		string s = hexNumberField.text;
-		//shorten text to half of its length
-		int newLength = s.Length / 2;
-		print("oldLength: " + s.Length);
-		print("newLength: " + newLength);
-		s = s.Substring(0,newLength);
-		hexNumberField.text = s;
-	}*/
 }

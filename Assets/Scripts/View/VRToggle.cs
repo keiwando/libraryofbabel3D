@@ -7,25 +7,21 @@ public class VRToggle : MonoBehaviour {
 	public GameObject joystick;
 	public Toggle toggle;
 
-	private const string VR_KEY = "VR_ENABLED";
+	//private const string VR_KEY = "VR_ENABLED";
 
 	void Start () {
 
 		joystick.SetActive(false);
 
-		Input.gyro.enabled = PlayerPrefs.GetInt(VR_KEY, 0) == 1;
+		Input.gyro.enabled = Settings.VREnabled;
+		Input.gyro.updateInterval = 0.0167f;
 		toggle.isOn = Input.gyro.enabled;
-	}
-
-	void Update () {
-	
 	}
 
 	public void VRToggled(bool val){
 		
 		Input.gyro.enabled = val;
-		PlayerPrefs.SetInt(VR_KEY, Input.gyro.enabled ? 1 : 0);
-		PlayerPrefs.Save();
+		Settings.VREnabled = val;
 	}
 
 }

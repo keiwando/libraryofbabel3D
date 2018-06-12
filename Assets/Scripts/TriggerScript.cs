@@ -8,7 +8,8 @@ public class TriggerScript : MonoBehaviour {
 	public bool stairTrigger;
 
 	private Collider col;
-	// Use this for initialization
+
+
 	void Start () {
 		inwardVector = transform.parent.transform.position - this.transform.position;
 

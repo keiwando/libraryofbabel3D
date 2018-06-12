@@ -9,6 +9,7 @@ public static class Settings {
 	private const string ONLINE_KEY = "ONLINE";
 	private const string INVERTCAM_KEY = "INVERTCAMERA";
 	private const string POST_PROCESSING_ENABLED_KEY = "POST_PROCESSING_ENABLED";
+	private const string VR_KEY = "VR_ENABLED";
 
 	public static bool Offline { 
 		get { return GetBool(ONLINE_KEY); }
@@ -40,6 +41,11 @@ public static class Settings {
 		set { SetBool(POST_PROCESSING_ENABLED_KEY, value); }
 	}
 
+	public static bool VREnabled {
+		get { return GetBool(VR_KEY); }
+		set { SetBool(VR_KEY, value); }
+	}
+
 	public static void SetupFirstTime() {
 
 		if (!FirstTime)
@@ -49,6 +55,7 @@ public static class Settings {
 		MusicEnabled = true;
 		ShouldInvertCamera = false;
 		PostProcessingEnabled = false;
+		VREnabled = false;
 
 		FirstTime = false;
 	}

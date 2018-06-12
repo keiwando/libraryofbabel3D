@@ -35,11 +35,7 @@ public class Shelf: MonoBehaviour {
 
 	private Book[] books;
 
-	//private string baseUrl = "https://libraryofbabel.info/titler.cgi?";
 
-	//private string regexp="<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
-
-	// Use this for initialization
 	void Start () {
 
 		IsSelected = false;
@@ -72,58 +68,8 @@ public class Shelf: MonoBehaviour {
 		firstBook.gameObject.SetActive(false);
 	}
 
-	/*private void RequestBookTitles(){
-		string url = baseUrl;
-		print(url);
-
-		WWWForm form = new WWWForm();
-		form.AddField("hex",GameObject.Find("Mathematics").GetComponent<MathFunctions>().getHexNumberBase36());
-		form.AddField("wall",(librarian.getSelectedWall() + 1));
-		form.AddField("shelf",(librarian.getSelectedShelf() + 1));
-
-		StartCoroutine(WaitForRequest(url,form,(www) => {
-			if (www.error == null || (www.text != null && www.text.Contains(";"))) {
-				setBookTitles(www.text.Split(';'));	
-			} else {
-				
-				string[] emptyTitles = new string[32];
-				for(int i = 0; i < 32; i++){
-					emptyTitles[i] = "";
-				}
-				setBookTitles(emptyTitles);
-			}
-		}));
-	}
-
-	private void SetBookTitles(string[] titles){
-		librarian.setTitles(titles);
-		foreach(Transform child in transform){
-			if(child.gameObject.GetComponent<Book>() != null){
-				Book book = child.gameObject.GetComponent<Book>();
-				book.setTitle(titles[book.bookNumber]);
-			}
-		}
-	}
-
-
-
-	private IEnumerator WaitForRequest(string url, WWWForm form, System.Action<WWW> complete){
-		WWW www = new WWW(url,form);
-		yield return www;
-		complete(www);
-		// check for errors
-		if (www.error == null)
-		{
-			Debug.Log("WWW Ok!: " + www.text);
-		} else {
-			Debug.Log("WWW Error: "+ www.error);
-			Debug.Log("WWW text:" + www.text);
-		}
-	}*/
-
 	void OnMouseDown(){
-		//if(librarian.selectedStage == 1){
-		//if (librarian.IsReadingBook() || librarian.isInMenu() || librarian.IsSwipingCamera) return;
+		
 		if (!librarian.CanSelect())
 			return;
 		
@@ -132,7 +78,6 @@ public class Shelf: MonoBehaviour {
 	}
 
 	void OnMouseOver(){
-		//if(librarian.selectedStage == 1){
 
 		highlight.SetActive(true);
 		librarian.HoveringOver(this);

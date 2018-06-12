@@ -6,8 +6,6 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 
 	private const string BASE_URL = "https://libraryofbabel.info/search.cgi";
 
-	//private readonly Regex textPattern = new Regex("<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform[0-9a-z.,'()\\s]*");
-
 	private Regex pattern = new Regex("Title: <b>([a-z.,\\s]*)</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform([0-9a-z.,'()\\s]*)");
 	private Regex bracketPattern = new Regex("[()]");
 
@@ -48,19 +46,10 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 
 	private SearchResult Parse(string html){
 
-		//string choice = "exact match";
-
-		/*string pattern = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform[0-9a-z.,'()\\s]*";
-		string replacement = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*</b> Page: <b>[0-9.,\\s]*</b><br>Location: <a class = \"intext\" style = \"cursor:pointer\" title = \"\" onclick = \"postform";
-		string titlePattern = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>[a-z.,\\s]*";
-		string titleReplacement = "<h3>" + choice + ":</h3><PRE class = \"textsearch\" style = \"text-align: left\">Title: <b>";
-		string text = "";*/
-		//Regex regex = new Regex (pattern);
 		Match res = pattern.Match (html);
 		var text = res.Groups[2].Value;
 		var title = res.Groups[1].Value;
 
-		//text=Regex.Replace(text,replacement,"");
 		text = bracketPattern.Replace(text, "");
 
 		var parts = text.Split('\'');
@@ -73,15 +62,6 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 			BookNum = int.Parse(parts[7]),
 			PageNum = int.Parse(parts[9])
 		};
-
-		//parseTitle
-		//regex = new Regex(titlePattern);
-		//res = regex.Match(html);
-		//title = res.Groups[0].Value;
-
-		//title = Regex.Replace(title,titleReplacement,"");
-
-		//return information;
 	}
 }
 

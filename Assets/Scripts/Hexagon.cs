@@ -22,7 +22,6 @@ public class Hexagon : MonoBehaviour {
 
 	void Start () {
 		
-		//walls = GetComponentsInChildren<Wall>();
 		walls = new Wall[wallTransforms.Length];
 		ghoul = GetComponentInChildren<GhoulScript>();
 		librarian = Librarian.Find();
@@ -96,17 +95,7 @@ public class Hexagon : MonoBehaviour {
 	}
 
 	private HexagonLocation HexLocationWithOffset(int offset) {
-	//private HexagonLocation HexLocationWithOffset(BigInteger offset) {
 
-		/*var newNumber = location.Number + offset;
-
-		if (newNumber > HexagonLocation.MAX) {
-			newNumber -= HexagonLocation.MAX;
-		} else if (newNumber < 0) {
-			newNumber += HexagonLocation.MAX;
-		}
-
-		return HexagonLocation.FromNumber(newNumber);*/
 		return location.LocationWithOffset(offset);
 	}
 }
