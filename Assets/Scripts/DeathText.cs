@@ -6,12 +6,11 @@ using System.Threading;
 [RequireComponent(typeof(Text))]
 public class DeathText : MonoBehaviour {
 
-
 	private Text text;
 
 	void Start () {
 
-		text = GetComponent<Text>();
+		text = GetComponentInChildren<Text>();
 
 		foreach (Transform child in transform){
 			child.gameObject.SetActive(false);

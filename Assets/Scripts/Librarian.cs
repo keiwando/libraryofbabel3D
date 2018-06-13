@@ -159,7 +159,9 @@ public class Librarian : MonoBehaviour {
 			deathText += sentences[i] + ". ";
 		}
 
-		//print("Death text = \n" + deathText);
+		print("Death text sentences length = " + sentences.Length);
+		print("Death text index = " + startIndex);
+		print("Death text = " + deathText);
 
 		viewController.SetDeathText(deathText);
 	}
@@ -229,12 +231,23 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void BookSelected(Book book) {
-		viewController.ShowBook(book);
-		LockCameraUnlockMouse();
+
+		if (selection != Selection.Book) {
+			viewController.ShowBook(book);
+			LockCameraUnlockMouse();
+			selection = Selection.Book;
+		}
+	}
+
+	public void ShowingPage() {
+		selection = Selection.Book;
 	}
 
 	public void PageSelected(PageLocation pageLocation) {
+		
+
 		viewController.ShowPage(pageLocation, "", "");
+		selection = Selection.Book;
 	}
 
 	private bool CannotSelect() {
@@ -298,6 +311,9 @@ public class Librarian : MonoBehaviour {
 	}
 
 	private void SwipeHandling(){
+
+		if (IsReadingBook() || IsInMenu())
+			return;
 
 		var touches = FilterSwipeValidTouches(Input.touches);
 

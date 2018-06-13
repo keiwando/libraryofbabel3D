@@ -70,6 +70,7 @@ public class ViewController : MonoBehaviour {
 
 	public void ShowPage(PageLocation pageLocation, string title, string textToHighlight = "") {
 		pageViewController.Show(pageLocation, title, textToHighlight);
+		librarian.ShowingPage();
 	}
 
 	public void SetCurrentBookTitle(string title) {
