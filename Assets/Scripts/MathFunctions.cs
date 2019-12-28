@@ -48,11 +48,6 @@ public class MathFunctions : MonoBehaviour {
 		//testTrailingZeroRemove();
 		//test36ConversionMethods();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	private void testConversionPrints() {
 

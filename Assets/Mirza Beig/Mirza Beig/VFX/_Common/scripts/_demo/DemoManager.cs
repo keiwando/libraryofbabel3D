@@ -343,8 +343,8 @@ namespace MirzaBeig
                     
                     postEffectsCamera.gameObject.SetActive(value);
 
-                    UICamera.hdr = value;
-                    mainCamera.hdr = value;
+                    UICamera.allowHDR = value;
+                    mainCamera.allowHDR = value;
 
                     if (value)
                     {

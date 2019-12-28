@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 /** Based on BigInteger.cs by ScottGarland from http://biginteger.codeplex.com/ */
-//namespace ScottGarland
-//{
+namespace ScottGarland
+{
 	using DType = System.UInt32; // This could be UInt32, UInt16 or Byte; not UInt64.
 
 	#region DigitsArray
@@ -1630,4 +1630,4 @@ using System.Collections.Generic;
 		}
 		#endregion
 	}
-//}
+}

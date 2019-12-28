@@ -107,12 +107,12 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		var currentParent = fpController.transform.parent;
 
 		fpController.transform.SetParent(lastHex.transform);
-
-		var localPos = fpController.transform.localPosition;
 		fpController.transform.SetParent(nextHex.transform, false);
-		fpController.transform.localPosition = localPos;
-
-		fpController.transform.SetParent(currentParent, true);
+		
+		// fpController.transform.SetParent(currentParent, true); // This seems to be broken in Unity 2019.1.0f2 if currentParent is null
+		var worldPos = fpController.transform.position;
+		fpController.transform.SetParent(currentParent);
+		fpController.transform.position = worldPos;
 
 		var currentColRotOffset = Quaternion.Inverse(collider.transform.rotation) * fpController.transform.rotation;
 		fpController.rotationOffset *= (Quaternion.Inverse(Quaternion.Inverse(outCollider.transform.rotation) * fpController.transform.rotation) * currentColRotOffset);
@@ -165,6 +165,7 @@ public class LibraryMovementSimulator : MonoBehaviour {
 
 		foreach (var obj in movables) {
 
+			// obj.transform.Rotate(mainHex.transform.up, rotation);
 			obj.transform.RotateAround(mainHex.transform.position, Vector3.up, rotation);
 
 			var pos = obj.transform.position;

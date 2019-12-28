@@ -4,7 +4,7 @@ using System.IO;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
 using System.Linq;
-using UnityEngine.PostProcessing;
+// using UnityEngine.PostProcessing;
 
 [RequireComponent(typeof(FirstPersonController))]
 public class Librarian : MonoBehaviour {
@@ -18,7 +18,7 @@ public class Librarian : MonoBehaviour {
 	}
 
 	private FirstPersonController fpc;
-	private PostProcessingBehaviour postProcessing;
+	// private PostProcessingBehaviour postProcessing;
 
 	[SerializeField]
 	private ViewController viewController;
@@ -50,8 +50,9 @@ public class Librarian : MonoBehaviour {
 	void Start () {
 
 		fpc = GetComponent<FirstPersonController>();
-		postProcessing = GetComponentInChildren<PostProcessingBehaviour>();
-		postProcessing.enabled = Settings.PostProcessingEnabled;
+		// TODO: Fix Post Processing
+		// postProcessing = GetComponentInChildren<PostProcessingBehaviour>();
+		// postProcessing.enabled = Settings.PostProcessingEnabled;
 
 		selection = Selection.None;
 
@@ -307,7 +308,8 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void PostProcessingSettingUpdated() {
-		postProcessing.enabled = Settings.PostProcessingEnabled;
+		// TODO: Fix Post Processing
+		// postProcessing.enabled = Settings.PostProcessingEnabled;
 	}
 
 	private void SwipeHandling(){
