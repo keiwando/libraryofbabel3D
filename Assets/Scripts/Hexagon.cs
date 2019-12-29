@@ -73,29 +73,24 @@ public class Hexagon : MonoBehaviour {
 	}
 
 	public HexagonLocation NextHexLocation() {
-	
 		var offset = (direction % 6) * 10 + 1;
 		return HexLocationWithOffset(offset);
 	}
 
 	public HexagonLocation PrevHexLocation() {
-
 		var offset = -((direction % 6) * 10 + 1);
 		return HexLocationWithOffset(offset);
 	}
 
 	public HexagonLocation AboveLocation() {
-		
 		return location.LocationAbove();
 	}
 
 	public HexagonLocation BelowLocation() {
-		
 		return location.LocationBelow();
 	}
 
 	private HexagonLocation HexLocationWithOffset(int offset) {
-
 		return location.LocationWithOffset(offset);
 	}
 }

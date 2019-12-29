@@ -24,6 +24,7 @@ public class OfflineLibrary: ILibrary {
 		a = a_minus_1 + 1;
 		m = 4 * a_minus_1;
 		c = (BigInteger.Pow(2, 11213) - 1) * (BigInteger.Pow(2, 4253) - 1) * 2305843009213693951 * 8191 * 13;
+		aInverse = Keiwando.Lob.Math.extendedGcd(a, m).x;
 	}
 
 	private Page PageAtLocation(PageLocation location) {
@@ -54,6 +55,10 @@ public class OfflineLibrary: ILibrary {
 
 	private BigInteger LCG(BigInteger x) {
 		return BigInteger.Modulus(a * x + c, m);
+	}
+
+	private BigInteger InvLCG(BigInteger x) {
+		return BigInteger.Modulus(aInverse * (x - c), m);
 	}
 
 	// MARK: - ILibrary

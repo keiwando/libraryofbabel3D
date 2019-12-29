@@ -37,7 +37,7 @@ public class SearchViewController : MonoBehaviour {
 	private ViewController viewController;
 
 	private Regex validSearchCharactersFilter = new Regex(string.Format("[^{0}]", Universe.Alphabet), RegexOptions.IgnoreCase);
-	private Regex validHexNameCharactersFilter = new Regex(string.Format("[^{0}]", HexagonLocation.ALPHABET), RegexOptions.IgnoreCase);
+	private Regex validHexNameCharactersFilter = new Regex(string.Format("[^{0}]", HexagonLocation.Alphabet), RegexOptions.IgnoreCase);
 
 	void Start () {
 
@@ -113,7 +113,7 @@ public class SearchViewController : MonoBehaviour {
 	public void GoToSelection() {
 
 		var name = FilterValidHexCharacters(hexNameField.text);
-		var newLocation = HexagonLocation.FromName(name);
+		var newLocation = new HexagonLocation(name);
 
 		viewController.GoToLocation(newLocation);
 

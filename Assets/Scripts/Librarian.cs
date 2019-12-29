@@ -62,7 +62,7 @@ public class Librarian : MonoBehaviour {
 
 		CurrentLocation = HexagonLocation.RandomLocation();
 		// TODO: Remove after debugging
-		CurrentLocation = new HexagonLocation("0");
+		CurrentLocation = new HexagonLocation(0);
 
 		ChooseDeathText();
 	}
@@ -175,27 +175,19 @@ public class Librarian : MonoBehaviour {
 	}
 
 	public void MovedToNextRoom(){
-		//increase hex number by 1
-		//universe.addToHexNumber36(1);
 		currentHexagon.location = currentHexagon.NextHexLocation();	
 	}
 
 	public void MovedToPreviousRoom(){
-		//decrease hex number by 0
-		//universe.addToHexNumber36(-1);
 		currentHexagon.location = currentHexagon.PrevHexLocation();
 	}
 
 	public void MovedToRoomAbove(){
-		//increase each part of hex number by 66666
-		//universe.addToAllHexNumbers36(66666);
 		currentHexagon.location = currentHexagon.AboveLocation();
 		currentHexagon.direction += 1;
 	}
 
 	public void MovedToRoomBelow(){
-		//subtract each part of hex number by 66666
-		//universe.addToAllHexNumbers36(-66666);
 		currentHexagon.location = currentHexagon.BelowLocation();
 		currentHexagon.direction -= 1;
 	}
