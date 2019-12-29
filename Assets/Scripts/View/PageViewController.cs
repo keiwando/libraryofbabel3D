@@ -38,11 +38,18 @@ public class PageViewController: MonoBehaviour {
 	private readonly Regex filterNonAlphabet = new Regex(string.Format("[^{0}]", Universe.Alphabet));
 
 	private ViewController viewController;
-	private SoundController soundController;
+	private SoundController soundController {
+		get {
+			if (_soundController == null) 
+				_soundController = SoundController.Find();
+			return _soundController;
+		}
+	}
+	private SoundController _soundController;
 
 	void Start() {
 		viewController = ViewController.Find();
-		soundController = SoundController.Find();
+		// soundController = SoundController.Find();
 
 		nextPageButton.onClick.AddListener(delegate {
 			ShowNextPages();

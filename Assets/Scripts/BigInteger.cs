@@ -1478,8 +1478,12 @@ namespace ScottGarland
 		/// Converts the numeric value of this instance to its equivalent string representation in specified base.
 		/// </summary>
 		/// <param name="radix">Int radix between 2 and 36</param>
+		/// <param charSet="charSet">
+		/// Character set. Must contain enough characters for given radix.
+		/// Defaults to "0123456789abcdefghijklmnopqrstuvwxyz".
+		/// </param>
 		/// <returns>A string.</returns>
-		public string ToString(int radix)
+		public string ToString(int radix, string charSet = "0123456789abcdefghijklmnopqrstuvwxyz")
 		{
 			if (radix < 2 || radix > 36)
 			{
@@ -1499,7 +1503,6 @@ namespace ScottGarland
 			BigInteger remainder;
 			BigInteger biRadix = new BigInteger(radix);
 
-			const string charSet = "0123456789abcdefghijklmnopqrstuvwxyz";
 			System.Collections.ArrayList al = new System.Collections.ArrayList();
 			while (a.m_digits.DataUsed > 1 || (a.m_digits.DataUsed == 1 && a.m_digits[0] != 0))
 			{

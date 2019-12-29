@@ -41,7 +41,8 @@ public class Universe : MonoBehaviour {
 
 		offlineLibrary = new OfflineLibrary();
 
-		this.library = Settings.Offline ? offlineLibrary as ILibrary : onlineLibrary as ILibrary;
+		// this.library = Settings.Offline ? offlineLibrary as ILibrary : onlineLibrary as ILibrary;
+		this.library = offlineLibrary;
 	}
 
 	public void RequestPages(PageLocation[] pages, OnPageRequestCompleted onCompletion) {

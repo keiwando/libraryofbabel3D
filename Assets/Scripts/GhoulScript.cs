@@ -17,8 +17,8 @@ public class GhoulScript : MonoBehaviour {
 	private Librarian librarian;
 	private Hexagon hexagon;
 
-	private string baseUrl = "https://libraryofbabel.info/book.cgi?";
-	private string regexp = "<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
+	// private string baseUrl = "https://libraryofbabel.info/book.cgi?";
+	// private string regexp = "<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
 
 	public bool ShouldRead { get; set; }
 

@@ -61,6 +61,8 @@ public class Librarian : MonoBehaviour {
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
 
 		CurrentLocation = HexagonLocation.RandomLocation();
+		// TODO: Remove after debugging
+		CurrentLocation = new HexagonLocation("0");
 
 		ChooseDeathText();
 	}
@@ -159,10 +161,6 @@ public class Librarian : MonoBehaviour {
 		for(int i = startIndex; i < startIndex + pickedSentenceCount; i++){
 			deathText += sentences[i] + ". ";
 		}
-
-		print("Death text sentences length = " + sentences.Length);
-		print("Death text index = " + startIndex);
-		print("Death text = " + deathText);
 
 		viewController.SetDeathText(deathText);
 	}
