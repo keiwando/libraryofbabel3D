@@ -14,11 +14,6 @@ public class OfflineLibrary: ILibrary {
 	private static readonly int flipLowCount = w - flipLowCount;
 	private static readonly BigInteger lowMask = (new BigInteger(1) << flipLowCount) - 1;
 	private static readonly BigInteger highMask = ~lowMask;
-	// private static readonly int r1 = 9947;
-	// private static readonly int l1 = 8564;
-	// private static readonly int l2 = 12395;
-	// private static readonly int r2 = 7993;
-	// private static readonly BigInteger overflow = (new BigInteger(1) << w) - 1;
 
 	private BigInteger relativeLocationOffset = BigInteger.Pow(10, 100);
 
@@ -28,10 +23,8 @@ public class OfflineLibrary: ILibrary {
 		var a_minus_1 = (min_m / 2);
 		a = a_minus_1 + 1;
 		m = 4 * a_minus_1;
-		c = (BigInteger.Pow(2, 11213) + 1) * (BigInteger.Pow(2, 4253) - 1) * 2305843009213693951 * 8191 * 13;
+		c = (BigInteger.Pow(2, 11213) - 1) * (BigInteger.Pow(2, 4253) - 1) * 2305843009213693951 * 8191 * 13;
 	}
-
-	
 
 	private Page PageAtLocation(PageLocation location) {
 
@@ -52,12 +45,6 @@ public class OfflineLibrary: ILibrary {
 		var highBits = absoluteLocation >> flipLowCount;
 		var lowBits = lowMask & absoluteLocation;
 		var flippedLocation = (lowBits << flipLowCount) + highBits;
-
-		// var absoluteBitStr = absoluteLocation.ToString(2);
-		// var highBitStr = highBits.ToString(2);
-		// var lowBitStr = lowBits.ToString(2);
-		// var flippedLocation = (lowBits << flipLowCount) + highBits;
-		// var flippedLocStr = flippedLocation.ToString(2);
 
 		var y = LCG(flippedLocation);
 
