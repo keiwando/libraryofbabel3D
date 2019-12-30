@@ -164,6 +164,7 @@ namespace ScottGarland
 					m_dataUsed = 1;
 				}
 			}
+			m_dataUsed = System.Math.Min(m_data.Length, m_dataUsed);
 		}
 
 		internal int ShiftRight(int shiftCount)
@@ -260,6 +261,8 @@ namespace ScottGarland
 
 		internal int ShiftLeftWithoutOverflow(int shiftCount)
 		{
+			if (shiftCount == 0) return m_data.Length;
+
 			List<DType> temporary = new List<DType>(m_data);
 			int shiftAmount = DigitsArray.DataSizeBits;
 
@@ -280,10 +283,16 @@ namespace ScottGarland
 					carry = (val >> DigitsArray.DataSizeBits);
 				}
 
-				if (carry != 0)
+				if (carry != 0) 
 				{
-					temporary.Add(0);
-					temporary[temporary.Count - 1] = (DType)carry;
+					DType lastNum = (DType)carry;
+					if (IsNegative) 
+					{
+						int byteCount = (int)Math.Floor(Math.Log(carry, 2));
+						lastNum = (0xffffffff << byteCount) | (DType)carry;
+					}
+
+					temporary.Add(lastNum);
 				}
 			}
 			m_data = new DType[temporary.Count];
@@ -466,39 +475,48 @@ namespace ScottGarland
 		/// </remarks>
 		/// <param name="digits">A string</param>
 		/// <param name="radix">A int between 2 and 36.</param>
-		public BigInteger(string digits, int radix)
+		public BigInteger(string digits, int radix, string charSet = "0123456789abcdefghijklmnopqrstuvwxyz")
 		{
-			Construct(digits, radix);
+			Construct(digits, radix, charSet);
 		}
 
-		private void Construct(string digits, int radix)
+		private void Construct(string digits, int radix, string charSet = "0123456789abcdefghijklmnopqrstuvwxyz")
 		{
 			if (digits == null)
 			{
 				throw new ArgumentNullException("digits");
 			}
 
+			// charSet = charSet.ToUpper(System.Globalization.CultureInfo.CurrentCulture).Trim();
+
+			var indexForChar = new Dictionary<char, int>();
+			for (int i = 0; i < charSet.Length; i++) {
+				indexForChar[charSet[i]] = i;
+			}
+
 			BigInteger multiplier = new BigInteger(1);
 			BigInteger result = new BigInteger();
-			digits = digits.ToUpper(System.Globalization.CultureInfo.CurrentCulture).Trim();
+			// digits = digits.ToUpper(System.Globalization.CultureInfo.CurrentCulture).Trim();
 
 			int nDigits = (digits[0] == '-' ? 1 : 0);
 
 			for (int idx = digits.Length - 1; idx >= nDigits ; idx--)
 			{
-				int d = (int)digits[idx];
-				if (d >= '0' && d <= '9')
-				{
-					d -= '0';
-				}
-				else if (d >= 'A' && d <= 'Z')
-				{
-					d = (d - 'A') + 10;
-				}
-				else
-				{
-					throw new ArgumentOutOfRangeException("digits");
-				}
+				// int d = (int)digits[idx];
+				// if (d >= '0' && d <= '9')
+				// {
+				// 	d -= '0';
+				// }
+				// else if (d >= 'A' && d <= 'Z')
+				// {
+				// 	d = (d - 'A') + 10;
+				// }
+				// else
+				// {
+				// 	throw new ArgumentOutOfRangeException("digits");
+				// }
+
+				int d = indexForChar[digits[idx]];
 
 				if (d >= radix)
 				{
@@ -1074,6 +1092,18 @@ namespace ScottGarland
 			return leftSide % rightSide;
 		}
 
+		public static BigInteger ActualModulus(BigInteger leftSide, BigInteger rightSide) 
+		{
+			if (leftSide < 0) 
+			{
+				return rightSide + Modulus(leftSide, rightSide);
+			} 
+			else 
+			{
+				return Modulus(leftSide, rightSide);
+			}
+		}
+
 		#endregion
 
 		#region Exponentiation
@@ -1194,7 +1224,7 @@ namespace ScottGarland
 			}
 
 			DigitsArray da = new DigitsArray(leftSide.m_digits);
-			da.DataUsed = da.ShiftLeftWithoutOverflow(shiftCount);
+			da.ShiftLeftWithoutOverflow(shiftCount);
 
 			return new BigInteger(da);
 		}

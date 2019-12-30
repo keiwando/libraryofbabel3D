@@ -6,7 +6,8 @@ using ScottGarland;
 public class HexagonLocation {	
 
 	public static readonly string Alphabet = "0123456789abcdefghijklmnopqrstuvwxyz";
-	public static readonly BigInteger MaxValue = BigInteger.Pow(29, 3200) - 1;
+	public static readonly int MaxNameLength = 3201; // since 29^3200 < m < 29^3201
+	public static readonly BigInteger MaxValue = BigInteger.Pow(29, 3201) - 1;
 	private static readonly BigInteger MaxValuePlusOne = MaxValue + 1;
 
 	public string Name {
@@ -45,7 +46,7 @@ public class HexagonLocation {
 		var rand = new System.Random();
 		var characters = HexagonLocation.Alphabet.ToCharArray();
 
-		var length = rand.Next(1, 3200);
+		var length = rand.Next(1, 3201);
 
 		for (int i = 0; i < length; i++) {
 

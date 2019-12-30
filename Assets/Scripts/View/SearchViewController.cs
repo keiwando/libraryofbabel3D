@@ -89,11 +89,11 @@ public class SearchViewController : MonoBehaviour {
 
 		this.search.Search(searchInput.text, exactMatchToggle.isOn, delegate(SearchResult result) {
 
-			hexNameField.text = result.HexName;
-			wallNumLabel.text = result.WallNum.ToString();
-			shelfNumLabel.text = result.ShelfNum.ToString();
-			bookNumLabel.text = result.BookNum.ToString();
-			pageNumLabel.text = result.PageNum.ToString();
+			hexNameField.text = result.Hex.Name;
+			wallNumLabel.text = result.Wall.ToString();
+			shelfNumLabel.text = result.Shelf.ToString();
+			bookNumLabel.text = result.Book.ToString();
+			pageNumLabel.text = result.Page.ToString();
 
 			foundTitle = result.Title;
 			print("Found title: " + foundTitle);

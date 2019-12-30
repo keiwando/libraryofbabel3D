@@ -56,11 +56,11 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 
 		return new SearchResult() {
 			Title = title,
-			HexName = parts[1],
-			WallNum = int.Parse(parts[3]),
-			ShelfNum = int.Parse(parts[5]),
-			BookNum = int.Parse(parts[7]),
-			PageNum = int.Parse(parts[9])
+			Hex = new HexagonLocation(parts[1]),
+			Wall = int.Parse(parts[3]),
+			Shelf = int.Parse(parts[5]),
+			Book = int.Parse(parts[7]),
+			Page = int.Parse(parts[9])
 		};
 	}
 }
