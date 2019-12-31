@@ -3,19 +3,8 @@ using Keiwando.Lob;
 
 public class OfflineLibrary: ILibrary {
 
-	// LCG variables
 	private Math.LCGParameters pageLCGParams;
-	private Math.LCGParameters titleLCGParams;
-
-	// Bitshift variables
-	private static readonly int w = 15546; // 2^15545 < 29^3200 < 2^15546
-	private static readonly int safeHighBits = 5;
-	private static readonly int flipLowCount = 40;
-	private static readonly int flipHighCount = w - flipLowCount - safeHighBits;
-	private static readonly int bitsToFlip = flipLowCount + flipHighCount;
-	private static readonly BigInteger lowMask = (new BigInteger(1) << flipLowCount) - 1;
-	private static readonly BigInteger invLowMask = (new BigInteger(1) << flipHighCount) - 1;
-	private static readonly BigInteger flipMask = (new BigInteger(1) << bitsToFlip) - 1;
+	private Math.FlipParameters pageFlipParams;
 
 	private BigInteger relativeLocationOffset = BigInteger.Pow(10, 24);
 
@@ -31,22 +20,15 @@ public class OfflineLibrary: ILibrary {
 			pageLCGParams.aInverse = Math.extendedGcd(pageLCGParams.a, pageLCGParams.m).x;
 		}
 
-		// Setup title LCG
-		{
-			var min_m = BigInteger.Pow(29, 26);
-			var a_minus_1 = (min_m / 2);
-			titleLCGParams.a = a_minus_1 + 1;
-			titleLCGParams.m = 4 * a_minus_1;
-			titleLCGParams.c = BigInteger.Pow(2, 127) - 1;
-			titleLCGParams.aInverse = Math.extendedGcd(titleLCGParams.a, titleLCGParams.m).x;
-		}
+		// We can't touch the first 5 bits in order to guarantee that the input
+		// of the LCG is always < m
+		pageFlipParams = new Math.FlipParameters(15546, 5, 40); // 2^15545 < 29^3200 < 2^15546
 	}
 
 	private Page PageAtLocation(PageLocation location) {
 
 		var hexName = new BigInteger(location.Hex.Name, 36);
 		BigInteger absoluteLocation = hexName + relativeLocationOffset * ((location.Page - 1) * 10000 + (location.Book - 1) * 100 + (location.Shelf - 1) * 10 + (location.Wall - 1));
-		// BigInteger absoluteLocation = hexName + 10000000 * ((location.Wall - 1)  * 10000 + (location.Book - 1) * 100 + (location.Shelf - 1) * 10 + (location.Page - 1));
 		absoluteLocation = BigInteger.ActualModulus(absoluteLocation, pageLCGParams.m);
 
 		return new Page() {
@@ -59,13 +41,7 @@ public class OfflineLibrary: ILibrary {
 
 		// Flip some of the first and last of the location bits
 		// so that consecutive rooms lead to bigger differences in book contents
-		// We can't touch the first 5 bits in order to guarantee that the input
-		// of the LCG is always < m
-		var flipSegment = absoluteLocation & flipMask;
-		var safeBits = absoluteLocation & (~flipMask);
-		var highBits = flipSegment >> flipLowCount;
-		var lowBits = lowMask & flipSegment;
-		var flippedLocation = (lowBits << flipHighCount) + highBits + safeBits;
+		var flippedLocation = Math.FlipBits(absoluteLocation, pageFlipParams);
 
 		var y = Math.LCG(flippedLocation, pageLCGParams);
 
@@ -80,28 +56,29 @@ public class OfflineLibrary: ILibrary {
 		
 		var flippedLocation = Math.InverseLCG(y, pageLCGParams);
 
-		var flipSegment = flippedLocation & flipMask;
-		var safeBits = flippedLocation & (~flipMask);
-		var highBits = flipSegment >> flipHighCount;
-		var lowBits = invLowMask & flipSegment;
-		var absoluteLocation = (lowBits << flipLowCount) + highBits + safeBits;
-
-		return absoluteLocation;
+		return Math.InverseFlipBits(flippedLocation, pageFlipParams);
 	}
 
-	private string AbsoluteLocationToTitle(BigInteger absoluteLocation) {
+	private string[] AbsoluteLocationToTitles(BigInteger absoluteLocation) {
 
-		var y = Math.LCG(absoluteLocation, titleLCGParams);
-		return y.ToString(29, Universe.Alphabet);
+		var page = AbsoluteLocationToPageText(absoluteLocation);
+		var titlesAsOne = page.Substring(1899, 26 * 32);
+		var titles = new string[32];
+		for (int i = 0; i < 32; i++) {
+			titles[i] = titlesAsOne.Substring(i * 26, 26);
+		}
+		return titles;
 	}
 
-	private BigInteger PageLocationToAbsoluteLocationForTitle(PageLocation location) {
-		var absoluteLocation = location.Hex.Value + relativeLocationOffset * (location.Book * 100 + location.Shelf * 10 + location.Wall);
-		var highBits = absoluteLocation >> flipLowCount;
-		var lowBits = lowMask & absoluteLocation;
-		var flippedLocation = (lowBits << flipHighCount) + highBits;
-		return flippedLocation;
-	} 
+	private string[] ShelfLocationToTitles(ShelfLocation location) {
+		var absoluteLocation = location.Hex.Value + relativeLocationOffset * (97 * location.Shelf + 42 * location.Wall);
+		return AbsoluteLocationToTitles(absoluteLocation);
+	}
+
+	private string PageLocationToTitle(PageLocation location) {
+		var titles = ShelfLocationToTitles(location.GetShelfLocation());
+		return titles[location.Page - 1];
+	}
 
 	// MARK: - ILibrary
 
@@ -120,26 +97,12 @@ public class OfflineLibrary: ILibrary {
 
 	public void RequestBookTitles(ShelfLocation shelfLocation, OnTitleRequestCompleted onCompletion) {
 		
-		var result = new string[32];
-		for (int i = 0; i < 32; i++) {
-			var location = new PageLocation() {
-				Hex = shelfLocation.Hex,
-				Wall = shelfLocation.Wall,
-				Shelf = shelfLocation.Shelf,
-				Book = i + 1,
-				Page = 1
-			};
-			var absoluteLocation = PageLocationToAbsoluteLocationForTitle(location);
-			result[i] = AbsoluteLocationToTitle(absoluteLocation);
-		}
-		onCompletion(result);
+		onCompletion(ShelfLocationToTitles(shelfLocation));
 	}
 
 	public void RequestBookTitle(PageLocation page, OnTitleRequestCompleted onCompletion) {
 		
-		var absoluteLocation = PageLocationToAbsoluteLocationForTitle(page);
-		var title = AbsoluteLocationToTitle(absoluteLocation);
-		onCompletion(new string[] { title });
+		onCompletion(new string[] { PageLocationToTitle(page) });
 	}
 
 	private class OfflineSearch: ILibrarySearch {
@@ -179,17 +142,21 @@ public class OfflineLibrary: ILibrary {
 			var relativeLocation = page * 10000 + book * 100 + shelf * 10 + wall;
 			var hexLocation = absoluteLocation - library.relativeLocationOffset * relativeLocation;
 
-			if (absoluteLocation > library.pageLCGParams.m) {
-				UnityEngine.Debug.Break();
-			}
-
-			onCompletion(new SearchResult() {
-				Title = "", // TODO: Add book titles
-				Hex = new HexagonLocation(hexLocation), // TODO: Turn this into a HexagonLocation
+			var pageLocation = new PageLocation() {
+				Hex = new HexagonLocation(hexLocation),
 				Wall = wall + 1,
 				Shelf = shelf + 1,
 				Book = book + 1,
 				Page = page + 1
+			};
+
+			onCompletion(new SearchResult() {
+				Title = library.PageLocationToTitle(pageLocation), 
+				Hex = pageLocation.Hex,
+				Wall = pageLocation.Wall,
+				Shelf = pageLocation.Shelf,
+				Book = pageLocation.Book,
+				Page = pageLocation.Page
 			});
 		}
 	}
