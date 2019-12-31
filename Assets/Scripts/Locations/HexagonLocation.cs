@@ -46,7 +46,7 @@ public class HexagonLocation {
 		var rand = new System.Random();
 		var characters = HexagonLocation.Alphabet.ToCharArray();
 
-		var length = rand.Next(1, 3201);
+		var length = rand.Next(1, 3200);
 
 		for (int i = 0; i < length; i++) {
 

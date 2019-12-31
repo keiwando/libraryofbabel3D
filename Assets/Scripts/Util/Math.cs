@@ -4,6 +4,25 @@ namespace Keiwando.Lob {
 
   public static class Math {
 
+    // MARK: - Linear Congruential Generator
+
+    public struct LCGParameters {
+      public BigInteger m;
+      public BigInteger a;
+      public BigInteger c;
+      public BigInteger aInverse;
+    }
+    
+    public static BigInteger LCG(BigInteger x, LCGParameters p) {
+	  	return BigInteger.ActualModulus(p.a * x + p.c, p.m);
+	  }
+
+    public static BigInteger InverseLCG(BigInteger x, LCGParameters p) {
+      return BigInteger.ActualModulus(p.aInverse * (x - p.c), p.m);
+    }
+
+    // MARK: - Euclid's Extended Algorithm
+
     public static EuclidExtendedSolution extendedGcd(BigInteger a, BigInteger b) {
 
       BigInteger x0 = 1, xn = 1;

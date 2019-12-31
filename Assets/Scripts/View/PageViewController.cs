@@ -73,6 +73,9 @@ public class PageViewController: MonoBehaviour {
 
 		viewController = ViewController.Find();
 		this.gameObject.SetActive(true);
+		if (pageLocation.Page != 1 && pageLocation.Page % 2 != 0) {
+			pageLocation.Page--;
+		}
 		currentPageLocation = pageLocation;
 
 		if (string.IsNullOrEmpty(title)) {
@@ -160,11 +163,10 @@ public class PageViewController: MonoBehaviour {
 				SetPositionIndication(currentPageLocation);
 				leftPage.Text = "";
 
-			} else if (pages[0].Location.Page == Universe.PAGES_PER_BOOK) {
-				//pageTextRight.text = "";
-				rightPage.Text = "";
-
 			} else {
+				if (pages[0].Location.Page == Universe.PAGES_PER_BOOK) {
+					rightPage.Text = "";
+				}
 				SetVisibleTitle("");
 				SetPositionIndication("");
 			}
@@ -182,8 +184,7 @@ public class PageViewController: MonoBehaviour {
 
 		currentPageLocation = currentPageLocation.Page == 1 ? currentPageLocation.NextPage() : currentPageLocation.NextPage().NextPage();
 		pageNumberInput.text = currentPageLocation.Page.ToString();
-		//leftPage.Text = " ";
-		//rightPage.Text = " ";
+		
 		ShowCurrentPages();
 	}
 
@@ -194,8 +195,7 @@ public class PageViewController: MonoBehaviour {
 
 		currentPageLocation = currentPageLocation.Page == 2 ? currentPageLocation.PreviousPage() : currentPageLocation.PreviousPage().PreviousPage();
 		pageNumberInput.text = currentPageLocation.Page.ToString();
-		//leftPage.Text = " ";
-		//rightPage.Text = " ";
+		
 		ShowCurrentPages();
 	}
 
