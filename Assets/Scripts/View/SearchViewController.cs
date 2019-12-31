@@ -107,7 +107,7 @@ public class SearchViewController : MonoBehaviour {
 
 	private string FilterValidHexCharacters(string text) {
 
-		return validHexNameCharactersFilter.Replace(text, "");
+		return validHexNameCharactersFilter.Replace(text.ToLower(), "");
 	}
 
 	public void GoToSelection() {

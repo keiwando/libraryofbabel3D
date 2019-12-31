@@ -83,7 +83,7 @@ public class Universe : MonoBehaviour {
 		var stringBuilder = new StringBuilder();
 
 		int charactersBefore = Random.Range(0, missingCharacters);
-		int charactersAfter = missingCharacters - charactersBefore - 1;
+		int charactersAfter = missingCharacters - charactersBefore;
 
 		char[] alphabetArray = Universe.Alphabet.ToCharArray();
 

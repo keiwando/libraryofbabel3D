@@ -77,7 +77,7 @@ public class OfflineLibrary: ILibrary {
 
 	private string PageLocationToTitle(PageLocation location) {
 		var titles = ShelfLocationToTitles(location.GetShelfLocation());
-		return titles[location.Page - 1];
+		return titles[location.Book - 1];
 	}
 
 	// MARK: - ILibrary
