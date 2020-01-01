@@ -6148,1463 +6148,1569 @@ MonoBehaviour:
   m_AtlasRenderMode: 4169
   m_glyphInfoList: []
   m_KerningTable:
-    kerningPairs:
-    - m_FirstGlyph: 32
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 65
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 32
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 84
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 32
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 89
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 49
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 49
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 32
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 84
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 86
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 87
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 89
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 118
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 119
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 121
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 65
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 8217
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 70
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 70
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 70
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 65
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 76
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 32
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 76
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 84
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 76
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 86
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 76
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 87
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 76
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 89
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 76
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 121
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 76
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 8217
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 80
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 32
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 80
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -11.09375
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 80
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -11.09375
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 80
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 65
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 82
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 84
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 82
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 86
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 82
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 87
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 82
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 89
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 32
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 45
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 58
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 59
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 65
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 79
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 97
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 99
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 101
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 105
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 111
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 114
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -9.53125
-        yAdvance: 0
-      m_SecondGlyph: 115
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 117
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 119
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 84
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 121
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -7.890625
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 45
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -7.890625
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 58
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 59
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 65
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 97
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 101
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 105
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 111
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 114
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 117
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 86
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 121
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 45
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 58
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 59
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 65
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 97
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 101
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 111
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 114
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 117
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 87
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -0.75
-        yAdvance: 0
-      m_SecondGlyph: 121
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 32
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -11.09375
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -7.890625
-        yAdvance: 0
-      m_SecondGlyph: 45
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -11.09375
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 58
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -5.578125
-        yAdvance: 0
-      m_SecondGlyph: 59
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 65
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 97
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -7.890625
-        yAdvance: 0
-      m_SecondGlyph: 101
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 105
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -7.890625
-        yAdvance: 0
-      m_SecondGlyph: 111
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 112
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -7.890625
-        yAdvance: 0
-      m_SecondGlyph: 113
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 117
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 89
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 118
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 102
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 102
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 102
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 1.546875
-        yAdvance: 0
-      m_SecondGlyph: 8217
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 114
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 114
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 114
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 3.1875
-        yAdvance: 0
-      m_SecondGlyph: 8217
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 118
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 118
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 119
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 119
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -4.75
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 121
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 44
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 121
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -6.390625
-        yAdvance: 0
-      m_SecondGlyph: 46
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 8216
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 8216
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 8217
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -3.1875
-        yAdvance: 0
-      m_SecondGlyph: 32
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 8217
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 115
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
-    - m_FirstGlyph: 8217
-      m_FirstGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: -1.546875
-        yAdvance: 0
-      m_SecondGlyph: 8217
-      m_SecondGlyphAdjustments:
-        xPlacement: 0
-        yPlacement: 0
-        xAdvance: 0
-        yAdvance: 0
-      xOffset: 0
-      m_IgnoreSpacingAdjustments: 0
+    kerningPairs: []
+  m_FontFeatureTable:
+    m_GlyphPairAdjustmentRecords:
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 20
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 20
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 89
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 90
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 92
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 41
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 41
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 41
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 47
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 47
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 47
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 47
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 47
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 47
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 92
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 47
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 51
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 51
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -11.09375
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 51
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -11.09375
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 51
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 53
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 53
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 53
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 53
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 16
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 29
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 30
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 50
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 68
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 70
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 72
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 76
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 82
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 85
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -9.53125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 86
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 88
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 90
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 55
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 92
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -7.890625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 16
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -7.890625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 29
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 30
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 68
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 72
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 76
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 82
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 85
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 88
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 57
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 92
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 16
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 29
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 30
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 68
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 72
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 82
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 85
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 88
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 58
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -0.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 92
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -11.09375
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -7.890625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 16
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -11.09375
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 29
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -5.578125
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 30
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 36
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 68
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -7.890625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 72
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 76
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -7.890625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 82
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 83
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -7.890625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 84
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 88
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 60
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 89
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 73
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 73
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 73
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 85
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 85
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 85
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 89
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 89
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 90
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 90
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -4.75
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 92
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 15
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 92
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -6.390625
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 17
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 2019
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 2019
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -3.1875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 3
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 86
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
+    - m_FirstAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: -1.546875
+          m_YAdvance: 0
+      m_SecondAdjustmentRecord:
+        m_GlyphIndex: 2020
+        m_GlyphValueRecord:
+          m_XPlacement: 0
+          m_YPlacement: 0
+          m_XAdvance: 0
+          m_YAdvance: 0
+      m_FeatureLookupFlags: 0
   m_FallbackFontAssetTable:
   - {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_CreationSettings:

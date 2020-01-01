@@ -151,7 +151,7 @@ public class OfflineLibrary: ILibrary {
 			};
 
 			onCompletion(new SearchResult() {
-				Title = library.PageLocationToTitle(pageLocation), 
+				Title = "", //library.PageLocationToTitle(pageLocation), 
 				Hex = pageLocation.Hex,
 				Wall = pageLocation.Wall,
 				Shelf = pageLocation.Shelf,

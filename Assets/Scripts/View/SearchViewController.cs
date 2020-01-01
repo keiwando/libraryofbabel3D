@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 using System.Text.RegularExpressions;
+using Keiwando.Lob;
 
 public class SearchViewController : MonoBehaviour {
 
@@ -16,21 +18,26 @@ public class SearchViewController : MonoBehaviour {
 	private Toggle exactMatchToggle;
 
 	[SerializeField]
-	private Button goButton;
+	private Button goToHexButton;
+	[SerializeField]
+	private Button openPageButton;
+
 	[SerializeField]
 	private Button searchButton;
 	[SerializeField]
 	private Button settingsButton;
 
-	//[SerializeField] private Button bugButton;
 	[SerializeField]
-	private Text wallNumLabel;
+	private TextMeshProUGUI wallNumLabel;
 	[SerializeField]
-	private Text shelfNumLabel;
+	private TextMeshProUGUI shelfNumLabel;
 	[SerializeField]
-	private Text bookNumLabel;
+	private TextMeshProUGUI bookNumLabel;
 	[SerializeField]
-	private Text pageNumLabel;
+	private TextMeshProUGUI pageNumLabel;
+
+	[SerializeField]
+	private RelativeLocationFlowLayout locationFlowLayout;
 
 	private string foundTitle = "";
 
@@ -58,9 +65,13 @@ public class SearchViewController : MonoBehaviour {
 			hexNameField.text = FilterValidHexCharacters(arg0);
 		});
 
-		goButton.onClick.AddListener(delegate {
+		goToHexButton.onClick.AddListener(delegate {
 			GoToSelection();
 		});
+		openPageButton.onClick.AddListener(delegate {
+			GoToSelection();
+		});
+
 		searchButton.onClick.AddListener(delegate {
 			Search();	
 		});
@@ -78,10 +89,10 @@ public class SearchViewController : MonoBehaviour {
 
 		gameObject.SetActive(true);
 		ResetLabels();
+		RefreshControlVisibility();
 	}
 
 	public void Hide() {
-
 		gameObject.SetActive(false);
 	}
 
@@ -95,18 +106,16 @@ public class SearchViewController : MonoBehaviour {
 			bookNumLabel.text = result.Book.ToString();
 			pageNumLabel.text = result.Page.ToString();
 
-			foundTitle = result.Title;
-			print("Found title: " + foundTitle);
+			RefreshControlVisibility();
+			locationFlowLayout.Refresh();
 		});
 	}
 
 	private string FilterValidSearchCharacters(string text) {
-
 		return validSearchCharactersFilter.Replace(text, "");
 	}
 
 	private string FilterValidHexCharacters(string text) {
-
 		return validHexNameCharactersFilter.Replace(text.ToLower(), "");
 	}
 
@@ -151,5 +160,16 @@ public class SearchViewController : MonoBehaviour {
 		hexNameField.text = viewController.GetCurrentHexLocation().Name;
 
 		searchInput.text = "";
+	}
+
+	private void RefreshControlVisibility() {
+		var hideRelativeLocationControls = wallNumLabel.text == "0";
+		wallNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		shelfNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		bookNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		pageNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		openPageButton.gameObject.SetActive(!hideRelativeLocationControls);
+
+		goToHexButton.gameObject.SetActive(hideRelativeLocationControls);
 	}
 }
