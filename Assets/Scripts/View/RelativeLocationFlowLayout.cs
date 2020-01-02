@@ -32,11 +32,8 @@ namespace Keiwando.Lob {
         var childWidth = nameTransform.rect.width + valueTransform.rect.width;
         childWidths.Add(childWidth);
         totalChildWidth += childWidth;
-        Debug.Log(childWidth);
       }
 
-      Debug.Log(totalChildWidth);
-      Debug.Log(rectTransform.rect.width);
       var gap = 0f;
       if (flex) {
         gap = (rectTransform.rect.width - totalChildWidth) / (transform.childCount - 1);

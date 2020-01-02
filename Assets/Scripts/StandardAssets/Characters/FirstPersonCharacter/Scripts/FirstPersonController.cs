@@ -65,14 +65,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
 
 
-			if(Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer){
-				locked = false;
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;	
-			} else {
-				//Input.gyro.enabled = true;
-				//initialRotation = Input.gyro.attitude;
-			}
+            #if !UNITY_ANDROID && !UNITY_IOS
+            locked = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;	
+            #endif
 
 			VROffset = Quaternion.identity;
 			rotationOffset = Quaternion.identity;
@@ -80,28 +77,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		//CUSTOM
 		public void setLocked(bool l){
-			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
-				locked = l;
-				if(l){
-					Cursor.lockState = CursorLockMode.None;
-					Cursor.visible = true;
-				}else{
-					Cursor.lockState = CursorLockMode.Locked;
-					Cursor.visible = false;
-				}
-			}
+
+            #if !UNITY_ANDROID && !UNITY_IOS 
+            locked = l;
+            Cursor.lockState = locked ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = locked;
+            #endif
 		}
 
-		private void updateLock(){
-			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
-				if(locked){
-					Cursor.lockState = CursorLockMode.None;
-					Cursor.visible = true;
-				}else{
-					Cursor.lockState = CursorLockMode.Locked;
-					Cursor.visible = false;
-				}
-			}
+		private void updateLock() {
+            setLocked(locked);
 		}
 
 		void OnGUI (){

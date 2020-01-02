@@ -15,7 +15,7 @@ public class Universe : MonoBehaviour {
 		get { return LINES_PER_PAGE * CHARACTERS_PER_LINE; }
 	}
 
-	public static readonly string Alphabet = "abcdefghijklmnopqrstuvwxyz,. ";
+	public static readonly string Alphabet = " abcdefghijklmnopqrstuvwxyz,.";
 
 	public static Universe Shared {
 		get { return shared; }

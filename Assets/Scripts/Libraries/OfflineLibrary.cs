@@ -53,6 +53,7 @@ public class OfflineLibrary: ILibrary {
 
 		var contents = text.Substring(3200 - 415, 415) + text.Substring(0, 3200 - 415);
 		var y = new BigInteger(contents, 29, Universe.Alphabet);
+		var testStr = y.ToString(29, Universe.Alphabet);
 		
 		var flippedLocation = Math.InverseLCG(y, pageLCGParams);
 
@@ -118,6 +119,7 @@ public class OfflineLibrary: ILibrary {
 			text = exactMatch ? Universe.FillPageBlank(text) : Universe.FillPageRandomly(text);
 
 			var absoluteLocation = library.PageTextToAbsoluteLocation(text);
+			UnityEngine.Debug.Log(library.AbsoluteLocationToPageText(absoluteLocation) == text);
 			
 			// Extract the segment(s) in the absolute location that contain the relative location information
 			var relativeSegment = (absoluteLocation % (library.relativeLocationOffset * 10000000)) / library.relativeLocationOffset;

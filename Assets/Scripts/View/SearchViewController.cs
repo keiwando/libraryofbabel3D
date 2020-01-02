@@ -52,11 +52,13 @@ public class SearchViewController : MonoBehaviour {
 
 			foundTitle = "";
 
-			if (arg0 == "\n") {
+			if (CanSearchForCurrentInput() && arg0 == "\n") {
 				Search();
 			} else {
 				searchInput.text = FilterValidSearchCharacters(arg0);	
 			}
+
+			RefreshSearchButton();
 		});
 
 		hexNameField.onValueChanged.AddListener(delegate(string arg0) {
@@ -78,6 +80,11 @@ public class SearchViewController : MonoBehaviour {
 		settingsButton.onClick.AddListener(delegate {
 			viewController.ShowSettings();
 		});
+		exactMatchToggle.onValueChanged.AddListener(delegate {
+			RefreshSearchButton();
+		});
+
+		RefreshSearchButton();
 	}
 
 	public void Show(ILibrarySearch search = null) {
@@ -97,6 +104,8 @@ public class SearchViewController : MonoBehaviour {
 	}
 
 	public void Search(){
+
+		Debug.Log(searchInput.text.Length);
 
 		this.search.Search(searchInput.text, exactMatchToggle.isOn, delegate(SearchResult result) {
 
@@ -171,5 +180,13 @@ public class SearchViewController : MonoBehaviour {
 		openPageButton.gameObject.SetActive(!hideRelativeLocationControls);
 
 		goToHexButton.gameObject.SetActive(hideRelativeLocationControls);
+	}
+
+	private bool CanSearchForCurrentInput() {
+		return exactMatchToggle.isOn || !string.IsNullOrEmpty(searchInput.text);
+	}
+
+	private void RefreshSearchButton() {
+		searchButton.interactable = CanSearchForCurrentInput();
 	}
 }

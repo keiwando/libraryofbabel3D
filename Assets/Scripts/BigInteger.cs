@@ -502,19 +502,6 @@ namespace ScottGarland
 
 			for (int idx = digits.Length - 1; idx >= nDigits ; idx--)
 			{
-				// int d = (int)digits[idx];
-				// if (d >= '0' && d <= '9')
-				// {
-				// 	d -= '0';
-				// }
-				// else if (d >= 'A' && d <= 'Z')
-				// {
-				// 	d = (d - 'A') + 10;
-				// }
-				// else
-				// {
-				// 	throw new ArgumentOutOfRangeException("digits");
-				// }
 
 				int d = indexForChar[digits[idx]];
 
@@ -1532,7 +1519,7 @@ namespace ScottGarland
 		/// <summary>
 		/// Converts the numeric value of this instance to its equivalent string representation in specified base.
 		/// </summary>
-		/// <param name="radix">Int radix between 2 and 36</param>
+		/// <param name="radix">Int radix between 2 and the length of charSet</param>
 		/// <param charSet="charSet">
 		/// Character set. Must contain enough characters for given radix.
 		/// Defaults to "0123456789abcdefghijklmnopqrstuvwxyz".
@@ -1540,14 +1527,14 @@ namespace ScottGarland
 		/// <returns>A string.</returns>
 		public string ToString(int radix, string charSet = "0123456789abcdefghijklmnopqrstuvwxyz")
 		{
-			if (radix < 2 || radix > 36)
+			if (radix < 2 || radix > charSet.Length)
 			{
 				throw new ArgumentOutOfRangeException("radix");
 			}
 
 			if (IsZero)
 			{
-				return "0";
+				return charSet[0].ToString();
 			}
 
 			BigInteger a = this;

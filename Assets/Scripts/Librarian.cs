@@ -300,6 +300,7 @@ public class Librarian : MonoBehaviour {
 		postProcessing.enabled = Settings.PostProcessingEnabled;
 	}
 
+	// Includes Camera Controls
 	private void SwipeHandling(){
 
 		if (IsReadingBook() || IsInMenu())
