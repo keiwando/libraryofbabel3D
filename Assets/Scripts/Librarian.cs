@@ -60,10 +60,6 @@ public class Librarian : MonoBehaviour {
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
 
 		CurrentLocation = HexagonLocation.RandomLocation();
-		// TODO: Remove after debugging
-		// CurrentLocation = new HexagonLocation(0);
-
-		ChooseDeathText();
 	}
 
 	void Update () {
@@ -110,7 +106,7 @@ public class Librarian : MonoBehaviour {
 
 	private Touch[] FilterSwipeValidTouches(Touch[] touches) {
 
-		return touches.Where(t => t.position.magnitude > Screen.width / 2.5 && t.position.y > Screen.height * 0.2).ToArray();
+		return touches.Where(t => t.position.x > Screen.width * 0.33f || t.position.y > Screen.height * 0.42f).ToArray();
 	}
 
 	private void RotateCamera(Vector2 rotateVector, float rotationSpeed){
@@ -138,17 +134,26 @@ public class Librarian : MonoBehaviour {
 
 	public void IncreaseFallCount(){
 		fallCount++;
-		if(fallCount > maxFallNum){
-			if(!Application.isMobilePlatform && Application.platform != RuntimePlatform.WebGLPlayer){
-				Application.Quit();		// Quit the Application on Standalone builds
-			} else {
+		if(fallCount == maxFallNum + 1) {
+			#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_WEBGL
+				Application.Quit();
+			#else
+				var deathText = ChooseDeathText();
+				viewController.SetDeathText(deathText);
 				viewController.ActivateDeathText();
-				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);				// Respawn on mobile
-			}
+				var wordsInDeathText = deathText.Split(' ').Length;
+				var pauseLength = (float)wordsInDeathText / 5f;
+				StartCoroutine(ReloadSceneAfterSeconds(pauseLength));
+			#endif
 		}
 	}
 
-	private void ChooseDeathText() {
+	private IEnumerator ReloadSceneAfterSeconds(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	private string ChooseDeathText() {
 
 		string[] sentences = ReadTextFile();
 		int pickedSentenceCount = 1;
@@ -161,16 +166,20 @@ public class Librarian : MonoBehaviour {
 			deathText += sentences[i] + ". ";
 		}
 
-		viewController.SetDeathText(deathText);
+		return deathText;
 	}
 
 	private string[] ReadTextFile() {
 		
-		TextAsset txt = (TextAsset)Resources.Load("LibraryofBabel", typeof(TextAsset));
-		string content = txt.text;
+		if (DeathText.Story == "") {
+			TextAsset txt = (TextAsset)Resources.Load("LibraryofBabel", typeof(TextAsset));
+			DeathText.Story = txt.text;
+		}
+
+		string content = DeathText.Story;
 
 		//divide string into sentences and return array
-		return content.Split(new char[] {'.',';'});
+		return content.Split(new char[] { '.', ';' });
 	}
 
 	public void MovedToNextRoom(){

@@ -5,6 +5,8 @@ using System.Threading;
 
 public class DeathText : MonoBehaviour {
 
+	public static string Story = "";
+
 	[SerializeField]
 	private Text text;
 

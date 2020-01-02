@@ -7,7 +7,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(LibraryTranslator))]
 public class GhoulScript : MonoBehaviour {
 	
-	//[SerializeField] private MathFunctions universe;
 	[SerializeField] private Light pointLight;
 	[SerializeField] private Text knowledgeMirror;
 	[SerializeField] private int spawningChance;	//out of 100
@@ -17,15 +16,12 @@ public class GhoulScript : MonoBehaviour {
 	private Librarian librarian;
 	private Hexagon hexagon;
 
-	// private string baseUrl = "https://libraryofbabel.info/book.cgi?";
-	// private string regexp = "<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
-
 	public bool ShouldRead { get; set; }
 
 	private Queue<string> knowledge;
 	private const string baseKnowledge = "It's all just gibberish!";
 
-	private const float pageReadingInterval = 20.0f;
+	private const float pageReadingInterval = 15.0f;
 
 	[SerializeField]
 	private Material defaultMaterial;

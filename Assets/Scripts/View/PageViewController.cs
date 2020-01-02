@@ -58,12 +58,18 @@ public class PageViewController: MonoBehaviour {
 		previousPageButton.onClick.AddListener(delegate {
 			ShowPreviousPages();
 		});
+
+		#if UNITY_IOS || UNITY_ANDROID
+		pageNumberInput.onEndEdit.AddListener(delegate {
+			GoToSelectedPageAndUpdate();
+		});
+		#endif
 	}
 
 	void Update() {
 		
 		if (Input.GetKeyDown(KeyCode.Return)) {
-			if (pageNumberInput.text != string.Empty) {
+			if (!string.IsNullOrEmpty(pageNumberInput.text)) {
 				GoToSelectedPageAndUpdate();
 			}
 		}
