@@ -46,12 +46,12 @@ public class OfflineLibrary: ILibrary {
 		var y = Math.LCG(flippedLocation, pageLCGParams);
 
 		var contents = y.ToString(29, Universe.Alphabet).PadLeft(3201, ' ').Substring(1, 3200);
-		return contents.Substring(415, 3200 - 415) + contents.Substring(0, 415);
+		return contents.Substring(414, 3200 - 414) + contents.Substring(0, 414);
 	}
 
 	private BigInteger PageTextToAbsoluteLocation(string text) {
 
-		var contents = text.Substring(3200 - 415, 415) + text.Substring(0, 3200 - 415);
+		var contents = text.Substring(3200 - 414, 414) + text.Substring(0, 3200 - 414);
 		var y = new BigInteger(contents, 29, Universe.Alphabet);
 		var testStr = y.ToString(29, Universe.Alphabet);
 		
