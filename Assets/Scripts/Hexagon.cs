@@ -64,14 +64,6 @@ public class Hexagon : MonoBehaviour {
 		ghoul.Respawn();
 	}
 
-	public void ActivateGhoul(){
-		ghoul.ShouldRead = true;
-	}
-
-	public void DeactivateGhoul(){
-		ghoul.ShouldRead = false;
-	}
-
 	public HexagonLocation NextHexLocation() {
 		var offset = (direction % 6) * 10 + 1;
 		return HexLocationWithOffset(offset);

@@ -119,7 +119,6 @@ public class OfflineLibrary: ILibrary {
 			text = exactMatch ? Universe.FillPageBlank(text) : Universe.FillPageRandomly(text);
 
 			var absoluteLocation = library.PageTextToAbsoluteLocation(text);
-			UnityEngine.Debug.Log(library.AbsoluteLocationToPageText(absoluteLocation) == text);
 			
 			// Extract the segment(s) in the absolute location that contain the relative location information
 			var relativeSegment = (absoluteLocation % (library.relativeLocationOffset * 10000000)) / library.relativeLocationOffset;

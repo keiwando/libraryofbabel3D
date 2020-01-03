@@ -44,8 +44,6 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		// deactivate ghoul
 		var currentHex = mainHex;
 
-		currentHex.DeactivateGhoul();
-
 		var directionAngle = Vector3.Angle(inwardVector, dif);
 
 		var destHex = directionAngle < 90 ? currentHex : hexBefore;
@@ -69,7 +67,6 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		librarian.transform.position = outColPos + currentColOffset;
 
 		currentHex.RespawnGhoul();
-		currentHex.ActivateGhoul();
 	}
 
 	public void StairTriggerLeft(Collider collider) {
@@ -81,8 +78,6 @@ public class LibraryMovementSimulator : MonoBehaviour {
 			return; // The player hasn't moved through the trigger
 
 		var currentHex = mainHex;
-
-		currentHex.DeactivateGhoul();
 
 		Hexagon nextHex = currentHex;
 		Hexagon lastHex = currentHex;
@@ -118,7 +113,6 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		fpController.rotationOffset *= (Quaternion.Inverse(Quaternion.Inverse(outCollider.transform.rotation) * fpController.transform.rotation) * currentColRotOffset);
 
 		currentHex.RespawnGhoul();
-		currentHex.ActivateGhoul();
 	}
 
 	private void MovedToNextRoom() {

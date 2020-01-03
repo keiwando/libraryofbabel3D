@@ -27,6 +27,7 @@ public class Librarian : MonoBehaviour {
 
 	[SerializeField]
 	private Hexagon currentHexagon;
+	public Hexagon CurrentHexagon { get => currentHexagon; }
 	private Wall selectedWall;
 
 	public HexagonLocation CurrentLocation {
@@ -60,6 +61,9 @@ public class Librarian : MonoBehaviour {
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
 
 		CurrentLocation = HexagonLocation.RandomLocation();
+
+		// TODO: Check if this is necessary
+		// currentHexagon.RespawnGhoul();
 	}
 
 	void Update () {
