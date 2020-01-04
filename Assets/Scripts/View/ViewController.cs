@@ -114,6 +114,17 @@ public class ViewController : MonoBehaviour {
 		searchViewController.Hide();
 		settingsViewController.Hide();
 		pageViewController.Hide();
+
+		#if UNITY_IOS || UNITY_ANDROID
+		// Defer this until the end of the frame so that 
+		StartCoroutine(DeferMenusClosed());
+		#else
+		librarian.MenusClosed();
+		#endif
+	}
+
+	private IEnumerator DeferMenusClosed() {
+		yield return new WaitForEndOfFrame();
 		librarian.MenusClosed();
 	}
 
