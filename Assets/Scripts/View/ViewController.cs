@@ -22,6 +22,11 @@ public class ViewController : MonoBehaviour {
 	[SerializeField]
 	private DeathText deathText;
 
+	[SerializeField]
+	private GameObject keyControlBook;
+	[SerializeField]
+	private GameObject centerIndicator;
+
 	void Start () {
 		librarian = GameObject.FindGameObjectWithTag("Librarian").GetComponent<Librarian>();
 	}
@@ -97,6 +102,11 @@ public class ViewController : MonoBehaviour {
 
 	public void ActivateDeathText() {
 		deathText.Activate();
+	}
+
+	public void ToggleOverlayVisibility() {
+		keyControlBook.SetActive(!keyControlBook.activeSelf);
+		centerIndicator.SetActive(keyControlBook.activeSelf);
 	}
 
 	public void CloseAllMenus() {

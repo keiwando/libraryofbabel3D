@@ -61,9 +61,6 @@ public class Librarian : MonoBehaviour {
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
 
 		CurrentLocation = HexagonLocation.RandomLocation();
-
-		// TODO: Check if this is necessary
-		// currentHexagon.RespawnGhoul();
 	}
 
 	void Update () {
@@ -76,14 +73,20 @@ public class Librarian : MonoBehaviour {
 
 	private void KeyPressHandling() {
 		
-		if(Input.GetKeyDown(KeyCode.Escape)){
+		if (Input.GetKeyDown(KeyCode.Escape)){
 			EscapeClicked();
 		}
 
-		if(Input.GetKeyDown(KeyCode.M)){
+		if (Input.GetKeyDown(KeyCode.M)){
 			if(selection != Selection.Search){
 				
 				ShowSearchInterface();
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.H)) {
+			if (selection != Selection.Search) {
+				viewController.ToggleOverlayVisibility();
 			}
 		}
 	}

@@ -32,27 +32,30 @@ public class OnlineLibrary : MonoBehaviour, ILibrary {
 
 	private IEnumerator SendPageRequests(PageLocation[] pages, OnPageRequestCompleted onCompletion){
 
-		var results = new Dictionary<PageLocation, WWW>();
+		throw new System.InvalidOperationException();
+		
+		// Removed in order to prevent internet permission requirement
+		// var results = new Dictionary<PageLocation, WWW>();
 
-		foreach (var page in pages) {
+		// foreach (var page in pages) {
 
-			var www = new WWW(PageRequestURL(page));
-			results[page] = www;
-			yield return www;
-		}
+		// 	var www = new WWW(PageRequestURL(page));
+		// 	results[page] = www;
+		// 	yield return www;
+		// }
 
-		var pageTexts = results.Keys.Select(delegate(PageLocation location) {
-			var www = results[location];
+		// var pageTexts = results.Keys.Select(delegate(PageLocation location) {
+		// 	var www = results[location];
 
-			if (www.text == "") {
-				Debug.Log("WWW Error: "+ www.error);
-				return new Page() { Location = location, Text = "Offline" };
-			} else {
-				return new Page() { Location = location, Text = ParsePage(www.text) };
-			}
-		}).ToArray();
+		// 	if (www.text == "") {
+		// 		Debug.Log("WWW Error: "+ www.error);
+		// 		return new Page() { Location = location, Text = "Offline" };
+		// 	} else {
+		// 		return new Page() { Location = location, Text = ParsePage(www.text) };
+		// 	}
+		// }).ToArray();
 
-		onCompletion(pageTexts);
+		// onCompletion(pageTexts);
 	}
 
 	private string PageRequestURL(PageLocation page) {
@@ -74,53 +77,58 @@ public class OnlineLibrary : MonoBehaviour, ILibrary {
 
 	public void RequestBookTitles(ShelfLocation shelfLocation, OnTitleRequestCompleted onCompletion) {
 
-		WWWForm form = new WWWForm();
-		form.AddField("hex", shelfLocation.Hex.Name);
-		form.AddField("wall", shelfLocation.Wall);
-		form.AddField("shelf", shelfLocation.Shelf);
+		throw new System.InvalidOperationException();
+		// WWWForm form = new WWWForm();
+		// form.AddField("hex", shelfLocation.Hex.Name);
+		// form.AddField("wall", shelfLocation.Wall);
+		// form.AddField("shelf", shelfLocation.Shelf);
 
-		StartCoroutine(WaitForRequest(TITLE_REQ_BASE_URL, form, (error, www) => {
+		// StartCoroutine(WaitForRequest(TITLE_REQ_BASE_URL, form, (error, www) => {
 
-			if (error) {
-				onCompletion(emptyTitles);
-			} else {
-				onCompletion(www.text.Split(titleSplitArray));
-			}
-		}));
+		// 	if (error) {
+		// 		onCompletion(emptyTitles);
+		// 	} else {
+		// 		onCompletion(www.text.Split(titleSplitArray));
+		// 	}
+		// }));
 	}
 
 	public void RequestBookTitle(PageLocation page, OnTitleRequestCompleted onCompletion) {
 	
-		WWWForm form = new WWWForm();
-		form.AddField("hex", page.Hex.Name);
-		form.AddField("wall", page.Wall);
-		form.AddField("shelf", page.Shelf);
-		form.AddField("book", page.Book);
+		throw new System.InvalidOperationException();
+		// WWWForm form = new WWWForm();
+		// form.AddField("hex", page.Hex.Name);
+		// form.AddField("wall", page.Wall);
+		// form.AddField("shelf", page.Shelf);
+		// form.AddField("book", page.Book);
 
-		StartCoroutine(WaitForRequest(TITLE_REQ_BASE_URL, form, (error, www) => {
+		// StartCoroutine(WaitForRequest(TITLE_REQ_BASE_URL, form, (error, www) => {
 
-			if (error) {
-				onCompletion(emptyTitles);
-			} else {
-				onCompletion(www.text.Split(titleSplitArray));
-			}
-		}));
+		// 	if (error) {
+		// 		onCompletion(emptyTitles);
+		// 	} else {
+		// 		onCompletion(www.text.Split(titleSplitArray));
+		// 	}
+		// }));
 	}
 
-	private IEnumerator WaitForRequest(string url, WWWForm form, System.Action<bool, WWW> onCompletion) {
+	// UNCOMMENTED IN ORDER TO PREVENT UNITY FROM ADDING AN 'INTERNET' PERMISSION REQUEST
+	// TO THE BUILD
 
-		WWW www = new WWW(url,form);
-		yield return www;
+	// private IEnumerator WaitForRequest(string url, WWWForm form, System.Action<bool, WWW> onCompletion) {
 
-		if (www.error == null) {
-			//Debug.Log("WWW Ok!: " + www.text);
-			//Debug.Log("Parsed " + ParseTitles(www.text));
-			onCompletion(false, www);
-		} else {
-			Debug.Log("WWW Error: "+ www.error);
-			onCompletion(true, www);
-		}
-	}
+	// 	WWW www = new WWW(url,form);
+	// 	yield return www;
+
+	// 	if (www.error == null) {
+	// 		//Debug.Log("WWW Ok!: " + www.text);
+	// 		//Debug.Log("Parsed " + ParseTitles(www.text));
+	// 		onCompletion(false, www);
+	// 	} else {
+	// 		Debug.Log("WWW Error: "+ www.error);
+	// 		onCompletion(true, www);
+	// 	}
+	// }
 
 	private string ParseTitles(string html) {
 
