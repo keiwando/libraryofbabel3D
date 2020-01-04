@@ -105,8 +105,6 @@ public class SearchViewController : MonoBehaviour {
 
 	public void Search(){
 
-		Debug.Log(searchInput.text.Length);
-
 		this.search.Search(searchInput.text, exactMatchToggle.isOn, delegate(SearchResult result) {
 
 			hexNameField.text = result.Hex.Name;

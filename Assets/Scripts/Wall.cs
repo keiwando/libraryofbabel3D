@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_IOS || UNITY_ANDROID
+#define MOBILE
+#endif
+
+using UnityEngine;
 using System.Collections;
 
 public class Wall: MonoBehaviour {
@@ -38,7 +42,11 @@ public class Wall: MonoBehaviour {
 		GetComponent<CombineChildren>().Combine();
 	}
 
-	void OnMouseDown(){
+#if MOBILE
+	void OnMouseUp() {
+#else
+	void OnHoverMouseUp(){
+#endif
 
 		if (!librarian.CanSelect())
 			return;
@@ -47,15 +55,23 @@ public class Wall: MonoBehaviour {
 		Select();
 	}
 
-	void OnMouseOver(){
-		
+#if MOBILE
+	void OnMouseOver() {
+#else
+	void OnHover() {
+#endif
+
 		if (!IsSelected && !librarian.IsSwipingCamera) {
 			highlight.SetActive(true);
 			librarian.HoveringOver(this);
 		}
 	}
 	
-	void OnMouseExit(){
+#if MOBILE
+	void OnMouseExit() {
+#else
+	void OnHoverExit() {
+#endif
 		
 		highlight.SetActive(false);
 		librarian.HoveringOverEnded(this);

@@ -319,8 +319,9 @@ public class Librarian : MonoBehaviour {
 	// Includes Camera Controls
 	private void SwipeHandling(){
 
-		if (IsReadingBook() || IsInMenu())
+		if (IsReadingBook() || IsInMenu()) {
 			return;
+		}
 
 		var touches = FilterSwipeValidTouches(Input.touches);
 

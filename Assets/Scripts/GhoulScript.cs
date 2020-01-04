@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_IOS || UNITY_ANDROID
+#define MOBILE
+#endif
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Text.RegularExpressions;
@@ -91,17 +95,29 @@ public class GhoulScript : MonoBehaviour {
 		knowledgeMirror.CrossFadeAlpha(0f, 5f, true);
 	}
 
-	void OnMouseOver(){
+#if MOBILE
+	void OnMouseOver() {
+#else
+	void OnHover(){
+#endif
 
 		SetMaterial(highlightMaterial);
 	}
 
-	void OnMouseExit(){
+#if MOBILE
+	void OnMouseExit() {
+#else
+	void OnHoverExit() {
+#endif
 		
 		SetMaterial(defaultMaterial);
 	}
 
-	void OnMouseDown(){
+#if MOBILE
+	void OnMouseUp() {
+#else
+	void OnHoverMouseUp() {
+#endif
 
 		ProvideKnowledge();
 	}
