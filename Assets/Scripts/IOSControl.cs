@@ -31,20 +31,6 @@ public class IOSControl : MonoBehaviour {
 		this.displayCorrectButton(Location.Default);
 	}
 
-	/*public void ButtonClicked(){
-		// call the appropiate function
-		print("Back button clicked.");
-		// Loop over all gameobjects of type Escapable and call the EscapeClicked function
-		object[] obj = GameObject.FindSceneObjectsOfType(typeof (Escapable));
-		foreach (object o in obj)
-		{
-			((Escapable) o).EscapeClicked();
-		}
-
-		// go Default button
-		displayCorrectButton(Location.Default);
-	}*/
-
 	public void displayCorrectButton(Location location){
 		
 		switch (location) {

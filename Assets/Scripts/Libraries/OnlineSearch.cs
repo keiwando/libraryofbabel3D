@@ -11,38 +11,43 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 
 	public void Search(string text, bool exactMatch, OnSearchCompleted onCompleted){
 
-		text = Regex.Replace(text, string.Format("[^{0}]", Universe.Alphabet), "", RegexOptions.IgnoreCase);
-		if (text == "") return;
+		throw new System.InvalidOperationException();
+		// text = Regex.Replace(text, string.Format("[^{0}]", Universe.Alphabet), "", RegexOptions.IgnoreCase);
+		// if (text == "") return;
 
-		text = exactMatch ? Universe.FillPageBlank(text) : Universe.FillPageRandomly(text);
+		// text = exactMatch ? Universe.FillPageBlank(text) : Universe.FillPageRandomly(text);
 
-		WWWForm form = new WWWForm();
-		form.AddField("find",text);
-		form.AddField("method","x");
+		// WWWForm form = new WWWForm();
+		// form.AddField("find",text);
+		// form.AddField("method","x");
 
-		StartCoroutine(WaitForRequest(BASE_URL, form, (www, error) => {
+		// StartCoroutine(WaitForRequest(BASE_URL, form, (www, error) => {
 
-			if (error != SearchError.None) 
-				return;
+		// 	if (error != SearchError.None) 
+		// 		return;
 			
-			onCompleted(Parse(www.text));
-		}));
+		// 	onCompleted(Parse(www.text));
+		// }));
 	}
 
-	private IEnumerator WaitForRequest(string url, WWWForm form, System.Action<WWW, SearchError> complete){
-		WWW www = new WWW(url,form);
-		yield return www;
+	// UNCOMMENTED IN ORDER TO PREVENT UNITY FROM ADDING AN 'INTERNET' PERMISSION REQUEST
+	// TO THE BUILD
 
-		// check for errors
-		if (www.error == null) {
+	// private IEnumerator WaitForRequest(string url, WWWForm form, System.Action<WWW, SearchError> complete){
+		
+	// 	WWW www = new WWW(url,form);
+	// 	yield return www;
 
-			complete(www, SearchError.None);
-			Debug.Log("WWW Ok!: " + www.text);
-		} else {
-			complete(www, SearchError.Offline);
-			Debug.Log("WWW Error: " + www.error);
-		}
-	}
+	// 	// check for errors
+	// 	if (www.error == null) {
+
+	// 		complete(www, SearchError.None);
+	// 		Debug.Log("WWW Ok!: " + www.text);
+	// 	} else {
+	// 		complete(www, SearchError.Offline);
+	// 		Debug.Log("WWW Error: " + www.error);
+	// 	}
+	// }
 
 	private SearchResult Parse(string html){
 
@@ -56,11 +61,11 @@ public class OnlineSearch : MonoBehaviour, ILibrarySearch {
 
 		return new SearchResult() {
 			Title = title,
-			HexName = parts[1],
-			WallNum = int.Parse(parts[3]),
-			ShelfNum = int.Parse(parts[5]),
-			BookNum = int.Parse(parts[7]),
-			PageNum = int.Parse(parts[9])
+			Hex = new HexagonLocation(parts[1]),
+			Wall = int.Parse(parts[3]),
+			Shelf = int.Parse(parts[5]),
+			Book = int.Parse(parts[7]),
+			Page = int.Parse(parts[9])
 		};
 	}
 }

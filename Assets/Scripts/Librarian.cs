@@ -4,7 +4,7 @@ using System.IO;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
 using System.Linq;
-using UnityEngine.PostProcessing;
+using UnityEngine.Rendering.PostProcessing;
 
 [RequireComponent(typeof(FirstPersonController))]
 public class Librarian : MonoBehaviour {
@@ -18,7 +18,7 @@ public class Librarian : MonoBehaviour {
 	}
 
 	private FirstPersonController fpc;
-	private PostProcessingBehaviour postProcessing;
+	private PostProcessLayer postProcessing;
 
 	[SerializeField]
 	private ViewController viewController;
@@ -27,6 +27,7 @@ public class Librarian : MonoBehaviour {
 
 	[SerializeField]
 	private Hexagon currentHexagon;
+	public Hexagon CurrentHexagon { get => currentHexagon; }
 	private Wall selectedWall;
 
 	public HexagonLocation CurrentLocation {
@@ -50,7 +51,7 @@ public class Librarian : MonoBehaviour {
 	void Start () {
 
 		fpc = GetComponent<FirstPersonController>();
-		postProcessing = GetComponentInChildren<PostProcessingBehaviour>();
+		postProcessing = GetComponentInChildren<PostProcessLayer>();
 		postProcessing.enabled = Settings.PostProcessingEnabled;
 
 		selection = Selection.None;
@@ -60,8 +61,6 @@ public class Librarian : MonoBehaviour {
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
 
 		CurrentLocation = HexagonLocation.RandomLocation();
-
-		ChooseDeathText();
 	}
 
 	void Update () {
@@ -74,14 +73,20 @@ public class Librarian : MonoBehaviour {
 
 	private void KeyPressHandling() {
 		
-		if(Input.GetKeyDown(KeyCode.Escape)){
+		if (Input.GetKeyDown(KeyCode.Escape)){
 			EscapeClicked();
 		}
 
-		if(Input.GetKeyDown(KeyCode.M)){
+		if (Input.GetKeyDown(KeyCode.M)){
 			if(selection != Selection.Search){
 				
 				ShowSearchInterface();
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.H)) {
+			if (selection != Selection.Search) {
+				viewController.ToggleOverlayVisibility();
 			}
 		}
 	}
@@ -108,7 +113,7 @@ public class Librarian : MonoBehaviour {
 
 	private Touch[] FilterSwipeValidTouches(Touch[] touches) {
 
-		return touches.Where(t => t.position.magnitude > Screen.width / 2.5 && t.position.y > Screen.height * 0.2).ToArray();
+		return touches.Where(t => t.position.x > Screen.width * 0.33f || t.position.y > Screen.height * 0.42f).ToArray();
 	}
 
 	private void RotateCamera(Vector2 rotateVector, float rotationSpeed){
@@ -136,17 +141,26 @@ public class Librarian : MonoBehaviour {
 
 	public void IncreaseFallCount(){
 		fallCount++;
-		if(fallCount > maxFallNum){
-			if(!Application.isMobilePlatform && Application.platform != RuntimePlatform.WebGLPlayer){
-				Application.Quit();		// Quit the Application on Standalone builds
-			} else {
-				viewController.ActivateDeathText();
-				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);				// Respawn on mobile
-			}
+		if(fallCount == maxFallNum + 1) {
+			// #if !UNITY_IOS && !UNITY_ANDROID && !UNITY_WEBGL
+			// 	Application.Quit();
+			// #else
+			var deathText = ChooseDeathText();
+			viewController.SetDeathText(deathText);
+			viewController.ActivateDeathText();
+			var wordsInDeathText = deathText.Split(' ').Length;
+			var pauseLength = (float)wordsInDeathText / 5f;
+			StartCoroutine(ReloadSceneAfterSeconds(pauseLength));
+			// #endif
 		}
 	}
 
-	private void ChooseDeathText() {
+	private IEnumerator ReloadSceneAfterSeconds(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	private string ChooseDeathText() {
 
 		string[] sentences = ReadTextFile();
 		int pickedSentenceCount = 1;
@@ -159,44 +173,36 @@ public class Librarian : MonoBehaviour {
 			deathText += sentences[i] + ". ";
 		}
 
-		print("Death text sentences length = " + sentences.Length);
-		print("Death text index = " + startIndex);
-		print("Death text = " + deathText);
-
-		viewController.SetDeathText(deathText);
+		return deathText;
 	}
 
 	private string[] ReadTextFile() {
 		
-		TextAsset txt = (TextAsset)Resources.Load("LibraryofBabel", typeof(TextAsset));
-		string content = txt.text;
+		if (DeathText.Story == "") {
+			TextAsset txt = (TextAsset)Resources.Load("LibraryofBabel", typeof(TextAsset));
+			DeathText.Story = txt.text;
+		}
+
+		string content = DeathText.Story;
 
 		//divide string into sentences and return array
-		return content.Split(new char[] {'.',';'});
+		return content.Split(new char[] { '.', ';' });
 	}
 
 	public void MovedToNextRoom(){
-		//increase hex number by 1
-		//universe.addToHexNumber36(1);
 		currentHexagon.location = currentHexagon.NextHexLocation();	
 	}
 
 	public void MovedToPreviousRoom(){
-		//decrease hex number by 0
-		//universe.addToHexNumber36(-1);
 		currentHexagon.location = currentHexagon.PrevHexLocation();
 	}
 
 	public void MovedToRoomAbove(){
-		//increase each part of hex number by 66666
-		//universe.addToAllHexNumbers36(66666);
 		currentHexagon.location = currentHexagon.AboveLocation();
 		currentHexagon.direction += 1;
 	}
 
 	public void MovedToRoomBelow(){
-		//subtract each part of hex number by 66666
-		//universe.addToAllHexNumbers36(-66666);
 		currentHexagon.location = currentHexagon.BelowLocation();
 		currentHexagon.direction -= 1;
 	}
@@ -310,10 +316,12 @@ public class Librarian : MonoBehaviour {
 		postProcessing.enabled = Settings.PostProcessingEnabled;
 	}
 
+	// Includes Camera Controls
 	private void SwipeHandling(){
 
-		if (IsReadingBook() || IsInMenu())
+		if (IsReadingBook() || IsInMenu()) {
 			return;
+		}
 
 		var touches = FilterSwipeValidTouches(Input.touches);
 

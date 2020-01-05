@@ -1,9 +1,34 @@
-﻿using System;
+﻿// MIT License
+
+// Original file:
+// Copyright (c) 2007 Scott Garland
+// Fixes and additions:
+// Copyright (c) 2016 Keiwan Donyagard
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+using System;
 using System.Collections.Generic;
 
-/** Based on BigInteger.cs by ScottGarland from http://biginteger.codeplex.com/ */
-//namespace ScottGarland
-//{
+/** Based on BigInteger.cs by Scott Garland from http://biginteger.codeplex.com/ */
+namespace ScottGarland
+{
 	using DType = System.UInt32; // This could be UInt32, UInt16 or Byte; not UInt64.
 
 	#region DigitsArray
@@ -139,6 +164,7 @@ using System.Collections.Generic;
 					m_dataUsed = 1;
 				}
 			}
+			m_dataUsed = System.Math.Min(m_data.Length, m_dataUsed);
 		}
 
 		internal int ShiftRight(int shiftCount)
@@ -235,6 +261,8 @@ using System.Collections.Generic;
 
 		internal int ShiftLeftWithoutOverflow(int shiftCount)
 		{
+			if (shiftCount == 0) return m_data.Length;
+
 			List<DType> temporary = new List<DType>(m_data);
 			int shiftAmount = DigitsArray.DataSizeBits;
 
@@ -255,10 +283,16 @@ using System.Collections.Generic;
 					carry = (val >> DigitsArray.DataSizeBits);
 				}
 
-				if (carry != 0)
+				if (carry != 0) 
 				{
-					temporary.Add(0);
-					temporary[temporary.Count - 1] = (DType)carry;
+					DType lastNum = (DType)carry;
+					if (IsNegative) 
+					{
+						int byteCount = (int)Math.Floor(Math.Log(carry, 2));
+						lastNum = (0xffffffff << byteCount) | (DType)carry;
+					}
+
+					temporary.Add(lastNum);
 				}
 			}
 			m_data = new DType[temporary.Count];
@@ -441,39 +475,35 @@ using System.Collections.Generic;
 		/// </remarks>
 		/// <param name="digits">A string</param>
 		/// <param name="radix">A int between 2 and 36.</param>
-		public BigInteger(string digits, int radix)
+		public BigInteger(string digits, int radix, string charSet = "0123456789abcdefghijklmnopqrstuvwxyz")
 		{
-			Construct(digits, radix);
+			Construct(digits, radix, charSet);
 		}
 
-		private void Construct(string digits, int radix)
+		private void Construct(string digits, int radix, string charSet = "0123456789abcdefghijklmnopqrstuvwxyz")
 		{
 			if (digits == null)
 			{
 				throw new ArgumentNullException("digits");
 			}
 
+			// charSet = charSet.ToUpper(System.Globalization.CultureInfo.CurrentCulture).Trim();
+
+			var indexForChar = new Dictionary<char, int>();
+			for (int i = 0; i < charSet.Length; i++) {
+				indexForChar[charSet[i]] = i;
+			}
+
 			BigInteger multiplier = new BigInteger(1);
 			BigInteger result = new BigInteger();
-			digits = digits.ToUpper(System.Globalization.CultureInfo.CurrentCulture).Trim();
+			// digits = digits.ToUpper(System.Globalization.CultureInfo.CurrentCulture).Trim();
 
 			int nDigits = (digits[0] == '-' ? 1 : 0);
 
 			for (int idx = digits.Length - 1; idx >= nDigits ; idx--)
 			{
-				int d = (int)digits[idx];
-				if (d >= '0' && d <= '9')
-				{
-					d -= '0';
-				}
-				else if (d >= 'A' && d <= 'Z')
-				{
-					d = (d - 'A') + 10;
-				}
-				else
-				{
-					throw new ArgumentOutOfRangeException("digits");
-				}
+
+				int d = indexForChar[digits[idx]];
 
 				if (d >= radix)
 				{
@@ -1049,6 +1079,18 @@ using System.Collections.Generic;
 			return leftSide % rightSide;
 		}
 
+		public static BigInteger ActualModulus(BigInteger leftSide, BigInteger rightSide) 
+		{
+			if (leftSide < 0) 
+			{
+				return rightSide + Modulus(leftSide, rightSide);
+			} 
+			else 
+			{
+				return Modulus(leftSide, rightSide);
+			}
+		}
+
 		#endregion
 
 		#region Exponentiation
@@ -1169,7 +1211,7 @@ using System.Collections.Generic;
 			}
 
 			DigitsArray da = new DigitsArray(leftSide.m_digits);
-			da.DataUsed = da.ShiftLeftWithoutOverflow(shiftCount);
+			da.ShiftLeftWithoutOverflow(shiftCount);
 
 			return new BigInteger(da);
 		}
@@ -1477,18 +1519,22 @@ using System.Collections.Generic;
 		/// <summary>
 		/// Converts the numeric value of this instance to its equivalent string representation in specified base.
 		/// </summary>
-		/// <param name="radix">Int radix between 2 and 36</param>
+		/// <param name="radix">Int radix between 2 and the length of charSet</param>
+		/// <param charSet="charSet">
+		/// Character set. Must contain enough characters for given radix.
+		/// Defaults to "0123456789abcdefghijklmnopqrstuvwxyz".
+		/// </param>
 		/// <returns>A string.</returns>
-		public string ToString(int radix)
+		public string ToString(int radix, string charSet = "0123456789abcdefghijklmnopqrstuvwxyz")
 		{
-			if (radix < 2 || radix > 36)
+			if (radix < 2 || radix > charSet.Length)
 			{
 				throw new ArgumentOutOfRangeException("radix");
 			}
 
 			if (IsZero)
 			{
-				return "0";
+				return charSet[0].ToString();
 			}
 
 			BigInteger a = this;
@@ -1499,7 +1545,6 @@ using System.Collections.Generic;
 			BigInteger remainder;
 			BigInteger biRadix = new BigInteger(radix);
 
-			const string charSet = "0123456789abcdefghijklmnopqrstuvwxyz";
 			System.Collections.ArrayList al = new System.Collections.ArrayList();
 			while (a.m_digits.DataUsed > 1 || (a.m_digits.DataUsed == 1 && a.m_digits[0] != 0))
 			{
@@ -1630,4 +1675,4 @@ using System.Collections.Generic;
 		}
 		#endregion
 	}
-//}
+}

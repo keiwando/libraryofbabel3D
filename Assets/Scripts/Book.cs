@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_IOS || UNITY_ANDROID
+#define MOBILE
+#endif
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -50,19 +54,31 @@ public class Book: MonoBehaviour {
 		IsSelected = false;
 	}
 
-	void OnMouseOver(){
+#if MOBILE
+	void OnMouseOver() {
+#else
+	void OnHover() {
+#endif
 
 		librarian.HoveringOver(this);
 		highlight.SetActive(true);
 	}
 
-	void OnMouseExit(){
+#if MOBILE
+	void OnMouseExit() {
+#else
+	void OnHoverExit(){
+#endif
 		
 		librarian.HoveringOverEnded(this);
 		highlight.SetActive(false);
 	}
 
+#if MOBILE
 	void OnMouseUp(){
+#else
+	void OnHoverMouseUp(){
+#endif
 
 		if (!librarian.CanSelect())
 			return;

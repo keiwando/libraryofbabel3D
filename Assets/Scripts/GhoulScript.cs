@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_IOS || UNITY_ANDROID
+#define MOBILE
+#endif
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Text.RegularExpressions;
@@ -7,7 +11,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(LibraryTranslator))]
 public class GhoulScript : MonoBehaviour {
 	
-	//[SerializeField] private MathFunctions universe;
 	[SerializeField] private Light pointLight;
 	[SerializeField] private Text knowledgeMirror;
 	[SerializeField] private int spawningChance;	//out of 100
@@ -17,15 +20,13 @@ public class GhoulScript : MonoBehaviour {
 	private Librarian librarian;
 	private Hexagon hexagon;
 
-	private string baseUrl = "https://libraryofbabel.info/book.cgi?";
-	private string regexp = "<div class = \"bookrealign\" id = \"real\"><PRE id = \"textblock\">[a-z.,\\s]*<\\/PRE><\\/div>";
-
-	public bool ShouldRead { get; set; }
-
 	private Queue<string> knowledge;
 	private const string baseKnowledge = "It's all just gibberish!";
 
-	private const float pageReadingInterval = 20.0f;
+	private const float pageReadingInterval = 15.0f;
+	private bool shouldRead {
+		get { return librarian.CurrentHexagon == hexagon; }
+	}
 
 	[SerializeField]
 	private Material defaultMaterial;
@@ -43,10 +44,7 @@ public class GhoulScript : MonoBehaviour {
 		meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		SetMaterial(defaultMaterial);
 
-		StartCoroutine(ReadPage(pageReadingInterval));
-
 		CheckSpawn();
-		ShouldRead = false;
 		pointLight.enabled = false;
 		knowledge = new Queue<string>();
 	}
@@ -61,8 +59,11 @@ public class GhoulScript : MonoBehaviour {
 
 		if (rand >= spawningChance) {
 			this.gameObject.SetActive(false);
+			StopAllCoroutines();
 		} else {
 			this.gameObject.SetActive(true);
+			StopAllCoroutines();
+			StartCoroutine(ReadPage(pageReadingInterval));
 		}
 	}
 
@@ -94,17 +95,29 @@ public class GhoulScript : MonoBehaviour {
 		knowledgeMirror.CrossFadeAlpha(0f, 5f, true);
 	}
 
-	void OnMouseOver(){
+#if MOBILE
+	void OnMouseOver() {
+#else
+	void OnHover(){
+#endif
 
 		SetMaterial(highlightMaterial);
 	}
 
-	void OnMouseExit(){
+#if MOBILE
+	void OnMouseExit() {
+#else
+	void OnHoverExit() {
+#endif
 		
 		SetMaterial(defaultMaterial);
 	}
 
-	void OnMouseDown(){
+#if MOBILE
+	void OnMouseUp() {
+#else
+	void OnHoverMouseUp() {
+#endif
 
 		ProvideKnowledge();
 	}
@@ -114,8 +127,8 @@ public class GhoulScript : MonoBehaviour {
 		while (true) {
 
 			yield return new WaitForSeconds(secondDifference);
-
-			if (ShouldRead) {
+			
+			if (shouldRead) {
 				ReadPage();
 			}
 		}

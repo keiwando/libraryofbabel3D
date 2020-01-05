@@ -3,14 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Threading;
 
-[RequireComponent(typeof(Text))]
 public class DeathText : MonoBehaviour {
 
+	public static string Story = "";
+
+	[SerializeField]
 	private Text text;
 
 	void Start () {
-
-		text = GetComponentInChildren<Text>();
 
 		foreach (Transform child in transform){
 			child.gameObject.SetActive(false);

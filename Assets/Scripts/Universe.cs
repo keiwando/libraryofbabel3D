@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Text;
+using ScottGarland;
 
 public class Universe : MonoBehaviour {
 
@@ -14,7 +15,7 @@ public class Universe : MonoBehaviour {
 		get { return LINES_PER_PAGE * CHARACTERS_PER_LINE; }
 	}
 
-	public static readonly string Alphabet = "abcdefghijklmnopqrstuvwxyz,. ";
+	public static readonly string Alphabet = " abcdefghijklmnopqrstuvwxyz,.";
 
 	public static Universe Shared {
 		get { return shared; }
@@ -40,7 +41,8 @@ public class Universe : MonoBehaviour {
 
 		offlineLibrary = new OfflineLibrary();
 
-		this.library = Settings.Offline ? offlineLibrary as ILibrary : onlineLibrary as ILibrary;
+		// this.library = Settings.Offline ? offlineLibrary as ILibrary : onlineLibrary as ILibrary;
+		this.library = offlineLibrary;
 	}
 
 	public void RequestPages(PageLocation[] pages, OnPageRequestCompleted onCompletion) {
@@ -81,7 +83,7 @@ public class Universe : MonoBehaviour {
 		var stringBuilder = new StringBuilder();
 
 		int charactersBefore = Random.Range(0, missingCharacters);
-		int charactersAfter = missingCharacters - charactersBefore - 1;
+		int charactersAfter = missingCharacters - charactersBefore;
 
 		char[] alphabetArray = Universe.Alphabet.ToCharArray();
 

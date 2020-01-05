@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 using System.Text.RegularExpressions;
+using Keiwando.Lob;
 
 public class SearchViewController : MonoBehaviour {
 
@@ -16,28 +18,33 @@ public class SearchViewController : MonoBehaviour {
 	private Toggle exactMatchToggle;
 
 	[SerializeField]
-	private Button goButton;
+	private Button goToHexButton;
+	[SerializeField]
+	private Button openPageButton;
+
 	[SerializeField]
 	private Button searchButton;
 	[SerializeField]
 	private Button settingsButton;
 
-	//[SerializeField] private Button bugButton;
 	[SerializeField]
-	private Text wallNumLabel;
+	private TextMeshProUGUI wallNumLabel;
 	[SerializeField]
-	private Text shelfNumLabel;
+	private TextMeshProUGUI shelfNumLabel;
 	[SerializeField]
-	private Text bookNumLabel;
+	private TextMeshProUGUI bookNumLabel;
 	[SerializeField]
-	private Text pageNumLabel;
+	private TextMeshProUGUI pageNumLabel;
+
+	[SerializeField]
+	private RelativeLocationFlowLayout locationFlowLayout;
 
 	private string foundTitle = "";
 
 	private ViewController viewController;
 
 	private Regex validSearchCharactersFilter = new Regex(string.Format("[^{0}]", Universe.Alphabet), RegexOptions.IgnoreCase);
-	private Regex validHexNameCharactersFilter = new Regex(string.Format("[^{0}]", HexagonLocation.ALPHABET), RegexOptions.IgnoreCase);
+	private Regex validHexNameCharactersFilter = new Regex(string.Format("[^{0}]", HexagonLocation.Alphabet), RegexOptions.IgnoreCase);
 
 	void Start () {
 
@@ -45,11 +52,13 @@ public class SearchViewController : MonoBehaviour {
 
 			foundTitle = "";
 
-			if (arg0 == "\n") {
+			if (CanSearchForCurrentInput() && arg0 == "\n") {
 				Search();
 			} else {
 				searchInput.text = FilterValidSearchCharacters(arg0);	
 			}
+
+			RefreshSearchButton();
 		});
 
 		hexNameField.onValueChanged.AddListener(delegate(string arg0) {
@@ -58,15 +67,24 @@ public class SearchViewController : MonoBehaviour {
 			hexNameField.text = FilterValidHexCharacters(arg0);
 		});
 
-		goButton.onClick.AddListener(delegate {
+		goToHexButton.onClick.AddListener(delegate {
 			GoToSelection();
 		});
+		openPageButton.onClick.AddListener(delegate {
+			GoToSelection();
+		});
+
 		searchButton.onClick.AddListener(delegate {
 			Search();	
 		});
 		settingsButton.onClick.AddListener(delegate {
 			viewController.ShowSettings();
 		});
+		exactMatchToggle.onValueChanged.AddListener(delegate {
+			RefreshSearchButton();
+		});
+
+		RefreshSearchButton();
 	}
 
 	public void Show(ILibrarySearch search = null) {
@@ -78,10 +96,10 @@ public class SearchViewController : MonoBehaviour {
 
 		gameObject.SetActive(true);
 		ResetLabels();
+		RefreshControlVisibility();
 	}
 
 	public void Hide() {
-
 		gameObject.SetActive(false);
 	}
 
@@ -89,31 +107,29 @@ public class SearchViewController : MonoBehaviour {
 
 		this.search.Search(searchInput.text, exactMatchToggle.isOn, delegate(SearchResult result) {
 
-			hexNameField.text = result.HexName;
-			wallNumLabel.text = result.WallNum.ToString();
-			shelfNumLabel.text = result.ShelfNum.ToString();
-			bookNumLabel.text = result.BookNum.ToString();
-			pageNumLabel.text = result.PageNum.ToString();
+			hexNameField.text = result.Hex.Name;
+			wallNumLabel.text = result.Wall.ToString();
+			shelfNumLabel.text = result.Shelf.ToString();
+			bookNumLabel.text = result.Book.ToString();
+			pageNumLabel.text = result.Page.ToString();
 
-			foundTitle = result.Title;
-			print("Found title: " + foundTitle);
+			RefreshControlVisibility();
+			locationFlowLayout.Refresh();
 		});
 	}
 
 	private string FilterValidSearchCharacters(string text) {
-
 		return validSearchCharactersFilter.Replace(text, "");
 	}
 
 	private string FilterValidHexCharacters(string text) {
-
-		return validHexNameCharactersFilter.Replace(text, "");
+		return validHexNameCharactersFilter.Replace(text.ToLower(), "");
 	}
 
 	public void GoToSelection() {
 
 		var name = FilterValidHexCharacters(hexNameField.text);
-		var newLocation = HexagonLocation.FromName(name);
+		var newLocation = new HexagonLocation(name);
 
 		viewController.GoToLocation(newLocation);
 
@@ -151,5 +167,24 @@ public class SearchViewController : MonoBehaviour {
 		hexNameField.text = viewController.GetCurrentHexLocation().Name;
 
 		searchInput.text = "";
+	}
+
+	private void RefreshControlVisibility() {
+		var hideRelativeLocationControls = wallNumLabel.text == "0";
+		wallNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		shelfNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		bookNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		pageNumLabel.gameObject.SetActive(!hideRelativeLocationControls);
+		openPageButton.gameObject.SetActive(!hideRelativeLocationControls);
+
+		goToHexButton.gameObject.SetActive(hideRelativeLocationControls);
+	}
+
+	private bool CanSearchForCurrentInput() {
+		return exactMatchToggle.isOn || !string.IsNullOrEmpty(searchInput.text);
+	}
+
+	private void RefreshSearchButton() {
+		searchButton.interactable = CanSearchForCurrentInput();
 	}
 }

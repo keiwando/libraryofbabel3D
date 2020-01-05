@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿#if UNITY_IOS || UNITY_ANDROID
+#define MOBILE
+#endif
+
+
+using UnityEngine;
 using System.Collections;
 using System.Text.RegularExpressions;
 
@@ -68,7 +73,11 @@ public class Shelf: MonoBehaviour {
 		firstBook.gameObject.SetActive(false);
 	}
 
-	void OnMouseDown(){
+#if MOBILE
+	void OnMouseUp() {
+#else
+	void OnHoverMouseUp(){
+#endif
 		
 		if (!librarian.CanSelect())
 			return;
@@ -77,13 +86,21 @@ public class Shelf: MonoBehaviour {
 		Select();
 	}
 
-	void OnMouseOver(){
+#if MOBILE
+	void OnMouseOver() {
+#else
+	void OnHover(){
+#endif
 
 		highlight.SetActive(true);
 		librarian.HoveringOver(this);
 	}
 	
-	void OnMouseExit(){
+#if MOBILE
+	void OnMouseExit() {
+#else
+	void OnHoverExit(){
+#endif
 
 		highlight.SetActive(false);
 		librarian.HoveringOverEnded(this);

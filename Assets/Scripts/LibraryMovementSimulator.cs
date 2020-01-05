@@ -44,8 +44,6 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		// deactivate ghoul
 		var currentHex = mainHex;
 
-		currentHex.DeactivateGhoul();
-
 		var directionAngle = Vector3.Angle(inwardVector, dif);
 
 		var destHex = directionAngle < 90 ? currentHex : hexBefore;
@@ -69,7 +67,6 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		librarian.transform.position = outColPos + currentColOffset;
 
 		currentHex.RespawnGhoul();
-		currentHex.ActivateGhoul();
 	}
 
 	public void StairTriggerLeft(Collider collider) {
@@ -81,8 +78,6 @@ public class LibraryMovementSimulator : MonoBehaviour {
 			return; // The player hasn't moved through the trigger
 
 		var currentHex = mainHex;
-
-		currentHex.DeactivateGhoul();
 
 		Hexagon nextHex = currentHex;
 		Hexagon lastHex = currentHex;
@@ -107,18 +102,17 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		var currentParent = fpController.transform.parent;
 
 		fpController.transform.SetParent(lastHex.transform);
-
-		var localPos = fpController.transform.localPosition;
 		fpController.transform.SetParent(nextHex.transform, false);
-		fpController.transform.localPosition = localPos;
-
-		fpController.transform.SetParent(currentParent, true);
+		
+		// fpController.transform.SetParent(currentParent, true); // This seems to be broken in Unity 2019.1.0f2 if currentParent is null
+		var worldPos = fpController.transform.position;
+		fpController.transform.SetParent(currentParent);
+		fpController.transform.position = worldPos;
 
 		var currentColRotOffset = Quaternion.Inverse(collider.transform.rotation) * fpController.transform.rotation;
 		fpController.rotationOffset *= (Quaternion.Inverse(Quaternion.Inverse(outCollider.transform.rotation) * fpController.transform.rotation) * currentColRotOffset);
 
 		currentHex.RespawnGhoul();
-		currentHex.ActivateGhoul();
 	}
 
 	private void MovedToNextRoom() {
@@ -165,6 +159,7 @@ public class LibraryMovementSimulator : MonoBehaviour {
 
 		foreach (var obj in movables) {
 
+			// obj.transform.Rotate(mainHex.transform.up, rotation);
 			obj.transform.RotateAround(mainHex.transform.position, Vector3.up, rotation);
 
 			var pos = obj.transform.position;

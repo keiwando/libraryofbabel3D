@@ -3,7 +3,6 @@ using System.Collections;
 
 public class OnlyIOS : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
 
 		// Deactivate gameObject if not on IOS

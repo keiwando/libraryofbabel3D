@@ -18,13 +18,10 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public AxisOption axesToUse = AxisOption.Both; // The options for the axes that the still will use
 		public string horizontalAxisName = "Horizontal"; // The name given to the horizontal axis for the cross platform input
 		public string verticalAxisName = "Vertical"; // The name given to the vertical axis for the cross platform input
+		public bool floating;
 
-		public bool controlsCamera;
-		new public Camera camera;
-		public GameObject player;
-		private bool shouldRotateCamera;
-		private Vector2 rotateVector;
-
+		public Transform stick;
+		
 		Vector3 m_StartPos;
 		bool m_UseX; // Toggle for using the x axis
 		bool m_UseY; // Toggle for using the Y axis
@@ -36,26 +33,18 @@ namespace UnityStandardAssets.CrossPlatformInput
 			CreateVirtualAxes();
 		}
 
-        void Start()
-        {
-            m_StartPos = transform.position;
-			shouldRotateCamera = false;
-        }
-
-		void Update(){
-			if(shouldRotateCamera){
-				rotateCamera();
-			}
+		void Start()
+		{
+			m_StartPos = stick.transform.position;
 		}
 
 		void UpdateVirtualAxes(Vector3 value)
 		{
-			var delta = m_StartPos - value;
-			delta.y = -delta.y;
+			var delta = value - m_StartPos;
 			delta /= MovementRange;
 			if (m_UseX)
 			{
-				m_HorizontalVirtualAxis.Update(-delta.x);
+				m_HorizontalVirtualAxis.Update(delta.x);
 			}
 
 			if (m_UseY)
@@ -102,33 +91,22 @@ namespace UnityStandardAssets.CrossPlatformInput
 				newPos.y = delta;
 			}
 
-			transform.position = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + m_StartPos;		// move Joystick
+			stick.transform.position = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + m_StartPos;		// move Joystick
 
-			//if(!controlsCamera){
-				UpdateVirtualAxes(transform.position);
-			/*} else {
-				shouldRotateCamera = true;
-				rotateVector = new Vector2(newPos.x, newPos.y);
-				rotateVector.Normalize();
-			}*/
-
+			UpdateVirtualAxes(stick.transform.position);
 		}
-
-		private void rotateCamera(){
-			camera.transform.Rotate(player.transform.right, rotateVector.x * -3);	// rotate camera along x axis
-			camera.transform.Rotate(player.transform.up, rotateVector.y * -3);	// rotate camera along y axis
-		}
-
 
 		public void OnPointerUp(PointerEventData data)
 		{
-			transform.position = m_StartPos;
+			stick.transform.position = m_StartPos;
 			UpdateVirtualAxes(m_StartPos);
-			shouldRotateCamera = false;
 		}
 
-
-		public void OnPointerDown(PointerEventData data) { }
+		public void OnPointerDown(PointerEventData data) { 
+			if (floating) {
+				m_StartPos = data.position;
+			}
+		}
 
 		void OnDisable()
 		{

@@ -11,27 +11,28 @@ public class Fire : MonoBehaviour {
 	[SerializeField] private int radius;
 
 	void Start () {
-		spawnAtRandomPosition();
+		transform.GetChild(0).gameObject.SetActive(true);
+		SpawnAtRandomPosition();
 	}
 
-	private void spawnAtRandomPosition(){
+	private void SpawnAtRandomPosition(){
 		int direction = Random.Range(0,5);
 		int factor = Random.Range(-radius,radius);
 		int height = Random.Range(-radius,radius);
-		//print("HEIGHT: " + height);
-		moveFire(direction,factor);
-		changeHeight(height);
+		
+		MoveFire(direction,factor);
+		ChangeHeight(height);
 	}
 
-	private void changeHeight(int height){
+	private void ChangeHeight(int height){
 		Vector3 newPosition = gameObject.transform.position;
 		newPosition.y += (baseHeight * height);
 		gameObject.transform.position = newPosition;
 	}
 
-	private void moveFire(int direction, int factor){
-		float moveX = 0;	//left-right
-		float moveZ = 0;	//up-down
+	private void MoveFire(int direction, int factor){
+		float moveX = 0;
+		float moveZ = 0;
 		switch(direction){
 		case 0:	moveX = 0;
 			moveZ = zVertDif;

@@ -65,14 +65,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
 
 
-			if(Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer){
-				locked = false;
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;	
-			} else {
-				//Input.gyro.enabled = true;
-				//initialRotation = Input.gyro.attitude;
-			}
+            #if !UNITY_ANDROID && !UNITY_IOS
+            locked = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;	
+            #endif
 
 			VROffset = Quaternion.identity;
 			rotationOffset = Quaternion.identity;
@@ -80,28 +77,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		//CUSTOM
 		public void setLocked(bool l){
-			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
-				locked = l;
-				if(l){
-					Cursor.lockState = CursorLockMode.None;
-					Cursor.visible = true;
-				}else{
-					Cursor.lockState = CursorLockMode.Locked;
-					Cursor.visible = false;
-				}
-			}
+
+            #if !UNITY_ANDROID && !UNITY_IOS 
+            locked = l;
+            Cursor.lockState = locked ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = locked;
+            #endif
 		}
 
-		private void updateLock(){
-			if(Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer){
-				if(locked){
-					Cursor.lockState = CursorLockMode.None;
-					Cursor.visible = true;
-				}else{
-					Cursor.lockState = CursorLockMode.Locked;
-					Cursor.visible = false;
-				}
-			}
+		private void updateLock() {
+            setLocked(locked);
 		}
 
 		void OnGUI (){
@@ -284,6 +269,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 //#endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+
             m_Input = new Vector2(horizontal, vertical);
 
             // normalize input if it exceeds 1 in combined length:
@@ -291,6 +277,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Input.Normalize();
             }
+
+            #if UNITY_IOS || UNITY_ANDROID
+            speed *= m_Input.magnitude;
+            #endif
 
             // handle speed change to give an fov kick
             // only if the player is going to a run, is running and the fovkick is to be used

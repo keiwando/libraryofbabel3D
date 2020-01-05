@@ -62,6 +62,14 @@ public struct PageLocation {
 			Page = Page
 		};
 	}
+
+	public ShelfLocation GetShelfLocation() {
+		return new ShelfLocation () {
+			Hex = Hex,
+			Wall = Wall,
+			Shelf = Shelf
+		};
+	}
 }
 
 
