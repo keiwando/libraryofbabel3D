@@ -5203,7 +5203,6 @@ GameObject:
   - component: {fileID: 480054497}
   - component: {fileID: 480054499}
   - component: {fileID: 480054498}
-  - component: {fileID: 480054500}
   m_Layer: 5
   m_Name: DeathText
   m_TagString: Untagged
@@ -5253,18 +5252,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480054496}
   m_CullTransparentMesh: 0
---- !u!114 &480054500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480054496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0f97f91b7857431ab37c5f04d656325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &483783736
 GameObject:
   m_ObjectHideFlags: 0

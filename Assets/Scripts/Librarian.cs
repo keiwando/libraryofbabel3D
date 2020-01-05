@@ -142,16 +142,16 @@ public class Librarian : MonoBehaviour {
 	public void IncreaseFallCount(){
 		fallCount++;
 		if(fallCount == maxFallNum + 1) {
-			#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_WEBGL
-				Application.Quit();
-			#else
-				var deathText = ChooseDeathText();
-				viewController.SetDeathText(deathText);
-				viewController.ActivateDeathText();
-				var wordsInDeathText = deathText.Split(' ').Length;
-				var pauseLength = (float)wordsInDeathText / 5f;
-				StartCoroutine(ReloadSceneAfterSeconds(pauseLength));
-			#endif
+			// #if !UNITY_IOS && !UNITY_ANDROID && !UNITY_WEBGL
+			// 	Application.Quit();
+			// #else
+			var deathText = ChooseDeathText();
+			viewController.SetDeathText(deathText);
+			viewController.ActivateDeathText();
+			var wordsInDeathText = deathText.Split(' ').Length;
+			var pauseLength = (float)wordsInDeathText / 5f;
+			StartCoroutine(ReloadSceneAfterSeconds(pauseLength));
+			// #endif
 		}
 	}
 

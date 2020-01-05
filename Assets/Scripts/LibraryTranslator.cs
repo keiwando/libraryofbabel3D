@@ -110,7 +110,7 @@ public class LibraryTranslator : MonoBehaviour
 				string key = "" + c;
 				if (c == ' ')
 					key = "space";
-				print ("key error with key: " + key);
+				print("key error with key: " + key);
 			}
 			output.Enqueue(subjectDictionary[c]);
 			//see if next letter is a comma

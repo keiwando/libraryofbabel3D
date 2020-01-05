@@ -10,7 +10,6 @@ public class FallTriggerScript : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider collider){
-		print ("fallen");
 		librarian.IncreaseFallCount();
 	}
 }

@@ -70,13 +70,11 @@ public class HexagonLocation {
 	}
 
 	public HexagonLocation LocationAbove() {
-		// TODO: Do some bit shifting here for more randomness
-		return LocationWithOffset(6666);	
+		return LocationWithOffset(24081899);	
 	}
 
 	public HexagonLocation LocationBelow() {
-		// TODO: Do some bit shifting here for more randomness
-		return LocationWithOffset(-6666);
+		return LocationWithOffset(-24081899);
 	}
 }
 
