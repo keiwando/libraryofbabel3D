@@ -299,6 +299,12 @@ namespace ScottGarland
 			temporary.CopyTo(m_data);
 			return m_data.Length;
 		}
+
+		public DType[] GetDataCopy() {
+			DType[] usedData = new DType[m_dataUsed];
+			Array.Copy(m_data, usedData, m_dataUsed);
+			return usedData;
+		}
 	}
 	#endregion
 
@@ -1494,6 +1500,10 @@ namespace ScottGarland
 		public override int GetHashCode()
 		{
 			return this.m_digits.GetHashCode();
+		}
+
+		public DType[] GetDigitsData() {
+			return m_digits.GetDataCopy();
 		}
 
 		/// <summary>

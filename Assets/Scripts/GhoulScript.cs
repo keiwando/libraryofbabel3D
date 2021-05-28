@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(LibraryTranslator))]
 public class GhoulScript : MonoBehaviour {
@@ -38,11 +39,18 @@ public class GhoulScript : MonoBehaviour {
 		translator = GetComponent<LibraryTranslator>();
 		librarian = Librarian.Find();
 		hexagon = transform.parent.GetComponent<Hexagon>();
+		Assert.IsNotNull(hexagon);
+		Assert.IsNotNull(librarian);
 
 		meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		SetMaterial(defaultMaterial);
 		
-		CheckSpawn();
+		if (hexagon.location != null) {
+			CheckSpawn();
+		} else {
+			this.gameObject.SetActive(false);
+		}
+		
 		knowledge = new Queue<string>();
 	}
 
@@ -54,9 +62,14 @@ public class GhoulScript : MonoBehaviour {
 
 	private void CheckSpawn() {
 
-		int rand = Random.Range(0,100);
+		Assert.IsNotNull(hexagon.location);
 
-		if (rand >= spawningChance) {
+		var locationData = hexagon.location.Value.GetDigitsData();
+		var locationDataHash = ((IStructuralEquatable)locationData).GetHashCode(EqualityComparer<System.UInt32>.Default);
+
+		bool spawnHere = locationDataHash % 100 < spawningChance;
+
+		if (!spawnHere) {
 			this.gameObject.SetActive(false);
 			StopAllCoroutines();
 		} else {
@@ -70,8 +83,11 @@ public class GhoulScript : MonoBehaviour {
 		
 		CheckSpawn();
 
+		// TODO: Keep the knowledge after respawning
 		knowledge = new Queue<string>();
-		knowledgeMirror.text = "";
+		if (knowledgeMirror != null) {
+			knowledgeMirror.text = "";
+		}
 	}
 
 	private void ProvideKnowledge(){

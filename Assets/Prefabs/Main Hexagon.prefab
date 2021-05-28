@@ -17413,10 +17413,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knowledgeMirror: {fileID: 0}
-  spawningChance: 100
+  spawningChance: 10
   maxTextLength: 5
-  defaultMaterial: {fileID: 0}
-  highlightMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: 6a8e740dda5b24faab08caa20b11a56b, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: 4084900fc8d2046aaa015c7305397e2d, type: 2}
 --- !u!1001 &5163844700534952420
 PrefabInstance:
   m_ObjectHideFlags: 0

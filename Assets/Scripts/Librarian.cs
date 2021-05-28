@@ -48,6 +48,10 @@ public class Librarian : MonoBehaviour {
 
 	private string deathText;
 
+	void Awake() {
+		CurrentLocation = HexagonLocation.RandomLocation();
+	}
+
 	void Start () {
 
 		fpc = GetComponent<FirstPersonController>();
@@ -59,8 +63,6 @@ public class Librarian : MonoBehaviour {
 		fallCount = 0;
 
 		swipeStartPosition = swipeEndPosition = Vector3.zero;
-
-		CurrentLocation = HexagonLocation.RandomLocation();
 	}
 
 	void Update () {

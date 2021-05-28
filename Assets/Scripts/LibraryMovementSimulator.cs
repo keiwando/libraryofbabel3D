@@ -7,12 +7,13 @@ public class LibraryMovementSimulator : MonoBehaviour {
 	private const float yOffset = 7f;
 	private const float xBaseOffset = 30.8f;
 
-	[SerializeField]
-	private Hexagon mainHex;
-	[SerializeField]
-	private Hexagon hexBelow;
-	[SerializeField]
-	private Hexagon hexBefore;
+	[SerializeField] private Hexagon mainHex;
+	[SerializeField] private Hexagon hexBelow;
+	[SerializeField] private Hexagon hexAbove;
+	[SerializeField] private Hexagon hexBefore;
+	[SerializeField] private Hexagon hexAfter;
+
+	private Hexagon[] surroundingHexagons;
 
 	[SerializeField]
 	private GameObject[] movables;
@@ -23,11 +24,13 @@ public class LibraryMovementSimulator : MonoBehaviour {
 	private Vector3 posBefore;
 	private Vector3 posAfter;
 
-
 	void Start() {
 
 		librarian = Librarian.Find();
 		fpController = librarian.GetComponent<FirstPersonController>();
+
+		surroundingHexagons = new Hexagon[]{ mainHex, hexBelow, hexAbove, hexBefore, hexAfter };
+		UpdateSurroundingHexLocations();
 	}
 	
 	public void TriggerEntered(Collider collider){
@@ -66,7 +69,10 @@ public class LibraryMovementSimulator : MonoBehaviour {
 
 		librarian.transform.position = outColPos + currentColOffset;
 
-		currentHex.RespawnGhoul();
+		UpdateSurroundingHexLocations();
+		foreach (var hex in surroundingHexagons) {
+			hex.RespawnGhoul();
+		}
 	}
 
 	public void StairTriggerLeft(Collider collider) {
@@ -112,7 +118,10 @@ public class LibraryMovementSimulator : MonoBehaviour {
 		var currentColRotOffset = Quaternion.Inverse(collider.transform.rotation) * fpController.transform.rotation;
 		fpController.rotationOffset *= (Quaternion.Inverse(Quaternion.Inverse(outCollider.transform.rotation) * fpController.transform.rotation) * currentColRotOffset);
 
-		currentHex.RespawnGhoul();
+		UpdateSurroundingHexLocations();
+		foreach (var hex in surroundingHexagons) {
+			hex.RespawnGhoul();
+		}
 	}
 
 	private void MovedToNextRoom() {
@@ -167,6 +176,16 @@ public class LibraryMovementSimulator : MonoBehaviour {
 			pos.y += -offset * yOffset;
 			obj.transform.position = pos;
 		}
+	}
+
+	/// <summary>
+	/// Updates the surrounding hex locations of mainHex assuming that the location of mainHex is up to date
+	/// </summary>
+	private void UpdateSurroundingHexLocations() {
+		hexAbove.location = mainHex.AboveLocation();
+		hexBelow.location = mainHex.BelowLocation();
+		hexBefore.location = mainHex.PrevHexLocation();
+		hexAfter.location = mainHex.NextHexLocation();
 	}
 
 	public static LibraryMovementSimulator Find() {
