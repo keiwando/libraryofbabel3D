@@ -5,13 +5,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(LibraryTranslator))]
 public class GhoulScript : MonoBehaviour {
 	
-	[SerializeField] private Light pointLight;
 	[SerializeField] private Text knowledgeMirror;
 	[SerializeField] private int spawningChance;	//out of 100
 	[SerializeField] private int maxTextLength;
@@ -43,14 +41,15 @@ public class GhoulScript : MonoBehaviour {
 
 		meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		SetMaterial(defaultMaterial);
-
+		
 		CheckSpawn();
-		pointLight.enabled = false;
 		knowledge = new Queue<string>();
 	}
 
 	private void SetMaterial(Material material) {
-		meshRenderer.material = material;
+		if (material != null) {
+			meshRenderer.material = material;
+		}
 	}
 
 	private void CheckSpawn() {
