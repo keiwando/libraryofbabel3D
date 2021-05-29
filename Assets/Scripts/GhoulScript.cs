@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
+using Keiwando.Lob;
+using ScottGarland;
 
 [RequireComponent(typeof(LibraryTranslator))]
 public class GhoulScript : MonoBehaviour {
@@ -27,12 +29,21 @@ public class GhoulScript : MonoBehaviour {
 		get { return librarian.CurrentHexagon == hexagon; }
 	}
 
+	private static Math.LCGParameters respawnLCG;
+
 	[SerializeField]
 	private Material defaultMaterial;
 	[SerializeField]
 	private Material highlightMaterial;
 
 	private SkinnedMeshRenderer meshRenderer;
+
+	static GhoulScript() {
+		respawnLCG.m = BigInteger.Pow(2, 64);
+		respawnLCG.a = new BigInteger(6364136223846793005);
+		respawnLCG.c = new BigInteger(1442695040888963407);
+		respawnLCG.aInverse = Math.extendedGcd(respawnLCG.a, respawnLCG.m).x;
+	}
 
 	void Start () {
 
@@ -64,10 +75,11 @@ public class GhoulScript : MonoBehaviour {
 
 		Assert.IsNotNull(hexagon.location);
 
-		var locationData = hexagon.location.Value.GetDigitsData();
-		var locationDataHash = ((IStructuralEquatable)locationData).GetHashCode(EqualityComparer<System.UInt32>.Default);
+		// var locationData = hexagon.location.Value.GetDigitsData();
+		// var locationDataHash = ((IStructuralEquatable)locationData).GetHashCode(EqualityComparer<System.UInt32>.Default);
+		// bool spawnHere = locationDataHash % 100 < spawningChance;
 
-		bool spawnHere = locationDataHash % 100 < spawningChance;
+		bool spawnHere = Math.LCG(hexagon.location.Value, respawnLCG) % 100 < spawningChance;
 
 		if (!spawnHere) {
 			this.gameObject.SetActive(false);

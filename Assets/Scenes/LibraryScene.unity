@@ -4616,21 +4616,6 @@ PrefabInstance:
       propertyPath: knowledgeMirror
       value: 
       objectReference: {fileID: 2077419570}
-    - target: {fileID: 5539205851192130261, guid: 14a81e0376e8b4a6ba0cf27dae25b84a,
-        type: 3}
-      propertyPath: defaultMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 6a8e740dda5b24faab08caa20b11a56b, type: 2}
-    - target: {fileID: 5539205851192130261, guid: 14a81e0376e8b4a6ba0cf27dae25b84a,
-        type: 3}
-      propertyPath: highlightMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 4084900fc8d2046aaa015c7305397e2d, type: 2}
-    - target: {fileID: 5539205851192130261, guid: 14a81e0376e8b4a6ba0cf27dae25b84a,
-        type: 3}
-      propertyPath: spawningChance
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3602761232502478826, guid: 14a81e0376e8b4a6ba0cf27dae25b84a,
         type: 3}
       propertyPath: m_LocalScale.x
