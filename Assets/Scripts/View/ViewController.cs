@@ -27,6 +27,12 @@ public class ViewController : MonoBehaviour {
 	[SerializeField]
 	private GameObject centerIndicator;
 
+	void Awake() {
+		#if UNITY_STANDALONE_OSX
+		Screen.fullscreenMode = FullscreenMode.MaximizedWindow;
+		#endif
+	}
+
 	void Start () {
 		librarian = GameObject.FindGameObjectWithTag("Librarian").GetComponent<Librarian>();
 	}
