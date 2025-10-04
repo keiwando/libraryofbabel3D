@@ -11,7 +11,6 @@ public class Librarian : MonoBehaviour {
 
 	private enum Selection {
 		None = 0,
-		Wall, 
 		Book,
 		Search,
 		Settings
@@ -93,14 +92,18 @@ public class Librarian : MonoBehaviour {
 		}
 	}
 
-	public void EscapeClicked(){
-		
-		viewController.ShowChoiceIndicator();
-		viewController.CloseAllMenus();
+	public void EscapeClicked() {
 
-		DeselectAll();
+		if (selection == Selection.None && selectedWall == null) {
+			ShowSearchInterface();
+		} else {
+			viewController.ShowChoiceIndicator();
+			viewController.CloseAllMenus();
 
-		LockMouseUnlockCamera();
+			DeselectAll();
+
+			LockMouseUnlockCamera();
+		}
 	}
 
 	public void RequestPages(PageLocation[] pages, OnPageRequestCompleted onComplete) {

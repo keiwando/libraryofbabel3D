@@ -12,6 +12,8 @@ public class SettingsViewController : MonoBehaviour {
 	private Toggle invertCameraToggle;
 	[SerializeField]
 	private Toggle postProcessingEnabledToggle;
+	[SerializeField]
+	private Button quitGameButton;
 
 	private SoundController soundController;
 	private ViewController viewController;
@@ -45,6 +47,13 @@ public class SettingsViewController : MonoBehaviour {
 			Settings.PostProcessingEnabled = arg0;
 			viewController.PostProcessingSettingUpdated();
 		});
+
+		quitGameButton.onClick.AddListener(delegate() {
+			Application.Quit();
+		}); 
+		#if !UNITY_STANDALONE
+		quitGameButton.gameObject.SetActive(false);
+		#endif
 	}
 
 	public void Show() {

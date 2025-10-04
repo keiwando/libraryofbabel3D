@@ -44,3 +44,27 @@ The following packages were added:
   com.unity.modules.xr@1.0.0
   com.unity.multiplayer-hlapi@1.0.2
   com.unity.xr.legacyinputhelpers@2.0.2
+
+=== Fri Oct  3 19:56:17 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.2d.sprite@1.0.0
+  com.unity.2d.tilemap@1.0.0
+  com.unity.ide.rider@3.0.37
+  com.unity.ide.visualstudio@2.0.23
+  com.unity.modules.androidjni@1.0.0
+  com.unity.test-framework@1.6.0
+  com.unity.ugui@2.0.0
+  com.unity.ai.navigation@2.0.9
+  com.unity.modules.accessibility@1.0.0
+  com.unity.multiplayer.center@1.0.0
+The following packages were updated:
+  com.unity.postprocessing from version 2.1.7 to 3.5.0
+  com.unity.timeline from version 1.0.0 to 1.8.9
+  com.unity.xr.legacyinputhelpers from version 2.0.2 to 2.1.12
+The following packages were removed:
+  com.unity.package-manager-ui@2.1.2
+  com.unity.textmeshpro@2.0.0
